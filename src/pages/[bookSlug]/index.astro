@@ -1,5 +1,5 @@
 ---
-import { Book, Page, db, eq } from 'astro:db';
+import { Book, Page, asc, db, eq } from 'astro:db';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
@@ -35,6 +35,7 @@ const pages = await db
   })
   .from(Page)
   .where(eq(Page.bookId, book.id))
+  .orderBy(asc(Page.pageSort));
 ---
 
 <Layout>

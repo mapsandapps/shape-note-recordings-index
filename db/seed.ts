@@ -20,8 +20,14 @@ export default async function seed() {
   ]);
 
   await db.insert(Page).values([
-    { id: 1, bookId: 2, page: "133", tuneName: "Juniata" },
-    { id: 2, bookId: 2, page: "320", tuneName: "Longing for the Day" },
+    { id: 1, bookId: 2, page: "133", pageSort: 133, tuneName: "Juniata" },
+    {
+      id: 2,
+      bookId: 2,
+      page: "320",
+      pageSort: 320,
+      tuneName: "Longing for the Day",
+    },
   ]);
 
   await db.insert(Recording).values([

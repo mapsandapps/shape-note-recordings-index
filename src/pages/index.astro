@@ -1,5 +1,5 @@
 ---
-import { Book, db } from 'astro:db';
+import { Book, db, desc } from 'astro:db';
 import Layout from '../layouts/Layout.astro';
 
 const books = await db
@@ -8,7 +8,8 @@ const books = await db
     year: Book.year,
     slug: Book.slug,
   })
-  .from(Book);
+  .from(Book)
+  .orderBy(desc(Book.year));
 ---
 
 <Layout>

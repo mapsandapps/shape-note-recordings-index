@@ -1,5 +1,5 @@
 ---
-import { Book, Page, Recording, and, db, eq } from "astro:db";
+import { Book, Page, Recording, and, db, desc, eq } from "astro:db";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -39,7 +39,8 @@ const recordings = await db
     url: Recording.url,
   })
   .from(Recording)
-  .where(and(eq(Recording.bookId, page.bookId), eq(Recording.page, page.pageNumber)));
+  .where(and(eq(Recording.bookId, page.bookId), eq(Recording.page, page.pageNumber)))
+  .orderBy(desc(Recording.year), desc(Recording.id));
 ---
 <Layout>
   <ul class="breadcrumbs">

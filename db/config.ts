@@ -27,6 +27,7 @@ const Page = defineTable({
     id: column.number({ primaryKey: true }),
     bookId: column.number({ references: () => Book.columns.id }),
     page: column.text(),
+    pageSort: column.number(),
     tuneName: column.text(),
   },
 });
