@@ -2,12 +2,12 @@
 import { defineConfig } from "astro/config";
 
 import db from "@astrojs/db";
-import vercelStatic from "@astrojs/vercel/static";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
   output: "static",
-  adapter: vercelStatic({
+  adapter: vercel({
     webAnalytics: {
       enabled: true,
     },
