@@ -1,11 +1,40 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import { Book, Recording, db, eq } from 'astro:db';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const recordings = await db
+  .select({
+    singing: Recording.singing,
+    year: Recording.year,
+    recordist: Recording.recordist,
+    page: Recording.page,
+    bookId: Recording.bookId,
+    url: Recording.url,
+    bookName: Book.name,
+  })
+  .from(Recording)
+  .innerJoin(Book, eq(Recording.bookId, Book.id));
 ---
 
 <Layout>
-	<Welcome />
+  <table>
+    <thead>
+      <tr>
+        <th>Singing</th>
+        <th>Year</th>
+        <th>Book & Page</th>
+        <th>Recorded By</th>
+      </tr>
+    </thead>
+    <tbody>
+      {recordings.map(recording => (
+        <tr>
+          <td><a href={recording.url} target="_blank">{recording.singing}</a></td>
+          <td>{recording.year}</td>
+          <td>{recording.bookName} {recording.page}</td>
+          <td>{recording.recordist}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
 </Layout>
