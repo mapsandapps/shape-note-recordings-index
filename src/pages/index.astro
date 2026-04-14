@@ -1,38 +1,28 @@
 ---
-import { Book, Recording, db, eq } from 'astro:db';
+import { Book, db, eq } from 'astro:db';
 import Layout from '../layouts/Layout.astro';
 
-const recordings = await db
+const books = await db
   .select({
-    singing: Recording.singing,
-    year: Recording.year,
-    recordist: Recording.recordist,
-    page: Recording.page,
-    bookId: Recording.bookId,
-    url: Recording.url,
-    bookName: Book.name,
+    name: Book.name,
+    year: Book.year,
   })
-  .from(Recording)
-  .innerJoin(Book, eq(Recording.bookId, Book.id));
+  .from(Book);
 ---
 
 <Layout>
   <table>
     <thead>
       <tr>
-        <th>Singing</th>
+        <th>Book</th>
         <th>Year</th>
-        <th>Book & Page</th>
-        <th>Recorded By</th>
       </tr>
     </thead>
     <tbody>
-      {recordings.map(recording => (
+      {books.map(book => (
         <tr>
-          <td><a href={recording.url} target="_blank">{recording.singing}</a></td>
-          <td>{recording.year}</td>
-          <td>{recording.bookName} {recording.page}</td>
-          <td>{recording.recordist}</td>
+          <td>{book.name}</td>
+          <td>{book.year}</td>
         </tr>
       ))}
     </tbody>
