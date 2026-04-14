@@ -1,16 +1,17 @@
 ---
 import { Book, Page, Recording, and, db, desc, eq } from "astro:db";
 import Layout from "../../layouts/Layout.astro";
+import YouTubeEmbed from "../../components/embeds/YouTubeEmbed.astro";
+import ArchiveEmbed from "../../components/embeds/ArchiveEmbed.astro";
 
 export async function getStaticPaths() {
   const pages = await db
     .select({
       page: Page.page,
-      bookId: Page.bookId,
       bookSlug: Book.slug,
     })
     .from(Page)
-    .innerJoin(Book, eq(Book.id, Page.bookId));
+    .innerJoin(Book, eq(Book.slug, Page.bookSlug));
 
   return pages.map(page => ({
     params: {
@@ -20,16 +21,18 @@ export async function getStaticPaths() {
   }));
 };
 
+const { bookSlug, pageNumber } = Astro.params;
+
 const [page] = await db
   .select({
     pageNumber: Page.page,
     tuneName: Page.tuneName,
-    bookId: Page.bookId,
+    bookSlug: Page.bookSlug,
     bookName: Book.name,
     year: Book.year,
   })
   .from(Page)
-  .innerJoin(Book, eq(Book.id, Page.bookId));
+  .innerJoin(Book, and(eq(Book.slug, bookSlug), eq(Page.page, pageNumber)));
 
 const recordings = await db
   .select({
@@ -37,9 +40,10 @@ const recordings = await db
     year: Recording.year,
     recordist: Recording.recordist,
     url: Recording.url,
+    embedUrl: Recording.embedUrl,
   })
   .from(Recording)
-  .where(and(eq(Recording.bookId, page.bookId), eq(Recording.page, page.pageNumber)))
+  .where(and(eq(Recording.bookSlug, page.bookSlug), eq(Recording.page, pageNumber)))
   .orderBy(desc(Recording.year), desc(Recording.id));
 ---
 <Layout>
@@ -51,20 +55,26 @@ const recordings = await db
 
   <h1>{page.bookName} {page.year} &mdash; {page.pageNumber} {page.tuneName}</h1>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Singing</th>
-        <th>Recorded By</th>
-      </tr>
-    </thead>
-    <tbody>
-      {recordings.map(recording => (
-        <tr>
-          <td><a href={recording.url} target="_blank">{recording.singing}, {recording.year}</a></td>
-          <td>{recording.recordist}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
+  {recordings.map(recording => {
+    const isYouTube = recording.embedUrl.includes("youtube.com");
+    const isArchive = recording.embedUrl.includes("archive.org");
+    return (
+      <div class="recording">
+        {recording.singing}, {recording.year} recorded by {recording.recordist}:
+
+        {isArchive && (
+          <ArchiveEmbed src={recording.embedUrl} />
+        )}
+        {isYouTube && (
+          <YouTubeEmbed src={recording.embedUrl} />
+        )}
+      </div>
+    )}
+  )}
 </Layout>
+
+<style>
+  .recording {
+    padding-bottom: 4rem;
+  }
+</style>

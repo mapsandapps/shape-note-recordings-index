@@ -4,26 +4,30 @@ import { Book, Page, Recording, db } from "astro:db";
 export default async function seed() {
   await db.insert(Book).values([
     {
-      id: 1,
-      abbreviation: "SH",
       slug: "sh-2025",
+      abbreviation: "SH",
       name: "Sacred Harp",
       year: "2025",
     },
     {
-      id: 2,
-      abbreviation: "CH",
       slug: "ch-2010",
+      abbreviation: "CH",
       name: "Christian Harmony",
       year: "2010",
     },
   ]);
 
   await db.insert(Page).values([
-    { id: 1, bookId: 2, page: "133", pageSort: 133, tuneName: "Juniata" },
+    {
+      id: 1,
+      bookSlug: "ch-2010",
+      page: "133",
+      pageSort: 133,
+      tuneName: "Juniata",
+    },
     {
       id: 2,
-      bookId: 2,
+      bookSlug: "ch-2010",
       page: "320",
       pageSort: 320,
       tuneName: "Longing for the Day",
@@ -37,8 +41,10 @@ export default async function seed() {
       year: 2025,
       recordist: "José Camacho",
       page: "320",
-      bookId: 2,
+      bookSlug: "ch-2010",
       url: "https://www.youtube.com/watch?v=x_ho3uTwKc4&t=8916s",
+      embedUrl:
+        "https://www.youtube.com/embed/x_ho3uTwKc4?si=dWxg8zTKw9gH3641&amp;start=8916",
     },
     {
       id: 2,
@@ -46,8 +52,10 @@ export default async function seed() {
       year: 2015,
       recordist: "Nathan Rees",
       page: "320",
-      bookId: 2,
+      bookSlug: "ch-2010",
       url: "https://archive.org/details/2015-doremi-saturday",
+      embedUrl:
+        "https://archive.org/embed/2015-doremi-saturday/2015Doremi_Saturday05.mp3",
     },
     {
       id: 3,
@@ -55,8 +63,10 @@ export default async function seed() {
       year: 2022,
       recordist: "Nathan Rees",
       page: "320",
-      bookId: 2,
+      bookSlug: "ch-2010",
       url: "https://archive.org/details/2022-08-12-doremi-fri-23",
+      embedUrl:
+        "https://archive.org/embed/2022-08-12-doremi-fri-23/2022_08_12DoremiFri_27.mp3",
     },
     {
       id: 4,
@@ -64,8 +74,10 @@ export default async function seed() {
       year: 2025,
       recordist: "José Camacho",
       page: "133",
-      bookId: 2,
+      bookSlug: "ch-2010",
       url: "https://www.youtube.com/watch?v=x_ho3uTwKc4&t=7329s",
+      embedUrl:
+        "https://www.youtube.com/embed/x_ho3uTwKc4?si=cpoBuYXscG4vC327&amp;start=7329",
     },
     {
       id: 5,
@@ -73,8 +85,10 @@ export default async function seed() {
       year: 2010,
       recordist: "Nathan Rees",
       page: "133",
-      bookId: 2,
+      bookSlug: "ch-2010",
       url: "https://archive.org/details/01-16-10-county-line",
+      embedUrl:
+        "https://archive.org/embed/01-16-10-county-line/01_16_10CountyLine33.mp3",
     },
     {
       id: 6,
@@ -82,8 +96,10 @@ export default async function seed() {
       year: 2011,
       recordist: "Nathan Rees",
       page: "133",
-      bookId: 2,
+      bookSlug: "ch-2010",
       url: "https://archive.org/details/01-16-10-county-line_202601",
+      embedUrl:
+        "https://archive.org/embed/01-16-10-county-line_202601/01_16_10CountyLine33.mp3",
     },
     {
       id: 7,
@@ -91,44 +107,43 @@ export default async function seed() {
       year: 2015,
       recordist: "Nathan Rees",
       page: "133",
-      bookId: 2,
+      bookSlug: "ch-2010",
       url: "https://archive.org/details/2015-doremi-friday",
+      embedUrl:
+        "https://archive.org/embed/2015-doremi-friday/2015+Doremi+Friday19.mp3",
     },
     {
       id: 8,
-      singing: "Camp Doremi, Friday",
+      singing: "Camp Doremi, Saturday",
       year: 2021,
       recordist: "Nathan Rees",
       page: "133",
-      bookId: 2,
-      url: "https://archive.org/details/2021-08-13-do-re-mi-fri",
+      bookSlug: "ch-2010",
+      url: "https://archive.org/details/2021-08-14-do-re-mi-sat",
+      embedUrl:
+        "https://archive.org/embed/2021-08-14-do-re-mi-sat/2021_08_14DoReMi_Sat21.mp3",
     },
     {
       id: 9,
-      singing: "Camp Doremi, Saturday",
-      year: 2021,
-      recordist: "Nathan Rees",
-      page: "133",
-      bookId: 2,
-      url: "https://archive.org/details/2021-08-14-do-re-mi-sat",
-    },
-    {
-      id: 10,
       singing: "Camp Doremi, Friday",
       year: 2022,
       recordist: "Nathan Rees",
       page: "133",
-      bookId: 2,
+      bookSlug: "ch-2010",
       url: "https://archive.org/details/2022-08-12-doremi-fri-23",
+      embedUrl:
+        "https://archive.org/embed/2022-08-12-doremi-fri-23/2022_08_12DoremiFri_20.mp3",
     },
     {
-      id: 11,
+      id: 10,
       singing: "Camp Doremi, Saturday",
       year: 2022,
       recordist: "Nathan Rees",
       page: "133",
-      bookId: 2,
+      bookSlug: "ch-2010",
       url: "https://archive.org/details/2022-08-13-doremi-sat",
+      embedUrl:
+        "https://archive.org/embed/2022-08-13-doremi-sat/2022_08_13DoremiSat_37.mp3",
     },
   ]);
 }

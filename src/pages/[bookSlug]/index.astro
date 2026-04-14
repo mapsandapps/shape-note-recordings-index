@@ -20,10 +20,9 @@ const { bookSlug } = Astro.params;
 
 const [book] = await db
   .select({
-    id: Book.id,
+    slug: Book.slug,
     name: Book.name,
     year: Book.year,
-    slug: Book.slug
   })
   .from(Book)
   .where(eq(Book.slug, bookSlug));
@@ -34,7 +33,7 @@ const pages = await db
     tuneName: Page.tuneName
   })
   .from(Page)
-  .where(eq(Page.bookId, book.id))
+  .where(eq(Page.bookSlug, book.slug))
   .orderBy(asc(Page.pageSort));
 ---
 

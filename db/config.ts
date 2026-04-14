@@ -2,9 +2,8 @@ import { column, defineDb, defineTable } from "astro:db";
 
 const Book = defineTable({
   columns: {
-    id: column.number({ primaryKey: true }),
     abbreviation: column.text(),
-    slug: column.text(),
+    slug: column.text({ primaryKey: true }),
     name: column.text(),
     year: column.text(),
   },
@@ -17,15 +16,16 @@ const Recording = defineTable({
     year: column.number(),
     recordist: column.text(),
     page: column.text(),
-    bookId: column.number({ references: () => Book.columns.id }),
+    bookSlug: column.text({ references: () => Book.columns.slug }),
     url: column.text(),
+    embedUrl: column.text(),
   },
 });
 
 const Page = defineTable({
   columns: {
     id: column.number({ primaryKey: true }),
-    bookId: column.number({ references: () => Book.columns.id }),
+    bookSlug: column.text({ references: () => Book.columns.slug }),
     page: column.text(),
     pageSort: column.number(),
     tuneName: column.text(),

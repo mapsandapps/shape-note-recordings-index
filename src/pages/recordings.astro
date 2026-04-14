@@ -8,12 +8,12 @@ const recordings = await db
     year: Recording.year,
     recordist: Recording.recordist,
     page: Recording.page,
-    bookId: Recording.bookId,
+    bookSlug: Recording.bookSlug,
     url: Recording.url,
     bookName: Book.name,
   })
   .from(Recording)
-  .innerJoin(Book, eq(Recording.bookId, Book.id));
+  .innerJoin(Book, eq(Recording.bookSlug, Book.slug));
 ---
 
 <Layout>
