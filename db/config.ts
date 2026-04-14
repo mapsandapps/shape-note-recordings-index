@@ -4,6 +4,7 @@ const Book = defineTable({
   columns: {
     id: column.number({ primaryKey: true }),
     abbreviation: column.text(),
+    slug: column.text(),
     name: column.text(),
     year: column.text(),
   },

@@ -1,0 +1,69 @@
+---
+import { Book, Page, Recording, and, db, eq } from "astro:db";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const pages = await db
+    .select({
+      page: Page.page,
+      bookId: Page.bookId,
+      bookSlug: Book.slug,
+    })
+    .from(Page)
+    .innerJoin(Book, eq(Book.id, Page.bookId));
+
+  return pages.map(page => ({
+    params: {
+      bookSlug: page.bookSlug,
+      pageNumber: page.page
+    }
+  }));
+};
+
+const [page] = await db
+  .select({
+    pageNumber: Page.page,
+    tuneName: Page.tuneName,
+    bookId: Page.bookId,
+    bookName: Book.name,
+    year: Book.year,
+  })
+  .from(Page)
+  .innerJoin(Book, eq(Book.id, Page.bookId));
+
+const recordings = await db
+  .select({
+    singing: Recording.singing,
+    year: Recording.year,
+    recordist: Recording.recordist,
+    url: Recording.url,
+  })
+  .from(Recording)
+  .where(and(eq(Recording.bookId, page.bookId), eq(Recording.page, page.pageNumber)));
+---
+<Layout>
+  <ul class="breadcrumbs">
+    <li><a href="/">Home</a></li>
+    <li><a href="./">{page.bookName}</a></li>
+    <li>{page.pageNumber}</li>
+  </ul>
+
+  <h1>{page.bookName} {page.year} &mdash; {page.pageNumber} {page.tuneName}</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Singing</th>
+        <th>Recorded By</th>
+      </tr>
+    </thead>
+    <tbody>
+      {recordings.map(recording => (
+        <tr>
+          <td><a href={recording.url} target="_blank">{recording.singing}, {recording.year}</a></td>
+          <td>{recording.recordist}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</Layout>

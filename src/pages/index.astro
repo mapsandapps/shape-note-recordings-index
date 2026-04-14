@@ -1,30 +1,21 @@
 ---
-import { Book, db, eq } from 'astro:db';
+import { Book, db } from 'astro:db';
 import Layout from '../layouts/Layout.astro';
 
 const books = await db
   .select({
     name: Book.name,
     year: Book.year,
+    slug: Book.slug,
   })
   .from(Book);
 ---
 
 <Layout>
-  <table>
-    <thead>
-      <tr>
-        <th>Book</th>
-        <th>Year</th>
-      </tr>
-    </thead>
-    <tbody>
-      {books.map(book => (
-        <tr>
-          <td>{book.name}</td>
-          <td>{book.year}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
+  <h1>Index of Recordings from Shape Note Tune Books</h1>
+  <ul>
+    {books.map(book => (
+      <li><a href={`/${book.slug}`}>{book.name} ({book.year})</a></li>
+    ))}
+  </ul>
 </Layout>

@@ -1,0 +1,53 @@
+---
+import { Book, Page, db, eq } from 'astro:db';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const books = await db
+    .select({
+      slug: Book.slug,
+    })
+    .from(Book);
+
+  return books.map(book => ({
+    params: {
+      bookSlug: book.slug,
+    }
+  }))
+}
+
+const { bookSlug } = Astro.params;
+
+const [book] = await db
+  .select({
+    id: Book.id,
+    name: Book.name,
+    year: Book.year,
+    slug: Book.slug
+  })
+  .from(Book)
+  .where(eq(Book.slug, bookSlug));
+
+const pages = await db
+  .select({
+    page: Page.page,
+    tuneName: Page.tuneName
+  })
+  .from(Page)
+  .where(eq(Page.bookId, book.id))
+---
+
+<Layout>
+  <ul class="breadcrumbs">
+    <li><a href="/">Home</a></li>
+    <li>{book.name}</li>
+  </ul>
+
+  <h1>{book.name} ({book.year})</h1>
+
+  <ul>
+    {pages.map(page => (
+      <li><a href={`/${book.slug}/${page.page}`}>{page.page} {page.tuneName}</a></li>
+    ))}
+  </ul>
+</Layout>

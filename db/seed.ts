@@ -3,8 +3,20 @@ import { Book, Page, Recording, db } from "astro:db";
 // https://astro.build/db/seed
 export default async function seed() {
   await db.insert(Book).values([
-    { id: 1, abbreviation: "sh", name: "Sacred Harp", year: "2025" },
-    { id: 2, abbreviation: "ch", name: "Christian Harmony", year: "2010" },
+    {
+      id: 1,
+      abbreviation: "SH",
+      slug: "sh-2025",
+      name: "Sacred Harp",
+      year: "2025",
+    },
+    {
+      id: 2,
+      abbreviation: "CH",
+      slug: "ch-2010",
+      name: "Christian Harmony",
+      year: "2010",
+    },
   ]);
 
   await db.insert(Page).values([
@@ -24,7 +36,7 @@ export default async function seed() {
     },
     {
       id: 2,
-      singing: "Camp Doremi",
+      singing: "Camp Doremi, Friday",
       year: 2015,
       recordist: "Nathan Rees",
       page: "320",
