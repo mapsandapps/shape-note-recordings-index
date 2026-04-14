@@ -3,8 +3,9 @@ import { column, defineDb, defineTable } from "astro:db";
 const Book = defineTable({
   columns: {
     id: column.number({ primaryKey: true }),
+    abbreviation: column.text(),
     name: column.text(),
-    year: column.number(),
+    year: column.text(),
   },
 });
 
@@ -20,7 +21,16 @@ const Recording = defineTable({
   },
 });
 
+const Page = defineTable({
+  columns: {
+    id: column.number({ primaryKey: true }),
+    bookId: column.number({ references: () => Book.columns.id }),
+    page: column.text(),
+    tuneName: column.text(),
+  },
+});
+
 // https://astro.build/db/config
 export default defineDb({
-  tables: { Book, Recording },
+  tables: { Book, Page, Recording },
 });
