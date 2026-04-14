@@ -46,7 +46,7 @@ const recordings = await db
   .where(and(eq(Recording.bookSlug, page.bookSlug), eq(Recording.page, pageNumber)))
   .orderBy(desc(Recording.year), desc(Recording.id));
 ---
-<Layout>
+<Layout title={`Recordings of ${page.pageNumber} ${page.tuneName}`}>
   <ul class="breadcrumbs">
     <li><a href="/">Home</a></li>
     <li><a href="./">{page.bookName}</a></li>

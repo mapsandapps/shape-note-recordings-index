@@ -37,7 +37,7 @@ const pages = await db
   .orderBy(asc(Page.pageSort));
 ---
 
-<Layout>
+<Layout title={`Index of Recordings from ${book.name} (${book.year})`}>
   <ul class="breadcrumbs">
     <li><a href="/">Home</a></li>
     <li>{book.name}</li>
