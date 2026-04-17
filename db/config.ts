@@ -13,7 +13,7 @@ const Recording = defineTable({
   columns: {
     id: column.number({ primaryKey: true }),
     singing: column.text(),
-    year: column.number(),
+    date: column.text(),
     recordist: column.text(),
     page: column.text(),
     bookSlug: column.text({ references: () => Book.columns.slug }),

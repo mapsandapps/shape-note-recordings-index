@@ -3,6 +3,7 @@ import { Book, Page, Recording, and, db, desc, eq } from "astro:db";
 import Layout from "../../layouts/Layout.astro";
 import YouTubeEmbed from "../../components/embeds/YouTubeEmbed.astro";
 import ArchiveEmbed from "../../components/embeds/ArchiveEmbed.astro";
+import { getYear } from "../../utils/dates";
 
 export async function getStaticPaths() {
   const pages = await db
@@ -37,14 +38,14 @@ const [page] = await db
 const recordings = await db
   .select({
     singing: Recording.singing,
-    year: Recording.year,
+    date: Recording.date,
     recordist: Recording.recordist,
     url: Recording.url,
     embedUrl: Recording.embedUrl,
   })
   .from(Recording)
   .where(and(eq(Recording.bookSlug, page.bookSlug), eq(Recording.page, pageNumber)))
-  .orderBy(desc(Recording.year), desc(Recording.id));
+  .orderBy(desc(Recording.date), desc(Recording.id));
 ---
 <Layout title={`Recordings of ${page.pageNumber} ${page.tuneName}`}>
   <ul class="breadcrumbs">
@@ -53,14 +54,14 @@ const recordings = await db
     <li>{page.pageNumber}</li>
   </ul>
 
-  <h1>{page.bookName} {page.year} &mdash; {page.pageNumber} {page.tuneName}</h1>
+  <h1>{page.bookName} ({page.year}) &mdash; {page.pageNumber} {page.tuneName}</h1>
 
   {recordings.map(recording => {
     const isYouTube = recording.embedUrl.includes("youtube.com");
     const isArchive = recording.embedUrl.includes("archive.org");
     return (
       <div class="recording">
-        {recording.singing}, {recording.year} recorded by {recording.recordist}:
+        {recording.singing}, {getYear(recording.date)} recorded by {recording.recordist}:
 
         {isArchive && (
           <ArchiveEmbed src={recording.embedUrl} />
