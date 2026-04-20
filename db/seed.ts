@@ -21,15 +21,24 @@ const importPages = async () => {
 const importRecordings = async () => {
   const recordingsDir = path.join(process.cwd(), "db/data/recordings");
 
-  const files = fs
-    .readdirSync(recordingsDir)
-    .filter((f) => f.endsWith(".json"));
+  const files = fs.readdirSync(recordingsDir).filter((f) => {
+    return f.endsWith(".json") && !f.includes("-pending");
+  });
 
-  files.map(async (file) => {
+  files.map(async (fileName) => {
     // import one file at a time to avoid hitting limits
-    const content = fs.readFileSync(path.join(recordingsDir, file), "utf-8");
+    const content = fs.readFileSync(
+      path.join(recordingsDir, fileName),
+      "utf-8",
+    );
     const recordings = JSON.parse(content);
-    await db.insert(Recording).values(recordings);
+    await db.insert(Recording).values(
+      recordings.map((recording) => ({
+        ...recording,
+        // convert date string to js date
+        createdAt: new Date(recording.createdAt),
+      })),
+    );
   });
 };
 

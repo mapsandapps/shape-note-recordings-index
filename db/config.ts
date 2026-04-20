@@ -19,6 +19,12 @@ const Recording = defineTable({
     bookSlug: column.text({ references: () => Book.columns.slug }),
     url: column.text(),
     embedUrl: column.text(),
+    status: column.text({
+      // other statuses can be in json files before they get added to the DB
+      // but DB records should only have this one status
+      enum: ["CONFIRMED"],
+    }),
+    createdAt: column.date(),
   },
 });
 

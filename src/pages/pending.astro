@@ -1,0 +1,73 @@
+---
+import { type Recording } from "astro:db";
+import Layout from "../layouts/Layout.astro";
+import YouTubeEmbed from "../components/embeds/YouTubeEmbed.astro";
+import fs from "node:fs";
+import path from "node:path";
+import ArchiveLink from "../components/embeds/ArchiveLink.astro";
+
+type RecordingInsert = typeof Recording.$inferInsert;
+type PendingRecording = Omit<RecordingInsert, 'status'> & { status: 'CONFIRMED' | 'PENDING' | 'MISSING_DATA' }
+
+var jsons: PendingRecording[][] = [];
+
+const recordingsDir = path.join(process.cwd(), "db/data/recordings");
+
+const files = fs
+  .readdirSync(recordingsDir)
+  .filter((f) => {
+    return f.endsWith(".json") && f.includes("-pending");
+  });
+
+files.map(async (fileName) => {
+  // import one file at a time to avoid hitting limits
+  const content = fs.readFileSync(
+    path.join(recordingsDir, fileName),
+    "utf-8",
+  );
+  const recordings = JSON.parse(content);
+  jsons.push(recordings);
+});
+
+---
+<Layout title="Pending Recordings">
+  <ul class="breadcrumbs">
+    <li><a href="/">Home</a></li>
+    <li>Pending Recordings</li>
+  </ul>
+
+  <h1>Pending Recordings</h1>
+
+  {jsons.map((recordings) => {
+    return recordings.map((recording, i) => {
+      const isYouTube = recording.embedUrl.includes("youtube.com");
+      const isArchive = recording.embedUrl.includes("archive.org");
+
+      return (
+        <div class="recording">
+          {recording.status === "MISSING_DATA" && (
+            <div class="error">MISSING DATA:</div>
+          )}
+          <pre>{JSON.stringify(recording, null, 2)}</pre>
+
+          {isArchive && (
+            <ArchiveLink href={recording.embedUrl} />
+          )}
+          {isYouTube && (
+            <YouTubeEmbed src={recording.embedUrl} />
+          )}
+        </div>
+      )
+    })
+  })}
+</Layout>
+
+<style>
+  .error {
+    background-color: pink;
+    color: darkred;
+  }
+  .recording {
+    padding-bottom: 4rem;
+  }
+</style>

@@ -6,7 +6,9 @@
     "page": "320",
     "bookSlug": "ch-2010",
     "url": "https://www.youtube.com/watch?v=x_ho3uTwKc4&t=8916s",
-    "embedUrl": "https://www.youtube.com/embed/x_ho3uTwKc4?si=dWxg8zTKw9gH3641&amp;start=8916"
+    "embedUrl": "https://www.youtube.com/embed/x_ho3uTwKc4?si=dWxg8zTKw9gH3641&amp;start=8916",
+    "status": "CONFIRMED",
+    "createdAt": "2026-04-17T00:00:00.000Z"
   },
   {
     "singing": "Camp Doremi, Saturday",
@@ -15,7 +17,9 @@
     "page": "320",
     "bookSlug": "ch-2010",
     "url": "https://archive.org/details/2015-doremi-saturday",
-    "embedUrl": "https://archive.org/embed/2015-doremi-saturday/2015Doremi_Saturday05.mp3"
+    "embedUrl": "https://archive.org/embed/2015-doremi-saturday/2015Doremi_Saturday05.mp3",
+    "status": "CONFIRMED",
+    "createdAt": "2026-04-17T00:00:00.000Z"
   },
   {
     "singing": "Camp Doremi, Friday",
@@ -24,7 +28,9 @@
     "page": "320",
     "bookSlug": "ch-2010",
     "url": "https://archive.org/details/2022-08-12-doremi-fri-23",
-    "embedUrl": "https://archive.org/embed/2022-08-12-doremi-fri-23/2022_08_12DoremiFri_27.mp3"
+    "embedUrl": "https://archive.org/embed/2022-08-12-doremi-fri-23/2022_08_12DoremiFri_27.mp3",
+    "status": "CONFIRMED",
+    "createdAt": "2026-04-17T00:00:00.000Z"
   },
   {
     "singing": "Georgia State Christian Harmony Convention, Day 1",
@@ -33,7 +39,9 @@
     "page": "133",
     "bookSlug": "ch-2010",
     "url": "https://www.youtube.com/watch?v=x_ho3uTwKc4&t=7329s",
-    "embedUrl": "https://www.youtube.com/embed/x_ho3uTwKc4?si=cpoBuYXscG4vC327&amp;start=7329"
+    "embedUrl": "https://www.youtube.com/embed/x_ho3uTwKc4?si=cpoBuYXscG4vC327&amp;start=7329",
+    "status": "CONFIRMED",
+    "createdAt": "2026-04-17T00:00:00.000Z"
   },
   {
     "singing": "County Line",
@@ -42,7 +50,9 @@
     "page": "133",
     "bookSlug": "ch-2010",
     "url": "https://archive.org/details/01-16-10-county-line",
-    "embedUrl": "https://archive.org/embed/01-16-10-county-line/01_16_10CountyLine33.mp3"
+    "embedUrl": "https://archive.org/embed/01-16-10-county-line/01_16_10CountyLine33.mp3",
+    "status": "CONFIRMED",
+    "createdAt": "2026-04-17T00:00:00.000Z"
   },
   {
     "singing": "County Line",
@@ -51,7 +61,9 @@
     "page": "133",
     "bookSlug": "ch-2010",
     "url": "https://archive.org/details/01-16-10-county-line_202601",
-    "embedUrl": "https://archive.org/embed/01-16-10-county-line_202601/01_16_10CountyLine33.mp3"
+    "embedUrl": "https://archive.org/embed/01-16-10-county-line_202601/01_16_10CountyLine33.mp3",
+    "status": "CONFIRMED",
+    "createdAt": "2026-04-17T00:00:00.000Z"
   },
   {
     "singing": "Camp Doremi, Friday",
@@ -60,7 +72,9 @@
     "page": "133",
     "bookSlug": "ch-2010",
     "url": "https://archive.org/details/2015-doremi-friday",
-    "embedUrl": "https://archive.org/embed/2015-doremi-friday/2015+Doremi+Friday19.mp3"
+    "embedUrl": "https://archive.org/embed/2015-doremi-friday/2015+Doremi+Friday19.mp3",
+    "status": "CONFIRMED",
+    "createdAt": "2026-04-17T00:00:00.000Z"
   },
   {
     "singing": "Camp Doremi, Saturday",
@@ -69,7 +83,9 @@
     "page": "133",
     "bookSlug": "ch-2010",
     "url": "https://archive.org/details/2021-08-14-do-re-mi-sat",
-    "embedUrl": "https://archive.org/embed/2021-08-14-do-re-mi-sat/2021_08_14DoReMi_Sat21.mp3"
+    "embedUrl": "https://archive.org/embed/2021-08-14-do-re-mi-sat/2021_08_14DoReMi_Sat21.mp3",
+    "status": "CONFIRMED",
+    "createdAt": "2026-04-17T00:00:00.000Z"
   },
   {
     "singing": "Camp Doremi, Friday",
@@ -78,7 +94,9 @@
     "page": "133",
     "bookSlug": "ch-2010",
     "url": "https://archive.org/details/2022-08-12-doremi-fri-23",
-    "embedUrl": "https://archive.org/embed/2022-08-12-doremi-fri-23/2022_08_12DoremiFri_20.mp3"
+    "embedUrl": "https://archive.org/embed/2022-08-12-doremi-fri-23/2022_08_12DoremiFri_20.mp3",
+    "status": "CONFIRMED",
+    "createdAt": "2026-04-17T00:00:00.000Z"
   },
   {
     "singing": "Camp Doremi, Saturday",
@@ -87,7 +105,9 @@
     "page": "133",
     "bookSlug": "ch-2010",
     "url": "https://archive.org/details/2022-08-13-doremi-sat",
-    "embedUrl": "https://archive.org/embed/2022-08-13-doremi-sat/2022_08_13DoremiSat_37.mp3"
+    "embedUrl": "https://archive.org/embed/2022-08-13-doremi-sat/2022_08_13DoremiSat_37.mp3",
+    "status": "CONFIRMED",
+    "createdAt": "2026-04-17T00:00:00.000Z"
   },
   {
     "singing": "Georgia State Christian Harmony Convention, Day 1",
@@ -96,7 +116,9 @@
     "page": "203",
     "bookSlug": "ch-2010",
     "url": "https://www.youtube.com/watch?v=x_ho3uTwKc4&t=1809s",
-    "embedUrl": "https://www.youtube.com/embed/x_ho3uTwKc4?si=NDoi4BUbyg0elRov&amp;start=1809"
+    "embedUrl": "https://www.youtube.com/embed/x_ho3uTwKc4?si=NDoi4BUbyg0elRov&amp;start=1809",
+    "status": "CONFIRMED",
+    "createdAt": "2026-04-17T00:00:00.000Z"
   },
   {
     "singing": "Camp Doremi, Thursday",
@@ -105,7 +127,9 @@
     "page": "203",
     "bookSlug": "ch-2010",
     "url": "https://archive.org/details/2018-08-16-camp-doremi-thurs-night/2018_08_16CampDoremiThursNight18.mp3",
-    "embedUrl": "https://archive.org/embed/2018-08-16-camp-doremi-thurs-night/2018_08_16CampDoremiThursNight18.mp3"
+    "embedUrl": "https://archive.org/embed/2018-08-16-camp-doremi-thurs-night/2018_08_16CampDoremiThursNight18.mp3",
+    "status": "CONFIRMED",
+    "createdAt": "2026-04-17T00:00:00.000Z"
   },
   {
     "singing": "Camp Doremi, Thursday",
@@ -114,7 +138,9 @@
     "page": "203",
     "bookSlug": "ch-2010",
     "url": "https://archive.org/details/2017-08-10-doremi-thurs-night/2017_08_10DoremiThursNight116.mp3",
-    "embedUrl": "https://archive.org/embed/2017-08-10-doremi-thurs-night/2017_08_10DoremiThursNight116.mp3"
+    "embedUrl": "https://archive.org/embed/2017-08-10-doremi-thurs-night/2017_08_10DoremiThursNight116.mp3",
+    "status": "CONFIRMED",
+    "createdAt": "2026-04-17T00:00:00.000Z"
   },
   {
     "singing": "Camp Doremi, Saturday",
@@ -123,6 +149,8 @@
     "page": "203",
     "bookSlug": "ch-2010",
     "url": "https://archive.org/details/2017-08-10-doremi-sat-night/2017_08_10DoremiSatNight213.mp3",
-    "embedUrl": "https://archive.org/embed/2017-08-10-doremi-sat-night/2017_08_10DoremiSatNight213.mp3"
+    "embedUrl": "https://archive.org/embed/2017-08-10-doremi-sat-night/2017_08_10DoremiSatNight213.mp3",
+    "status": "CONFIRMED",
+    "createdAt": "2026-04-17T00:00:00.000Z"
   }
 ]

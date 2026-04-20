@@ -37,6 +37,7 @@ const [page] = await db
 
 const recordings = await db
   .select({
+    id: Recording.id,
     singing: Recording.singing,
     date: Recording.date,
     recordist: Recording.recordist,
@@ -44,7 +45,7 @@ const recordings = await db
     embedUrl: Recording.embedUrl,
   })
   .from(Recording)
-  .where(and(eq(Recording.bookSlug, page.bookSlug), eq(Recording.page, pageNumber)))
+  .where(and(eq(Recording.bookSlug, page.bookSlug), eq(Recording.page, pageNumber), eq(Recording.status, "CONFIRMED")))
   .orderBy(desc(Recording.date), desc(Recording.id));
 ---
 <Layout title={`Recordings of ${page.pageNumber} ${page.tuneName}`}>

@@ -10,5 +10,17 @@
     "abbreviation": "CH",
     "name": "Christian Harmony",
     "year": "2010"
+  },
+  {
+    "slug": "nhc-2001",
+    "abbreviation": "NHC",
+    "name": "New Harp of Columbia",
+    "year": "2010"
+  },
+  {
+    "slug": "sh-1991",
+    "abbreviation": "SH",
+    "name": "Sacred Harp",
+    "year": "1991"
   }
 ]
