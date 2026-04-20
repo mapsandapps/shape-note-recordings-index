@@ -1,6 +1,5 @@
 import { Book, Page, Recording, db } from "astro:db";
 import books from "./data/books.json";
-import pages from "./data/pages.json";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -9,13 +8,18 @@ const importBooks = async () => {
 };
 
 const importPages = async () => {
-  // batch insert to avoid hitting limits
-  const CHUNK_SIZE = 100;
+  const pagesDir = path.join(process.cwd(), "db/data/pages");
 
-  for (let i = 0; i < pages.length; i += CHUNK_SIZE) {
-    const chunk = pages.slice(i, i + CHUNK_SIZE);
-    await db.insert(Page).values(chunk);
-  }
+  const files = fs.readdirSync(pagesDir).filter((f) => {
+    return f.endsWith(".json");
+  });
+
+  files.map(async (fileName) => {
+    // import one file at a time to avoid hitting limits
+    const content = fs.readFileSync(path.join(pagesDir, fileName), "utf-8");
+    const pages = JSON.parse(content);
+    await db.insert(Page).values(pages);
+  });
 };
 
 const importRecordings = async () => {
