@@ -1,6 +1,7 @@
 ---
-import { Book, Page, asc, db, eq } from 'astro:db';
+import { Book, Page, and, asc, db, eq, isNotNull } from 'astro:db';
 import Layout from '../../layouts/Layout.astro';
+import { Recording } from 'astro:db';
 
 export async function getStaticPaths() {
   const books = await db
@@ -30,11 +31,14 @@ const [book] = await db
 const pages = await db
   .select({
     page: Page.page,
-    tuneName: Page.tuneName
+    tuneName: Page.tuneName,
+    hasRecording: isNotNull(Recording.id)
   })
   .from(Page)
   .where(eq(Page.bookSlug, book.slug))
-  .orderBy(asc(Page.pageSort));
+  .orderBy(asc(Page.pageSort))
+  .leftJoin(Recording, and(eq(Recording.page, Page.page), eq(Recording.bookSlug, Page.bookSlug)))
+  .groupBy(Page.id);
 ---
 
 <Layout title={`Index of Recordings from ${book.name} (${book.year})`}>
@@ -46,8 +50,13 @@ const pages = await db
   <h1>{book.name} ({book.year})</h1>
 
   <ul>
-    {pages.map(page => (
-      <li><a href={`/${book.slug}/${page.page}`}>{page.page} {page.tuneName}</a></li>
-    ))}
+    {pages.map(page => {
+      if (page.hasRecording) return (
+        <li><a href={`/${book.slug}/${page.page}`}>{page.page} {page.tuneName}</a></li>
+      )
+      return (
+        <li>{page.page} {page.tuneName}</li>
+      )}
+    )}
   </ul>
 </Layout>
