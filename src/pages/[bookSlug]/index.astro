@@ -49,14 +49,39 @@ const pages = await db
 
   <h1>{book.name} ({book.year})</h1>
 
-  <ul>
+  <button>Show pages without recordings</button>
+
+  <ul id="pages" class="hide-missing-links">
     {pages.map(page => {
       if (page.hasRecording) return (
         <li><a href={`/${book.slug}/${page.page}`}>{page.page} {page.tuneName}</a></li>
       )
       return (
-        <li>{page.page} {page.tuneName}</li>
+        <li class="no-link">{page.page} {page.tuneName}</li>
       )}
     )}
   </ul>
 </Layout>
+
+<script>
+  const pageList = document.getElementById('pages');
+  const button = document.getElementsByTagName('button')[0];
+
+  button.addEventListener('click', () => {
+    pageList?.classList.toggle('hide-missing-links');
+    if (button.innerText === 'Show pages without recordings') {
+      button.innerText = 'Hide pages without recordings'
+    } else {
+      button.innerText = 'Show pages without recordings'
+    }
+  })
+
+</script>
+
+<style>
+#pages.hide-missing-links {
+  .no-link {
+    display: none;
+  }
+}
+</style>
