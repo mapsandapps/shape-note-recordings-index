@@ -5,6 +5,8 @@ import YouTubeEmbed from "../components/embeds/YouTubeEmbed.astro";
 import fs from "node:fs";
 import path from "node:path";
 import ArchiveLink from "../components/embeds/ArchiveLink.astro";
+import { findNewRecordings } from "../../scripts/archive-parsing";
+import { parse } from 'date-fns';
 
 type RecordingInsert = typeof Recording.$inferInsert;
 type PendingRecording = Omit<RecordingInsert, 'status'> & { status: 'CONFIRMED' | 'PENDING' | 'MISSING_DATA' }
@@ -19,8 +21,7 @@ const files = fs
     return f.endsWith(".json") && f.includes("-pending");
   });
 
-files.map(async (fileName) => {
-  // import one file at a time to avoid hitting limits
+files.map((fileName) => {
   const content = fs.readFileSync(
     path.join(recordingsDir, fileName),
     "utf-8",
@@ -38,29 +39,55 @@ files.map(async (fileName) => {
 
   <h1>Pending Recordings</h1>
 
-  {jsons.map((recordings) => {
-    return recordings.map((recording, i) => {
-      const isYouTube = recording.embedUrl.includes("youtube.com");
-      const isArchive = recording.embedUrl.includes("archive.org");
+  <button>Show only known problems</button>
 
-      return (
-        <div class="recording">
-          {recording.status === "MISSING_DATA" && (
-            <div class="error">MISSING DATA:</div>
-          )}
-          <pre>{JSON.stringify(recording, null, 2)}</pre>
+  <div id="recordings">
+    {jsons.map((recordings) => {
+      return recordings.map((recording, i) => {
+        if (recording.status === "CONFIRMED") return
 
-          {isArchive && (
-            <ArchiveLink href={recording.embedUrl} />
-          )}
-          {isYouTube && (
-            <YouTubeEmbed src={recording.embedUrl} />
-          )}
-        </div>
-      )
-    })
-  })}
+        const isYouTube = recording.embedUrl.includes("youtube.com");
+        const isArchive = recording.embedUrl.includes("archive.org");
+
+        const hasError = recording.status === "MISSING_DATA"
+
+        return (
+          <div class={`recording ${hasError ? 'has-error' : 'seems-ok'}`}>
+            {recording.status === "MISSING_DATA" && (
+              <div class="error">MISSING DATA:</div>
+            )}
+            <pre>{JSON.stringify(recording, null, 2)}</pre>
+
+            {isArchive && (
+              <ArchiveLink href={recording.embedUrl} />
+            )}
+            {isArchive && (
+              <a href={recording.url} target="_blank">Page</a>
+            )}
+            {isYouTube && (
+              <YouTubeEmbed src={recording.embedUrl} />
+            )}
+          </div>
+        )
+      })
+    })}
+  </div>
 </Layout>
+
+<script>
+  const recordingsList = document.getElementById('recordings');
+  const button = document.getElementsByTagName('button')[0];
+
+  button.addEventListener('click', () => {
+    recordingsList?.classList.toggle('hide-ok');
+    if (button.innerText === 'Show only known problems') {
+      button.innerText = 'Show all pending'
+    } else {
+      button.innerText = 'Show only known problems'
+    }
+  })
+
+</script>
 
 <style>
   .error {
@@ -69,5 +96,10 @@ files.map(async (fileName) => {
   }
   .recording {
     padding-bottom: 4rem;
+  }
+  .hide-ok {
+    .seems-ok {
+      display: none;
+    }
   }
 </style>

@@ -2,6 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import books from "../db/data/books.json";
 import { type Book, type Recording } from "astro:db";
+import { format } from "date-fns";
 
 type BookSelect = typeof Book.$inferSelect;
 type RecordingInsert = typeof Recording.$inferInsert;
@@ -125,30 +126,60 @@ const getRecordings = (data: any) => {
   return recordings;
 };
 
-export const fetchData = async (url: string) => {
+const fetchRecordings = async (url: string) => {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent": "shape-note-recordings-index/0.1",
+      },
+    });
     const data = await response.json();
     return getRecordings(data);
   } catch (error) {
-    console.error("Fetch failed", error);
+    console.error("Fetching recordings failed", error);
   }
 };
 
-export const findNewRecordings = async () => {
-  const date = new Date().toISOString();
+const fetchItems = async (startDate: Date) => {
+  const date = format(startDate, "yyyy-MM-dd");
+
+  const url = `https://archive.org/services/search/beta/page_production/?user_query=creator%3A%28Nathan+Rees%29+AND+date%3A%5B${date}+TO+null%5D`;
+  try {
+    const response = await fetch(url, {
+      headers: {
+        "User-Agent": "shape-note-recordings-index/0.1",
+      },
+    });
+    const data = await response.json();
+    return data.response.body.hits.hits;
+  } catch (error) {
+    console.error("Fetching items failed", error);
+  }
+};
+
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+export const findNewRecordings = async (startDate: Date) => {
+  const currentDate = new Date().toISOString();
   const filePath = path.join(
     process.cwd(),
-    `db/data/recordings/${date}-pending.json`,
+    `db/data/recordings/${currentDate}-pending.json`,
   );
 
-  // TODO: find URLs to use; use them all and concatenate
-  const recordings = await fetchData(
-    // "https://archive.org/metadata/2023-09-30-doremi-saturday",
-    // "https://archive.org/metadata/2017-08-10-doremi-sat-night",
-    "https://archive.org/metadata/2024-07-07-henagar-union",
-    // "https://archive.org/metadata/2026_04_12CountyLine",
-  );
+  const items = await fetchItems(startDate);
+  let recordings: any[] = [];
+
+  for (const item of items) {
+    const identifier = item.fields.identifier;
+    const url = `https://archive.org/metadata/${identifier}`;
+    const itemRecordings = await fetchRecordings(url);
+    if (itemRecordings) {
+      recordings = [...recordings, ...itemRecordings];
+    }
+
+    // throttle API requests
+    await delay(1000);
+  }
 
   fs.writeFileSync(filePath, JSON.stringify(recordings, null, 2));
 };
