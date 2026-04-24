@@ -1,15 +1,10 @@
 ---
-import { type Recording } from "astro:db";
 import Layout from "../layouts/Layout.astro";
 import YouTubeEmbed from "../components/embeds/YouTubeEmbed.astro";
 import fs from "node:fs";
 import path from "node:path";
 import ArchiveLink from "../components/embeds/ArchiveLink.astro";
-import { findNewRecordings } from "../../scripts/archive-parsing";
-import { parse } from 'date-fns';
-
-type RecordingInsert = typeof Recording.$inferInsert;
-type PendingRecording = Omit<RecordingInsert, 'status'> & { status: 'CONFIRMED' | 'PENDING' | 'MISSING_DATA' }
+import { type PendingRecording } from '../../scripts/archive-parsing'
 
 var jsons: PendingRecording[][] = [];
 
@@ -46,26 +41,32 @@ files.map((fileName) => {
       return recordings.map((recording, i) => {
         if (recording.status === "CONFIRMED") return
 
-        const isYouTube = recording.embedUrl.includes("youtube.com");
-        const isArchive = recording.embedUrl.includes("archive.org");
+        const isYouTube = recording.embedUrl?.includes("youtube.com");
+        const isArchive = recording.embedUrl?.includes("archive.org");
 
-        const hasError = recording.status === "MISSING_DATA"
+        const hasError = recording.status !== "PENDING"
 
         return (
           <div class={`recording ${hasError ? 'has-error' : 'seems-ok'}`}>
             {recording.status === "MISSING_DATA" && (
               <div class="error">MISSING DATA:</div>
             )}
+            {recording.status === "DUPLICATE" && (
+              <div class="error">DUPLICATE:</div>
+            )}
+            {recording.status === "PAGE_NUMBER_PROBLEM" && (
+              <div class="error">PAGE NUMBER NOT IN BOOK:</div>
+            )}
             <pre>{JSON.stringify(recording, null, 2)}</pre>
 
             {isArchive && (
-              <ArchiveLink href={recording.embedUrl} />
+              <ArchiveLink href={recording.embedUrl || ""} />
             )}
             {isArchive && (
               <a href={recording.url} target="_blank">Page</a>
             )}
             {isYouTube && (
-              <YouTubeEmbed src={recording.embedUrl} />
+              <YouTubeEmbed src={recording.embedUrl || ""} />
             )}
           </div>
         )

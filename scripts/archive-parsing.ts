@@ -1,16 +1,21 @@
 import * as fs from "fs";
 import * as path from "path";
 import books from "../db/data/books.json";
-import { type Book, type Recording } from "astro:db";
+import { and, db, eq, Page, Recording, type Book } from "astro:db";
 import { format } from "date-fns";
 
 type BookSelect = typeof Book.$inferSelect;
 type RecordingInsert = typeof Recording.$inferInsert;
 
-type PendingRecording = Partial<
+export type PendingRecording = Partial<
   Omit<RecordingInsert, "status" | "createdAt">
 > & {
-  status: "CONFIRMED" | "PENDING" | "MISSING_DATA";
+  status:
+    | "CONFIRMED"
+    | "PENDING"
+    | "MISSING_DATA"
+    | "DUPLICATE"
+    | "PAGE_NUMBER_PROBLEM";
   createdAt: string;
 };
 
@@ -71,9 +76,34 @@ const guessBooks = (description: string, recordingDate: string) => {
   return includedBooks;
 };
 
-const getRecordings = (data: any) => {
+const findDuplicates = async (recording: any) => {
+  const similarRecordings = await db
+    .select({
+      embedUrl: Recording.embedUrl,
+    })
+    .from(Recording)
+    .where(and(eq(Recording.embedUrl, recording.embedUrl)));
+
+  return similarRecordings?.length > 0;
+};
+
+const findPageNumberInDB = async (recording: any) => {
+  const pages = await db
+    .select({
+      bookSlug: Page.bookSlug,
+      page: Page.page,
+    })
+    .from(Page)
+    .where(
+      and(eq(Page.bookSlug, recording.bookSlug), eq(Page.page, recording.page)),
+    );
+
+  return pages?.length > 0;
+};
+
+const getRecordings = async (data: any) => {
   const books = guessBooks(data.metadata.description, data.metadata.date);
-  const recordings: PendingRecording[] = [];
+  let recordings: PendingRecording[] = [];
 
   if (books.length < 1) {
     console.error("No books found");
@@ -82,7 +112,7 @@ const getRecordings = (data: any) => {
 
   const files = data.files.filter((file: any) => Boolean(file.track));
 
-  files.forEach((file: any) => {
+  for (const file of files) {
     const recording: PendingRecording = {
       singing: data.metadata.title,
       date: data.metadata.date,
@@ -118,10 +148,21 @@ const getRecordings = (data: any) => {
       recording.url &&
       recording.embedUrl
     ) {
-      recording.status = "PENDING";
+      // use astro DB to find recordings already in DB
+      if (await findDuplicates(recording)) {
+        recording.status = "DUPLICATE";
+      } else if (await findPageNumberInDB(recording)) {
+        // use astro DB to find incorrect page numbers
+        recording.status = "PENDING";
+      } else {
+        recording.status = "PAGE_NUMBER_PROBLEM";
+      }
+    } else {
+      recording.status = "MISSING_DATA";
     }
+
     recordings.push(recording);
-  });
+  }
 
   return recordings;
 };
