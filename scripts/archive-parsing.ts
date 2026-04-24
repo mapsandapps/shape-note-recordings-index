@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import books from "../db/data/books.json";
 import { and, db, eq, Page, Recording, type Book } from "astro:db";
-import { format } from "date-fns";
+import { format, isAfter } from "date-fns";
 
 type BookSelect = typeof Book.$inferSelect;
 type RecordingInsert = typeof Recording.$inferInsert;
@@ -192,7 +192,12 @@ const fetchItems = async (startDate: Date) => {
       },
     });
     const data = await response.json();
-    return data.response.body.hits.hits;
+
+    // the query only lets you refine down to the date, not time, so remove any items before the search data
+    const items = data.response.body.hits.hits.filter((item: any) =>
+      isAfter(item.fields.publicdate, startDate),
+    );
+    return items;
   } catch (error) {
     console.error("Fetching items failed", error);
   }
