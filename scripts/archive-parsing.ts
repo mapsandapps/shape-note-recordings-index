@@ -1,8 +1,8 @@
-import * as fs from "fs";
 import * as path from "path";
 import books from "../db/data/books.json";
-import { and, db, eq, Page, Recording, type Book } from "astro:db";
+import { Recording, type Book } from "astro:db";
 import { format, isAfter } from "date-fns";
+import { findDuplicates, findPageNumber, findPageNumberInDB } from "./utils";
 
 type BookSelect = typeof Book.$inferSelect;
 type RecordingInsert = typeof Recording.$inferInsert;
@@ -17,23 +17,6 @@ export type PendingRecording = Partial<
     | "DUPLICATE"
     | "PAGE_NUMBER_PROBLEM";
   createdAt: string;
-};
-
-// from https://github.com/mapsandapps/minutes-tune-names/blob/main/src/helpers.ts
-const getRegexOneBook = (bookAbbreviation: string): RegExp => {
-  if (bookAbbreviation === "NHC") {
-    return new RegExp(/[A *]*\d+[tbATB]*/, "g");
-  }
-
-  return new RegExp(/\d+[tbTB]*/, "g");
-};
-
-const findPageNumber = (
-  title: string,
-  bookAbbreviation: string,
-): string | null => {
-  const matches = title.match(getRegexOneBook(bookAbbreviation));
-  return matches ? matches[0].toLowerCase() : null;
 };
 
 const isAfterBookLaunch = (recordingDate: string) => {
@@ -76,31 +59,6 @@ const guessBooks = (description: string, recordingDate: string) => {
   return includedBooks;
 };
 
-const findDuplicates = async (recording: any) => {
-  const similarRecordings = await db
-    .select({
-      embedUrl: Recording.embedUrl,
-    })
-    .from(Recording)
-    .where(and(eq(Recording.embedUrl, recording.embedUrl)));
-
-  return similarRecordings?.length > 0;
-};
-
-const findPageNumberInDB = async (recording: any) => {
-  const pages = await db
-    .select({
-      bookSlug: Page.bookSlug,
-      page: Page.page,
-    })
-    .from(Page)
-    .where(
-      and(eq(Page.bookSlug, recording.bookSlug), eq(Page.page, recording.page)),
-    );
-
-  return pages?.length > 0;
-};
-
 const getRecordings = async (data: any) => {
   const books = guessBooks(data.metadata.description, data.metadata.date);
   let recordings: PendingRecording[] = [];
@@ -133,7 +91,7 @@ const getRecordings = async (data: any) => {
       books.forEach((book) => {
         if (file.title.includes(book.abbreviation)) {
           recording.page =
-            findPageNumber(file.title, books[0].abbreviation) || undefined;
+            findPageNumber(file.title, book.abbreviation) || undefined;
           recording.bookSlug = book.slug;
         }
       });
