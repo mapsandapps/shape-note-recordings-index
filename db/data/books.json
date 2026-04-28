@@ -34,5 +34,17 @@
     "abbreviation": "SH",
     "name": "Sacred Harp",
     "year": "1971"
+  },
+  {
+    "slug": "sch-1855",
+    "abbreviation": "ScH",
+    "name": "The Social Harp",
+    "year": "1855"
+  },
+  {
+    "slug": "gh-2012",
+    "abbreviation": "GH",
+    "name": "Georgian Harmony",
+    "year": "2012"
   }
 ]

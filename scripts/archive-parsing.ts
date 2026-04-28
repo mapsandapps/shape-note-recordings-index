@@ -1,7 +1,8 @@
 import * as path from "path";
 import books from "../db/data/books.json";
 import { Recording, type Book } from "astro:db";
-import { format, isAfter } from "date-fns";
+import { format, formatDate, isAfter } from "date-fns";
+import fs from "node:fs";
 import { findDuplicates, findPageNumber, findPageNumberInDB } from "./utils";
 
 type BookSelect = typeof Book.$inferSelect;
@@ -129,6 +130,13 @@ const getRecordings = async (data: any) => {
         recording.status = "PAGE_NUMBER_PROBLEM";
       }
     } else {
+      recording.singing = recording.singing || "";
+      recording.date = recording.date || "";
+      recording.recordist = recording.recordist || "";
+      recording.bookSlug = recording.bookSlug || "";
+      recording.page = recording.page || "";
+      recording.url = recording.url || "";
+      recording.embedUrl = recording.embedUrl || "";
       recording.status = "MISSING_DATA";
     }
 
@@ -178,6 +186,9 @@ const fetchItems = async (startDate: Date, endDate?: Date) => {
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const findNewRecordings = async (startDate: Date, endDate?: Date) => {
+  console.log(
+    `Starting to find recordings from ${formatDate(startDate, "yyyy-MM-dd")} to ${formatDate(endDate || new Date(), "yyyy-MM-dd")}`,
+  );
   const currentDate = new Date().toISOString();
   const filePath = path.join(
     process.cwd(),
@@ -200,4 +211,5 @@ export const findNewRecordings = async (startDate: Date, endDate?: Date) => {
   }
 
   fs.writeFileSync(filePath, JSON.stringify(recordings, null, 2));
+  console.log(`Finished writing to file ${filePath}`);
 };
