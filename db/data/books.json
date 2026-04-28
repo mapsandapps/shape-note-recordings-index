@@ -46,5 +46,17 @@
     "abbreviation": "GH",
     "name": "Georgian Harmony",
     "year": "2012"
+  },
+  {
+    "slug": "ch-carolina",
+    "abbreviation": "CHw",
+    "name": "Christian Harmony \"Carolina book\"",
+    "year": "1994"
+  },
+  {
+    "slug": "ch-alabama",
+    "abbreviation": "CHdp",
+    "name": "Christian Harmony \"Alabama book\"",
+    "year": "2002"
   }
 ]

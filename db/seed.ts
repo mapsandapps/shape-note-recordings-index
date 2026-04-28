@@ -17,7 +17,11 @@ const importPages = async () => {
   files.map(async (fileName) => {
     // import one file at a time to avoid hitting limits
     const content = fs.readFileSync(path.join(pagesDir, fileName), "utf-8");
-    const pages = JSON.parse(content);
+
+    const pages = JSON.parse(content).map((page: any) => ({
+      ...page,
+      bookSlug: fileName.replace(".json", ""),
+    }));
     await db.insert(Page).values(pages);
   });
 };
@@ -26,7 +30,9 @@ const importRecordings = async () => {
   const recordingsDir = path.join(process.cwd(), "db/data/recordings");
 
   const files = fs.readdirSync(recordingsDir).filter((f) => {
-    return f.endsWith(".json") && !f.includes("-pending");
+    return (
+      f.endsWith(".json") && !f.includes("-pending") && !f.includes("-temp")
+    );
   });
 
   files.map(async (fileName) => {

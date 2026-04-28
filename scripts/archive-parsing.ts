@@ -187,7 +187,7 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const findNewRecordings = async (startDate: Date, endDate?: Date) => {
   console.log(
-    `Starting to find recordings from ${formatDate(startDate, "yyyy-MM-dd")} to ${formatDate(endDate || new Date(), "yyyy-MM-dd")}`,
+    `Starting to find recordings from ${formatDate(startDate, "yyyy-MM-dd")} to ${formatDate(endDate || new Date(), "yyyy-MM-dd")}...`,
   );
   const currentDate = new Date().toISOString();
   const filePath = path.join(

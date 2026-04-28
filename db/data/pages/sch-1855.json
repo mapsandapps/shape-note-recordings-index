@@ -1,1321 +1,1100 @@
 [
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Old Hundred",
     "page": "17",
     "pageSort": 17
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Glorious New",
     "page": "18t",
     "pageSort": 18.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Cross",
     "page": "18b",
     "pageSort": 18.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Mandaville",
     "page": "19",
     "pageSort": 19
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Go On",
     "page": "20t",
     "pageSort": 20.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Heavenly King",
     "page": "20b",
     "pageSort": 20.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "River of Jordan",
     "page": "21",
     "pageSort": 21
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Permanence",
     "page": "22",
     "pageSort": 22
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Heavenly Dove",
     "page": "23b",
     "pageSort": 23.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Separation New",
     "page": "23t",
     "pageSort": 23.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Ninety-Fifth",
     "page": "24",
     "pageSort": 24
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Look Out",
     "page": "25",
     "pageSort": 25
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Bower of Prayer",
     "page": "26",
     "pageSort": 26
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Canaan's Land",
     "page": "27t",
     "pageSort": 27.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Midnight Cry",
     "page": "27b",
     "pageSort": 27.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Substantial Joys",
     "page": "28",
     "pageSort": 28
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Martin",
     "page": "29",
     "pageSort": 29
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Greenfields",
     "page": "30",
     "pageSort": 30
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Mary Blain",
     "page": "31",
     "pageSort": 31
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Jubilee",
     "page": "32",
     "pageSort": 32
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Happy Children",
     "page": "33b",
     "pageSort": 33.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Repenting Sinners",
     "page": "33t",
     "pageSort": 33.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "To the Land",
     "page": "34",
     "pageSort": 34
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Hallelujah Third",
     "page": "35",
     "pageSort": 35
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Traveller",
     "page": "37",
     "pageSort": 37
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Middlebury",
     "page": "38t",
     "pageSort": 38.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Huntingdon",
     "page": "38b",
     "pageSort": 38.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Portuguese Hymn",
     "page": "40",
     "pageSort": 40
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Confidence",
     "page": "41",
     "pageSort": 41
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Primrose",
     "page": "24b",
     "pageSort": 24.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Religion is a Fortune",
     "page": "42",
     "pageSort": 42
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Kingwood",
     "page": "43",
     "pageSort": 43
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "A Wonder",
     "page": "44",
     "pageSort": 44
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "New Indian Song",
     "page": "45",
     "pageSort": 45
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Better Day",
     "page": "47",
     "pageSort": 47
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Welcome Souls",
     "page": "48",
     "pageSort": 48
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Marshfield",
     "page": "49",
     "pageSort": 49
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "I Want to Go",
     "page": "50",
     "pageSort": 50
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Coldwater",
     "page": "51",
     "pageSort": 51
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Carter",
     "page": "52b",
     "pageSort": 52.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Hebbord",
     "page": "52t",
     "pageSort": 52.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Palms of Victory",
     "page": "53",
     "pageSort": 53
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "America",
     "page": "54b",
     "pageSort": 54.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Fairfield",
     "page": "54t",
     "pageSort": 54.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Idumea",
     "page": "55b",
     "pageSort": 55.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Supplication",
     "page": "55t",
     "pageSort": 55.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Jerusalem",
     "page": "56",
     "pageSort": 56
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Jefferson",
     "page": "57",
     "pageSort": 57
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Family Bible",
     "page": "58",
     "pageSort": 58
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "King of Peace",
     "page": "59",
     "pageSort": 59
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Heavenly Meeting",
     "page": "60",
     "pageSort": 60
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Communion",
     "page": "61b",
     "pageSort": 61.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Kay",
     "page": "61t",
     "pageSort": 61.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Maxwell",
     "page": "62",
     "pageSort": 62
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Star of Columbia",
     "page": "63",
     "pageSort": 63
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Weary Souls",
     "page": "65",
     "pageSort": 65
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Sweet Rivers",
     "page": "66",
     "pageSort": 66
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "New Farewell",
     "page": "67",
     "pageSort": 67
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "A Home in Heaven",
     "page": "68",
     "pageSort": 68
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Tedious Hours",
     "page": "69",
     "pageSort": 69
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Hermon",
     "page": "70",
     "pageSort": 70
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Dove of Peace",
     "page": "71",
     "pageSort": 71
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Promise",
     "page": "73",
     "pageSort": 73
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Liberty",
     "page": "74",
     "pageSort": 74
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Old Troy",
     "page": "75",
     "pageSort": 75
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Liverpool",
     "page": "76t",
     "pageSort": 76.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Soft Music",
     "page": "76b",
     "pageSort": 76.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Florence",
     "page": "77",
     "pageSort": 77
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Shepherds Rejoice",
     "page": "78",
     "pageSort": 78
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Done with the World",
     "page": "79t",
     "pageSort": 79.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Happy Land",
     "page": "79b",
     "pageSort": 79.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Brethren Pray",
     "page": "80",
     "pageSort": 80
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Christian's Comfort",
     "page": "81",
     "pageSort": 81
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Bower's, or Happy Souls",
     "page": "82",
     "pageSort": 82
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Raymond",
     "page": "83",
     "pageSort": 83
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Sweet Home",
     "page": "84",
     "pageSort": 84
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Exhilaration",
     "page": "85",
     "pageSort": 85
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Singing School",
     "page": "86",
     "pageSort": 86
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Musgrove",
     "page": "87",
     "pageSort": 87
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Exhortation",
     "page": "88",
     "pageSort": 88
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Ballstown",
     "page": "89",
     "pageSort": 89
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Murillo's Lesson",
     "page": "90",
     "pageSort": 90
   },
-  { "bookSlug": "sch-1855", "tuneName": "Ocean", "page": "91", "pageSort": 91 },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Pleyel's Hymn Second",
     "page": "93",
     "pageSort": 93
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Never Part",
     "page": "94",
     "pageSort": 94
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Bellevue",
     "page": "95",
     "pageSort": 95
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Lonesome Dove",
     "page": "97",
     "pageSort": 97
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Weeping Mary",
     "page": "98",
     "pageSort": 98
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "O Save",
     "page": "99",
     "pageSort": 99
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Hail Ye Sons",
     "page": "100",
     "pageSort": 100
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Parting Friends",
     "page": "101",
     "pageSort": 101
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Teasley",
     "page": "102",
     "pageSort": 102
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Mosley",
     "page": "103",
     "pageSort": 103
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Shout for Joy",
     "page": "104",
     "pageSort": 104
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Sounding Trumpet",
     "page": "105",
     "pageSort": 105
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Burges",
     "page": "106",
     "pageSort": 106
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Memphis",
     "page": "107",
     "pageSort": 107
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Derrett",
     "page": "108",
     "pageSort": 108
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Columbus",
     "page": "109",
     "pageSort": 109
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Shouting Song",
     "page": "110",
     "pageSort": 110
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Morning Trumpet",
     "page": "111",
     "pageSort": 111
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Ecstasy",
     "page": "112",
     "pageSort": 112
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Eternal Home",
     "page": "113",
     "pageSort": 113
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Promised Land",
     "page": "114",
     "pageSort": 114
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Saint's Delight",
     "page": "115",
     "pageSort": 115
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Repentance",
     "page": "116",
     "pageSort": 116
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Pilgrim",
     "page": "117",
     "pageSort": 117
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Sweet Heaven",
     "page": "118b",
     "pageSort": 118.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Windham",
     "page": "118t",
     "pageSort": 118.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Webster",
     "page": "119",
     "pageSort": 119
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Abbeville",
     "page": "120b",
     "pageSort": 120.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Corinth",
     "page": "120t",
     "pageSort": 120.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Primrose Hill",
     "page": "121",
     "pageSort": 121
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Parting Hand",
     "page": "122",
     "pageSort": 122
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Plenary",
     "page": "123",
     "pageSort": 123
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Minister's Farewell",
     "page": "124",
     "pageSort": 124
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Animation",
     "page": "125",
     "pageSort": 125
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Burk",
     "page": "126",
     "pageSort": 126
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Olney",
     "page": "127",
     "pageSort": 127
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Harmony",
     "page": "128",
     "pageSort": 128
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Mear",
     "page": "129",
     "pageSort": 129
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Holy War",
     "page": "130",
     "pageSort": 130
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Newberry",
     "page": "131",
     "pageSort": 131
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Heavenly Canaan",
     "page": "132",
     "pageSort": 132
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Mercy's Free",
     "page": "133",
     "pageSort": 133
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Harvest Field",
     "page": "134",
     "pageSort": 134
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Blooming Wilderness",
     "page": "135",
     "pageSort": 135
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Promise",
     "page": "136",
     "pageSort": 136
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Zion's Walls",
     "page": "137",
     "pageSort": 137
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Morning Star",
     "page": "138",
     "pageSort": 138
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Crumbly",
     "page": "139",
     "pageSort": 139
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Sweet Canaan",
     "page": "140",
     "pageSort": 140
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Slabtown",
     "page": "141",
     "pageSort": 141
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Father Land",
     "page": "142",
     "pageSort": 142
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Bowman",
     "page": "143",
     "pageSort": 143
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Roll Jordan",
     "page": "145",
     "pageSort": 145
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Bonnie Doon",
     "page": "146",
     "pageSort": 146
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Return Again",
     "page": "148",
     "pageSort": 148
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Sabbath Summons",
     "page": "149",
     "pageSort": 149
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Washington",
     "page": "150",
     "pageSort": 150
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Benton",
     "page": "152",
     "pageSort": 152
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Albert",
     "page": "153",
     "pageSort": 153
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Drunkard's Burial",
     "page": "154",
     "pageSort": 154
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Wake Up",
     "page": "155",
     "pageSort": 155
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Wondrous Love",
     "page": "156",
     "pageSort": 156
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Inquirer",
     "page": "157",
     "pageSort": 157
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Antioch",
     "page": "158",
     "pageSort": 158
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Buonaparte",
     "page": "159",
     "pageSort": 159
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Schenectady",
     "page": "160",
     "pageSort": 160
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Pleasant Hill",
     "page": "162",
     "pageSort": 162
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Lone Pilgrim",
     "page": "163",
     "pageSort": 163
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Over Jordan",
     "page": "164",
     "pageSort": 164
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Navigation",
     "page": "165",
     "pageSort": 165
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Sweet Prospects",
     "page": "166",
     "pageSort": 166
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "War Department",
     "page": "167",
     "pageSort": 167
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Clamanda",
     "page": "168",
     "pageSort": 168
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Evening Shade",
     "page": "169",
     "pageSort": 169
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Russell",
     "page": "170",
     "pageSort": 170
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Sons of Sorrow",
     "page": "171",
     "pageSort": 171
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Mount Vernon",
     "page": "172",
     "pageSort": 172
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Greenwich",
     "page": "173",
     "pageSort": 173
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Detroit",
     "page": "175t",
     "pageSort": 175.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Kedron",
     "page": "175b",
     "pageSort": 175.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Alabama",
     "page": "176",
     "pageSort": 176
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Florida",
     "page": "178",
     "pageSort": 178
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "New Topia",
     "page": "179",
     "pageSort": 179
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Delight",
     "page": "180",
     "pageSort": 180
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Lisbon",
     "page": "182",
     "pageSort": 182
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Wilkes",
     "page": "183",
     "pageSort": 183
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Heaven Born Soldiers",
     "page": "184",
     "pageSort": 184
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Suffield",
     "page": "185",
     "pageSort": 185
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Royal Band",
     "page": "186",
     "pageSort": 186
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Ninety-Third Psalm",
     "page": "187",
     "pageSort": 187
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Wedlock",
     "page": "188",
     "pageSort": 188
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Pity Me",
     "page": "189",
     "pageSort": 189
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "New Britain",
     "page": "190b",
     "pageSort": 190.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Ortonville",
     "page": "190t",
     "pageSort": 190.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Holy Manna",
     "page": "191",
     "pageSort": 191
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Aldridge",
     "page": "192",
     "pageSort": 192
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Hartwell",
     "page": "193",
     "pageSort": 193
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Jolly Soldier",
     "page": "194",
     "pageSort": 194
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Voice of Nature",
     "page": "195",
     "pageSort": 195
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Desire for Piety",
     "page": "196",
     "pageSort": 196
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Mindora",
     "page": "197",
     "pageSort": 197
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Rhode Island",
     "page": "198",
     "pageSort": 198
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Birth of Christ",
     "page": "199",
     "pageSort": 199
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "John Adkin's Farewell",
     "page": "200",
     "pageSort": 200
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Vanderver",
     "page": "201",
     "pageSort": 201
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Bushville",
     "page": "202",
     "pageSort": 202
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Come Tell Me of Your Ship",
     "page": "203",
     "pageSort": 203
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Bellevue",
     "page": "204t",
     "pageSort": 204.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Bound for Canaan",
     "page": "204b",
     "pageSort": 204.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Pisgah",
     "page": "205",
     "pageSort": 205
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Hallelujah",
     "page": "207",
     "pageSort": 207
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Bereavement",
     "page": "208t",
     "pageSort": 208.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Hebron",
     "page": "208b",
     "pageSort": 208.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Few Days",
     "page": "209",
     "pageSort": 209
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Vernon",
     "page": "210",
     "pageSort": 210
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Trumpet",
     "page": "211",
     "pageSort": 211
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Beggar",
     "page": "212",
     "pageSort": 212
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Nebraska",
     "page": "213",
     "pageSort": 213
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "I'm Going Home",
     "page": "214",
     "pageSort": 214
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Expression",
     "page": "215",
     "pageSort": 215
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Salutation",
     "page": "216",
     "pageSort": 216
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Bangor",
     "page": "218b",
     "pageSort": 218.2
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Blackburn",
     "page": "218t",
     "pageSort": 218.1
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Baptismal Anthem",
     "page": "219",
     "pageSort": 219
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Masonic Ode",
     "page": "222",
     "pageSort": 222
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Eagle Grove",
     "page": "227",
     "pageSort": 227
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Marion",
     "page": "228",
     "pageSort": 228
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Easter Anthem",
     "page": "229",
     "pageSort": 229
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "The Rock",
     "page": "233",
     "pageSort": 233
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "South Union",
     "page": "235",
     "pageSort": 235
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "David's Lamentation",
     "page": "237",
     "pageSort": 237
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Dunlap's Creek",
     "page": "238",
     "pageSort": 238
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Creation",
     "page": "239",
     "pageSort": 239
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Rose of Sharon",
     "page": "241",
     "pageSort": 241
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Deep Spring",
     "page": "249",
     "pageSort": 249
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Something New",
     "page": "250",
     "pageSort": 250
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Funeral Anthem",
     "page": "251",
     "pageSort": 251
   },
   {
-    "bookSlug": "sch-1855",
     "tuneName": "Good-By",
     "page": "253",
     "pageSort": 253
