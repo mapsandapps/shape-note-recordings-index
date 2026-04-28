@@ -22,5 +22,17 @@
     "abbreviation": "SH",
     "name": "Sacred Harp",
     "year": "1991"
+  },
+  {
+    "slug": "cb-2012",
+    "abbreviation": "CB",
+    "name": "Sacred Harp, Cooper Edition",
+    "year": "2012"
+  },
+  {
+    "slug": "sh-1971",
+    "abbreviation": "SH",
+    "name": "Sacred Harp",
+    "year": "1971"
   }
 ]

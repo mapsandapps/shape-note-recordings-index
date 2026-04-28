@@ -1,8 +1,8 @@
 ---
 import { Book, Page, Recording, and, db, desc, eq } from "astro:db";
 import Layout from "../../layouts/Layout.astro";
+import ArchiveLink from "../../components/embeds/ArchiveLink.astro";
 import YouTubeEmbed from "../../components/embeds/YouTubeEmbed.astro";
-import ArchiveEmbed from "../../components/embeds/ArchiveEmbed.astro";
 import { getYear } from "../../utils/dates";
 
 export async function getStaticPaths() {
@@ -65,7 +65,7 @@ const recordings = await db
         {recording.singing}, {getYear(recording.date)} recorded by {recording.recordist}:
 
         {isArchive && (
-          <ArchiveEmbed src={recording.embedUrl} />
+          <ArchiveLink href={recording.embedUrl} />
         )}
         {isYouTube && (
           <YouTubeEmbed src={recording.embedUrl} />

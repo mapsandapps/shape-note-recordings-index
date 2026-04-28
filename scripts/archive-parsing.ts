@@ -36,23 +36,36 @@ const isAfterBookLaunch = (recordingDate: string) => {
   return true;
 };
 
+const isUsing1971 = (recordingDate: string) => {
+  const date = new Date(recordingDate);
+
+  if (date.getFullYear() >= 1991) return false;
+  return date.getFullYear() >= 1971;
+};
+
 const guessBooks = (description: string, recordingDate: string) => {
   const includedBooks: BookSelect[] = [];
+
+  // do SH first
+  if (description.includes("Sacred Harp")) {
+    if (isAfterBookLaunch(recordingDate)) {
+      const book = books.find((book) => book.slug === "sh-2025");
+      includedBooks.push(book!);
+    } else if (isUsing1971(recordingDate)) {
+      const book = books.find((book) => book.slug === "sh-1971");
+      includedBooks.push(book!);
+    } else {
+      const book = books.find((book) => book.slug === "sh-1991");
+      includedBooks.push(book!);
+    }
+  }
+
+  // then do other books
   books.map((book) => {
+    if (book.name === "Sacred Harp") return;
+
     if (description.includes(book.name)) {
-      if (book.name === "Sacred Harp") {
-        if (isAfterBookLaunch(recordingDate)) {
-          if (book.year === "2025") {
-            includedBooks.push(book);
-          }
-        } else {
-          if (book.year === "1991") {
-            includedBooks.push(book);
-          }
-        }
-      } else {
-        includedBooks.push(book);
-      }
+      includedBooks.push(book);
     }
   });
 
@@ -139,10 +152,11 @@ const fetchRecordings = async (url: string) => {
   }
 };
 
-const fetchItems = async (startDate: Date) => {
-  const date = format(startDate, "yyyy-MM-dd");
+const fetchItems = async (startDate: Date, endDate?: Date) => {
+  const start = format(startDate, "yyyy-MM-dd");
+  const end = endDate ? format(endDate, "yyyy-MM-dd") : `null`;
 
-  const url = `https://archive.org/services/search/beta/page_production/?user_query=creator%3A%28Nathan+Rees%29+AND+date%3A%5B${date}+TO+null%5D`;
+  const url = `https://archive.org/services/search/beta/page_production/?user_query=creator%3A%28Nathan+Rees%29+AND+date%3A%5B${start}%20+TO+%20${end}%5D`;
   try {
     const response = await fetch(url, {
       headers: {
@@ -163,14 +177,14 @@ const fetchItems = async (startDate: Date) => {
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export const findNewRecordings = async (startDate: Date) => {
+export const findNewRecordings = async (startDate: Date, endDate?: Date) => {
   const currentDate = new Date().toISOString();
   const filePath = path.join(
     process.cwd(),
     `db/data/recordings/${currentDate}-pending.json`,
   );
 
-  const items = await fetchItems(startDate);
+  const items = await fetchItems(startDate, endDate);
   let recordings: any[] = [];
 
   for (const item of items) {

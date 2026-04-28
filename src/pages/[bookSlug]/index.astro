@@ -49,6 +49,12 @@ const pages = await db
 
   <h1>{book.name} ({book.year})</h1>
 
+  {book.slug === 'cb-2012' && (
+    <p>Note: Cooper Book songs from non-Cooper Book singings have not yet been divided by year of revision</p>
+  )}
+
+  <p></p>
+
   <button>Show pages without recordings</button>
 
   <ul id="pages" class="hide-missing-links">
