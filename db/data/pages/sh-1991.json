@@ -19,6 +19,7 @@
     "pageSort": 26,
     "tuneName": "Samaria"
   },
+  { "page": "27", "pageSort": 27, "tuneName": "Bethel" },
   {
     "page": "28t",
     "pageSort": 28.1,
@@ -134,6 +135,7 @@
     "pageSort": 39.2,
     "tuneName": "Sharpsburg"
   },
+  { "page": "40", "pageSort": 40, "tuneName": "Lenox" },
   {
     "page": "41",
     "pageSort": 41,
@@ -254,6 +256,7 @@
     "pageSort": 57,
     "tuneName": "Christian Soldier"
   },
+  { "page": "58", "pageSort": 58, "tuneName": "Pisgah" },
   {
     "page": "59",
     "pageSort": 59,
@@ -449,6 +452,7 @@
     "pageSort": 85,
     "tuneName": "The Morning Trumpet"
   },
+  { "page": "86", "pageSort": 86, "tuneName": "Poland" },
   {
     "page": "87",
     "pageSort": 87,
@@ -479,6 +483,7 @@
     "pageSort": 91,
     "tuneName": "Assurance"
   },
+  { "page": "92", "pageSort": 92, "tuneName": "Burk" },
   {
     "page": "93",
     "pageSort": 93,
@@ -489,6 +494,7 @@
     "pageSort": 94,
     "tuneName": "Never Part"
   },
+  { "page": "95", "pageSort": 95, "tuneName": "Vernon" },
   {
     "page": "96",
     "pageSort": 96,
@@ -969,6 +975,7 @@
     "pageSort": 180,
     "tuneName": "Vermont"
   },
+  { "page": "181", "pageSort": 181, "tuneName": "Exit" },
   {
     "page": "182",
     "pageSort": 182,
@@ -1044,6 +1051,7 @@
     "pageSort": 198,
     "tuneName": "Green Street"
   },
+  { "page": "200", "pageSort": 200, "tuneName": "Edom" },
   {
     "page": "201",
     "pageSort": 201,
@@ -1089,6 +1097,7 @@
     "pageSort": 209,
     "tuneName": "Evening Shade"
   },
+  { "page": "210", "pageSort": 210, "tuneName": "Lena" },
   {
     "page": "211",
     "pageSort": 211,
@@ -1954,6 +1963,7 @@
     "pageSort": 400,
     "tuneName": "Struggle On"
   },
+  { "page": "401", "pageSort": 401, "tuneName": "Cuba" },
   {
     "page": "402",
     "pageSort": 402,
@@ -2304,6 +2314,7 @@
     "pageSort": 471,
     "tuneName": "The Savior's Name"
   },
+  { "page": "472", "pageSort": 472, "tuneName": "Akin" },
   {
     "page": "473",
     "pageSort": 473,
@@ -2554,6 +2565,7 @@
     "pageSort": 530,
     "tuneName": "A Glad New Song"
   },
+  { "page": "531", "pageSort": 531, "tuneName": "Dura" },
   {
     "page": "532",
     "pageSort": 532,
@@ -2669,6 +2681,7 @@
     "pageSort": 562,
     "tuneName": "Infinite Delight"
   },
+  { "page": "564", "pageSort": 564, "tuneName": "Zion" },
   {
     "page": "565",
     "pageSort": 565,

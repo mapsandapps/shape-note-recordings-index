@@ -144,6 +144,7 @@
     "pageSort": 39.2,
     "tuneName": "Sharpsburg"
   },
+  { "page": "40", "pageSort": 40, "tuneName": "Lenox" },
   {
     "page": "41",
     "pageSort": 41,
@@ -264,6 +265,7 @@
     "pageSort": 57,
     "tuneName": "Christian Soldier"
   },
+  { "page": "58", "pageSort": 58, "tuneName": "Pisgah" },
   {
     "page": "59",
     "pageSort": 59,
@@ -299,6 +301,7 @@
     "pageSort": 65,
     "tuneName": "Sweet Prospect"
   },
+  { "page": "66", "pageSort": 66, "tuneName": "Jordan" },
   {
     "page": "67",
     "pageSort": 67,
@@ -454,6 +457,7 @@
     "pageSort": 85,
     "tuneName": "The Morning Trumpet"
   },
+  { "page": "86", "pageSort": 86, "tuneName": "Poland" },
   {
     "page": "87",
     "pageSort": 87,
@@ -484,6 +488,7 @@
     "pageSort": 91,
     "tuneName": "Assurance"
   },
+  { "page": "92", "pageSort": 92, "tuneName": "Burk" },
   {
     "page": "93",
     "pageSort": 93,
@@ -494,6 +499,7 @@
     "pageSort": 94,
     "tuneName": "Never Part"
   },
+  { "page": "95", "pageSort": 95, "tuneName": "Vernon" },
   {
     "page": "96",
     "pageSort": 96,
@@ -979,6 +985,7 @@
     "pageSort": 180,
     "tuneName": "Vermont"
   },
+  { "page": "181", "pageSort": 181, "tuneName": "Exit" },
   {
     "page": "182",
     "pageSort": 182,
@@ -1054,6 +1061,7 @@
     "pageSort": 198,
     "tuneName": "Green Street"
   },
+  { "page": "200", "pageSort": 200, "tuneName": "Edom" },
   {
     "page": "201",
     "pageSort": 201,
@@ -1099,6 +1107,7 @@
     "pageSort": 209,
     "tuneName": "Evening Shade"
   },
+  { "page": "210", "pageSort": 210, "tuneName": "Lena" },
   {
     "page": "211",
     "pageSort": 211,
@@ -1469,6 +1478,7 @@
     "pageSort": 294,
     "tuneName": "Rocky Road"
   },
+  { "page": "295", "pageSort": 295, "tuneName": "Iowa" },
   {
     "page": "296",
     "pageSort": 296,
@@ -1694,6 +1704,7 @@
     "pageSort": 339,
     "tuneName": "When I Am Gone"
   },
+  { "page": "340", "pageSort": 340, "tuneName": "Odem" },
   {
     "page": "341",
     "pageSort": 341,
@@ -2019,6 +2030,7 @@
     "pageSort": 400,
     "tuneName": "Struggle On"
   },
+  { "page": "401", "pageSort": 401, "tuneName": "Cuba" },
   {
     "page": "402",
     "pageSort": 402,
@@ -2394,6 +2406,7 @@
     "pageSort": 471,
     "tuneName": "Becket"
   },
+  { "page": "472", "pageSort": 472, "tuneName": "Akin" },
   {
     "page": "473",
     "pageSort": 473,
@@ -2639,6 +2652,7 @@
     "pageSort": 518,
     "tuneName": "Heavenly Anthem"
   },
+  { "page": "520", "pageSort": 520, "tuneName": "Ata" },
   {
     "page": "521",
     "pageSort": 521,
@@ -2824,6 +2838,7 @@
     "pageSort": 563,
     "tuneName": "Suffield"
   },
+  { "page": "564", "pageSort": 564, "tuneName": "Zion" },
   {
     "page": "565t",
     "pageSort": 565.1,

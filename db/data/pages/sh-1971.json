@@ -4,6 +4,7 @@
     "page": "26",
     "pageSort": 26
   },
+  { "tuneName": "Bethel", "page": "27", "pageSort": 27 },
   {
     "tuneName": "Aylesbury",
     "page": "28t",
@@ -119,6 +120,7 @@
     "page": "39b",
     "pageSort": 39.2
   },
+  { "tuneName": "Lenox", "page": "40", "pageSort": 40 },
   {
     "tuneName": "Home in Heaven",
     "page": "41",
@@ -234,6 +236,7 @@
     "page": "57",
     "pageSort": 57
   },
+  { "tuneName": "Pisgah", "page": "58", "pageSort": 58 },
   {
     "tuneName": "Holy Manna",
     "page": "59",
@@ -269,6 +272,7 @@
     "page": "65",
     "pageSort": 65
   },
+  { "tuneName": "Home", "page": "66", "pageSort": 66 },
   {
     "tuneName": "Columbus",
     "page": "67",
@@ -459,6 +463,7 @@
     "page": "91",
     "pageSort": 91
   },
+  { "tuneName": "Burk", "page": "92", "pageSort": 92 },
   {
     "tuneName": "Frozen Heart",
     "page": "93",
@@ -469,6 +474,7 @@
     "page": "94",
     "pageSort": 94
   },
+  { "tuneName": "Vernon", "page": "95", "pageSort": 95 },
   {
     "tuneName": "Happy Matches",
     "page": "96",
@@ -944,6 +950,7 @@
     "page": "180",
     "pageSort": 180
   },
+  { "tuneName": "Exit", "page": "181", "pageSort": 181 },
   {
     "tuneName": "Newburgh",
     "page": "182",
@@ -1019,6 +1026,7 @@
     "page": "198",
     "pageSort": 198
   },
+  { "tuneName": "Edom", "page": "200", "pageSort": 200 },
   {
     "tuneName": "Pilgrim",
     "page": "201",
@@ -1064,6 +1072,7 @@
     "page": "209",
     "pageSort": 209
   },
+  { "tuneName": "Lena", "page": "210", "pageSort": 210 },
   {
     "tuneName": "Whitestown",
     "page": "211",
@@ -1359,6 +1368,7 @@
     "page": "294",
     "pageSort": 294
   },
+  { "tuneName": "Odem", "page": "295", "pageSort": 295 },
   {
     "tuneName": "Sardinia",
     "page": "296",
@@ -1394,6 +1404,7 @@
     "page": "302",
     "pageSort": 302
   },
+  { "tuneName": "Love", "page": "303", "pageSort": 303 },
   {
     "tuneName": "Morgan",
     "page": "304",
@@ -1579,6 +1590,7 @@
     "page": "339",
     "pageSort": 339
   },
+  { "tuneName": "Odem", "page": "340", "pageSort": 340 },
   {
     "tuneName": "The Lone Pilgrim",
     "page": "341",
@@ -1859,6 +1871,7 @@
     "page": "400",
     "pageSort": 400
   },
+  { "tuneName": "Cuba", "page": "401", "pageSort": 401 },
   {
     "tuneName": "Protection",
     "page": "402",
@@ -1944,6 +1957,7 @@
     "page": "417",
     "pageSort": 417
   },
+  { "tuneName": "Rees", "page": "418", "pageSort": 418 },
   {
     "tuneName": "Melancholy Day",
     "page": "419",
@@ -2454,6 +2468,7 @@
     "page": "530",
     "pageSort": 530
   },
+  { "tuneName": "Dura", "page": "531", "pageSort": 531 },
   {
     "tuneName": "Peace and Joy",
     "page": "532",
@@ -2564,6 +2579,7 @@
     "page": "562",
     "pageSort": 562
   },
+  { "tuneName": "Zion", "page": "564", "pageSort": 564 },
   {
     "tuneName": "The Hill of Zion",
     "page": "565",

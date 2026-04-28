@@ -1,4 +1,5 @@
 [
+  { "tuneName": "Advent", "page": "1", "pageSort": 1 },
   {
     "tuneName": "Heavens Rejoice",
     "page": "2",
@@ -124,6 +125,7 @@
     "page": "32",
     "pageSort": 32
   },
+  { "tuneName": "Dalton", "page": "33", "pageSort": 33 },
   {
     "tuneName": "Christmas Anthem",
     "page": "34",
@@ -144,6 +146,7 @@
     "page": "40",
     "pageSort": 40
   },
+  { "tuneName": "Isaac", "page": "42", "pageSort": 42 },
   {
     "tuneName": "Evening Devotion",
     "page": "43",
@@ -199,6 +202,7 @@
     "page": "54",
     "pageSort": 54
   },
+  { "tuneName": "Bethel", "page": "56", "pageSort": 56 },
   {
     "tuneName": "Benedition",
     "page": "57",
@@ -234,6 +238,8 @@
     "page": "64",
     "pageSort": 64
   },
+  { "tuneName": "Wesley", "page": "65", "pageSort": 65 },
+  { "tuneName": "Elijah", "page": "66", "pageSort": 66 },
   {
     "tuneName": "Convention",
     "page": "67",
@@ -324,6 +330,7 @@
     "page": "94",
     "pageSort": 94
   },
+  { "tuneName": "Harbor", "page": "95", "pageSort": 95 },
   {
     "tuneName": "Psalm 96",
     "page": "96",
@@ -524,6 +531,7 @@
     "page": "151",
     "pageSort": 151
   },
+  { "tuneName": "John", "page": "152", "pageSort": 152 },
   {
     "tuneName": "Oxford",
     "page": "153",
@@ -604,6 +612,7 @@
     "page": "174",
     "pageSort": 174
   },
+  { "tuneName": "Eden", "page": "175", "pageSort": 175 },
   {
     "tuneName": "Dawning",
     "page": "176",
@@ -734,6 +743,7 @@
     "page": "206",
     "pageSort": 206
   },
+  { "tuneName": "Ila", "page": "208", "pageSort": 208 },
   {
     "tuneName": "Council",
     "page": "209",
@@ -794,6 +804,7 @@
     "page": "227",
     "pageSort": 227
   },
+  { "tuneName": "Webb", "page": "228", "pageSort": 228 },
   {
     "tuneName": "A Christian's Prayer",
     "page": "230",
