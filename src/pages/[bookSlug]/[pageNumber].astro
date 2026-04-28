@@ -9,10 +9,9 @@ export async function getStaticPaths() {
   const pages = await db
     .select({
       page: Page.page,
-      bookSlug: Book.slug,
+      bookSlug: Page.bookSlug,
     })
-    .from(Page)
-    .innerJoin(Book, eq(Book.slug, Page.bookSlug));
+    .from(Page);
 
   return pages.map(page => ({
     params: {
@@ -33,7 +32,7 @@ const [page] = await db
     year: Book.year,
   })
   .from(Page)
-  .innerJoin(Book, and(eq(Book.slug, bookSlug), eq(Page.page, pageNumber)));
+  .innerJoin(Book, and(eq(Book.slug, bookSlug), eq(Page.bookSlug, bookSlug), eq(Page.page, pageNumber)));
 
 const recordings = await db
   .select({
