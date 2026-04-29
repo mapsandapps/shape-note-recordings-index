@@ -5,6 +5,7 @@ import YouTubeEmbed from "../components/embeds/YouTubeEmbed.astro";
 import fs from "node:fs";
 import path from "node:path";
 import { type PendingRecording } from '../../scripts/archive-parsing'
+import { pullNewData } from "../../scripts/pull-all-data";
 
 var jsons: PendingRecording[][] = [];
 
@@ -24,6 +25,8 @@ files.map((fileName) => {
   const recordings = JSON.parse(content);
   jsons.push(recordings);
 });
+
+pullNewData();
 
 ---
 <Layout title="Pending Recordings">

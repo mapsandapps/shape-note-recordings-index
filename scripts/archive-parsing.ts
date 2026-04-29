@@ -186,7 +186,7 @@ const fetchItems = async (startDate: Date, endDate?: Date) => {
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export const findNewRecordings = async (startDate: Date, endDate?: Date) => {
+const findNewRecordings = async (startDate: Date, endDate?: Date) => {
   console.log(
     `Starting to find recordings from ${formatDate(startDate, "yyyy-MM-dd")} to ${formatDate(endDate || new Date(), "yyyy-MM-dd")}...`,
   );
@@ -211,8 +211,12 @@ export const findNewRecordings = async (startDate: Date, endDate?: Date) => {
     await delay(1000);
   }
 
-  fs.writeFileSync(filePath, JSON.stringify(recordings, null, 2));
-  console.log(`Finished writing to file ${filePath}`);
+  if (recordings.length === 0) {
+    console.warn("no recordings found");
+  } else {
+    fs.writeFileSync(filePath, JSON.stringify(recordings, null, 2));
+    console.log(`Finished writing to file ${filePath}`);
+  }
 };
 
 // to use this, call it (for example) in the top section of pending.astro and then load the page
@@ -225,4 +229,33 @@ export const pullOneArchiveItem = async (identifier: string) => {
   const url = `https://archive.org/metadata/${identifier}`;
   const recordings = await fetchRecordings(url);
   fs.writeFileSync(filePath, JSON.stringify(recordings, null, 2));
+};
+
+export const findArchiveRecordingsSinceMostRecent = async () => {
+  // const latestDate = process.env.LATEST_AUTO_PR_DATE;
+  // if (!latestDate) {
+  //   throw new Error("No latest auto PR date");
+  // }
+  // const parsedDate = parse(latestDate, "yyyyMMddHHmmss", new Date());
+
+  const recordingsDir = path.join(process.cwd(), "db/data/recordings");
+
+  const files = fs.readdirSync(recordingsDir).filter((f) => {
+    return (
+      f.endsWith(".json") && !f.includes("-pending") && !f.includes("-temp")
+    );
+  });
+  // files without dates in the name should be ignored
+  // only look at filenames starting with a number
+  const dateFiles = files.filter((filename) => /^\d/.test(filename));
+  const lastFilename = dateFiles.sort().at(-1);
+
+  if (!lastFilename) {
+    console.error("no last file");
+    return;
+  }
+
+  const latestDate = new Date(lastFilename.replace(".json", ""));
+
+  findNewRecordings(latestDate);
 };
