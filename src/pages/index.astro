@@ -1,6 +1,8 @@
 ---
 import { Book, db, desc } from 'astro:db';
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+const bookImages = import.meta.glob('../assets/books/*.jpg', { eager: true });
 
 const books = await db
   .select({
@@ -10,14 +12,70 @@ const books = await db
   })
   .from(Book)
   .orderBy(desc(Book.year));
+
+const booksWithImages = Object.entries(bookImages).map(([path, module]) => {
+  const slug = path.split('/').pop()?.replace('.jpg', '');
+  const info = books.find(b => b.slug === slug);
+
+  if (!info) return;
+  return {
+    image: module.default,
+    ...info,
+  };
+}).sort((a, b) => b!.year.localeCompare(a!.year));
+
+//
+
+// const booksWithImages = books.filter(book => bookSlugsWithImages.includes(book.slug));
+const booksWithoutImages = books.filter(book => !booksWithImages.map(book => book!.slug).includes(book.slug));
 ---
 
 <Layout>
   <h1>Index of Recordings from Shape Note Tune Books</h1>
+  {booksWithImages.map(book => {
+    if (!book) return;
+    return (
+      <div>
+        <a href={`/${book.slug}`}>
+          <figure>
+            <Image src={book.image} alt={book.name || "book"} />
+            <figcaption>{book.name} ({book.year})</figcaption>
+          </figure>
+        </a>
+      </div>
+    )}
+  )}
   <ul>
-    {books.map(book => (
+    {booksWithoutImages.map(book => (
       <li><a href={`/${book.slug}`}>{book.name} ({book.year})</a></li>
     ))}
   </ul>
   <p>Or&hellip; <a href="/all-pages">view pages from all books</a></p>
 </Layout>
+
+<style>
+  img {
+    max-width: 200px;
+    height: auto;
+  }
+
+  div {
+    display: inline-block;
+    max-width: 200px;
+    padding: 16px;
+    vertical-align: top;
+  }
+
+  figure {
+    margin: 0px;
+  }
+
+  figcaption {
+    width: 100%;
+    text-align: center;
+  }
+
+  ul {
+    padding-bottom: 3rem;
+  }
+</style>
