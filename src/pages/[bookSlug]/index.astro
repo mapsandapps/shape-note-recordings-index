@@ -1,5 +1,5 @@
 ---
-import { Book, Page, and, asc, db, eq, isNotNull } from 'astro:db';
+import { Book, Page, and, asc, count, db, eq, isNotNull } from 'astro:db';
 import Layout from '../../layouts/Layout.astro';
 import { Recording } from 'astro:db';
 
@@ -32,7 +32,8 @@ const pages = await db
   .select({
     page: Page.page,
     tuneName: Page.tuneName,
-    hasRecording: isNotNull(Recording.id)
+    hasRecording: isNotNull(Recording.id),
+    recordingsCount: count(Recording.id)
   })
   .from(Page)
   .where(eq(Page.bookSlug, book.slug))
@@ -57,13 +58,15 @@ const pages = await db
 
   <button>Show pages without recordings</button>
 
-  <ul id="pages" class="hide-missing-links">
+  <ul id="pages" class="hide-empty-pages">
     {pages.map(page => {
+      const recordingsPlural = page.recordingsCount === 1 ? "recording" : "recordings";
+
       if (page.hasRecording) return (
-        <li><a href={`/${book.slug}/${page.page}`}>{page.page} {page.tuneName}</a></li>
+        <li><a href={`/${book.slug}/${page.page}`}>{page.page} {page.tuneName}</a> ({page.recordingsCount} {recordingsPlural})</li>
       )
       return (
-        <li class="no-link">{page.page} {page.tuneName}</li>
+        <li class="no-recordings"><a href={`/${book.slug}/${page.page}`}>{page.page} {page.tuneName}</a> ({page.recordingsCount} {recordingsPlural})</li>
       )}
     )}
   </ul>
@@ -74,7 +77,7 @@ const pages = await db
   const button = document.getElementsByTagName('button')[0];
 
   button.addEventListener('click', () => {
-    pageList?.classList.toggle('hide-missing-links');
+    pageList?.classList.toggle('hide-empty-pages');
     if (button.innerText === 'Show pages without recordings') {
       button.innerText = 'Hide pages without recordings'
     } else {
@@ -85,9 +88,15 @@ const pages = await db
 </script>
 
 <style>
-#pages.hide-missing-links {
-  .no-link {
+#pages.hide-empty-pages {
+  .no-recordings {
     display: none;
   }
+}
+
+.no-recordings,
+.no-recordings a {
+  color: dimgray;
+  text-decoration-style: dashed;
 }
 </style>
