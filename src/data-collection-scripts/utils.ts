@@ -72,9 +72,15 @@ export const findDuplicates = async (recording: any) => {
   const similarRecordings = await db
     .select({
       embedUrl: Recording.embedUrl,
+      url: Recording.url,
     })
     .from(Recording)
-    .where(and(eq(Recording.embedUrl, recording.embedUrl)));
+    .where(
+      and(
+        eq(Recording.embedUrl, recording.embedUrl),
+        eq(Recording.url, recording.url),
+      ),
+    );
 
   return similarRecordings?.length > 0;
 };
