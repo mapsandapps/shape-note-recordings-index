@@ -1,5 +1,5 @@
 ---
-import { Book, Page, Recording, and, db, desc, eq } from "astro:db";
+import { Book, Page, Recording, and, asc, db, desc, eq, ne } from "astro:db";
 import Layout from "../../layouts/Layout.astro";
 import ArchiveLink from "../../components/embeds/ArchiveLink.astro";
 import YouTubeEmbed from "../../components/embeds/YouTubeEmbed.astro";
@@ -46,6 +46,20 @@ const recordings = await db
   .from(Recording)
   .where(and(eq(Recording.bookSlug, page.bookSlug), eq(Recording.page, pageNumber), eq(Recording.status, "CONFIRMED")))
   .orderBy(desc(Recording.date), desc(Recording.id));
+
+// get other tunes with same name
+const tunes = await db
+  .select({
+    page: Page.page,
+    tuneName: Page.tuneName,
+    bookSlug: Page.bookSlug,
+    bookName: Book.name,
+    bookYear: Book.year
+  })
+  .from(Page)
+  .where(and(eq(Page.tuneName, page.tuneName), ne(Page.bookSlug, page.bookSlug)))
+  .innerJoin(Book, and(eq(Book.slug, Page.bookSlug)))
+  .orderBy(asc(Page.tuneName), asc(Book.name), desc(Book.year))
 ---
 <Layout title={`Recordings of ${page.pageNumber} ${page.tuneName}`}>
   <ul class="breadcrumbs">
@@ -72,6 +86,16 @@ const recordings = await db
       </div>
     )}
   )}
+
+  {tunes.length > 0 && (
+    <hr />
+    <p>Same tune name in other books:</p>
+  )}
+  <ul>
+    {tunes.map(tune => (
+      <li><a href={`/${tune.bookSlug}/${tune.page}`}>{tune.tuneName}</a> {tune.bookName} ({tune.bookYear}), pg. {tune.page}</li>
+    ))}
+  </ul>
 </Layout>
 
 <style>

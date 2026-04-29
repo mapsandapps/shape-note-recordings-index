@@ -1,0 +1,31 @@
+---
+import { Book, Page, and, asc, db, desc, eq } from 'astro:db';
+import Layout from '../layouts/Layout.astro';
+
+const pages = await db
+  .select({
+    page: Page.page,
+    tuneName: Page.tuneName,
+    bookSlug: Page.bookSlug,
+    bookName: Book.name,
+    bookYear: Book.year
+  })
+  .from(Page)
+  .innerJoin(Book, and(eq(Book.slug, Page.bookSlug)))
+  .orderBy(asc(Page.tuneName), desc(Book.year))
+---
+
+<Layout>
+  <ul class="breadcrumbs">
+    <li><a href="/">Home</a></li>
+    <li>All tunes</li>
+  </ul>
+
+  <h1>Index of Tunes from Shape Note Tune Books</h1>
+  <ul>
+    {pages.map(page => (
+      <li><a href={`/${page.bookSlug}/${page.page}`}>{page.tuneName}</a>, {page.bookName} ({page.bookYear}) pg. {page.page}</li>
+    ))}
+  </ul>
+  <p>Or&hellip; view pages from all books</p>
+</Layout>
