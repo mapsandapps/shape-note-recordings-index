@@ -166,7 +166,6 @@ const fetchItems = async (startDate: Date, endDate?: Date) => {
 
   const url = `https://archive.org/services/search/beta/page_production/?user_query=creator%3A%28Nathan+Rees%29+AND+date%3A%5B${start}+TO+${end}%5D`;
 
-  console.log(url);
   try {
     const response = await fetch(url, {
       headers: {
@@ -214,4 +213,16 @@ export const findNewRecordings = async (startDate: Date, endDate?: Date) => {
 
   fs.writeFileSync(filePath, JSON.stringify(recordings, null, 2));
   console.log(`Finished writing to file ${filePath}`);
+};
+
+// to use this, call it (for example) in the top section of pending.astro and then load the page
+export const pullOneArchiveItem = async (identifier: string) => {
+  const filePath = path.join(
+    process.cwd(),
+    `db/data/recordings/${identifier}-pending.json`,
+  );
+
+  const url = `https://archive.org/metadata/${identifier}`;
+  const recordings = await fetchRecordings(url);
+  fs.writeFileSync(filePath, JSON.stringify(recordings, null, 2));
 };

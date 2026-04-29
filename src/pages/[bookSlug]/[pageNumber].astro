@@ -70,22 +70,35 @@ const tunes = await db
 
   <h1>{page.bookName} ({page.year}) &mdash; {page.pageNumber} {page.tuneName}</h1>
 
-  {recordings.map(recording => {
-    const isYouTube = recording.embedUrl.includes("youtube.com");
-    const isArchive = recording.embedUrl.includes("archive.org");
-    return (
-      <div class="recording">
-        {recording.singing}, {getYear(recording.date)} recorded by {recording.recordist}:
+  <table>
+    <thead>
+      <th>Singing</th>
+      <th>Link</th>
+    </thead>
+    <tbody>
+      {recordings.map(recording => {
+        const isYouTube = recording.embedUrl.includes("youtube.com");
+        const isArchive = recording.embedUrl.includes("archive.org");
+        const year = getYear(recording.date);
 
-        {isArchive && (
-          <ArchiveLink href={recording.embedUrl} />
-        )}
-        {isYouTube && (
-          <YouTubeEmbed src={recording.embedUrl} />
-        )}
-      </div>
-    )}
-  )}
+        const singingText = recording.singing.includes(year) ? recording.singing : `${recording.singing}, ${year}`
+
+        return (
+          <tr>
+            <td>{singingText}<br />Recorded by {recording.recordist}</td>
+            <td>
+              {isArchive && (
+                <ArchiveLink href={recording.embedUrl} />
+              )}
+              {isYouTube && (
+                <YouTubeEmbed src={recording.embedUrl} />
+              )}
+            </td>
+          </tr>
+        )
+      })}
+    </tbody>
+  </table>
 
   {tunes.length > 0 && (
     <hr />

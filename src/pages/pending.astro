@@ -34,7 +34,13 @@ files.map((fileName) => {
 
   <h1>Pending Recordings</h1>
 
-  <button>Show only known problems</button>
+  {jsons.length === 0 && (
+    <div>No pending recordings</div>
+  )}
+
+  <div>
+    <button id="toggle">Show only known problems</button>
+  </div>
 
   <div id="recordings">
     {jsons.map((recordings) => {
@@ -75,19 +81,22 @@ files.map((fileName) => {
   </div>
 </Layout>
 
-<script>
+<script define:vars={{ jsons }}>
   const recordingsList = document.getElementById('recordings');
-  const button = document.getElementsByTagName('button')[0];
+  const toggleButton = document.getElementById('toggle');
 
-  button.addEventListener('click', () => {
+  toggleButton.addEventListener('click', () => {
     recordingsList?.classList.toggle('hide-ok');
-    if (button.innerText === 'Show only known problems') {
-      button.innerText = 'Show all pending'
+    if (toggleButton.innerText === 'Show only known problems') {
+      toggleButton.innerText = 'Show all pending'
     } else {
-      button.innerText = 'Show only known problems'
+      toggleButton.innerText = 'Show only known problems'
     }
   })
 
+  if (jsons.length === 0) {
+    toggleButton.disabled = true;
+  }
 </script>
 
 <style>
@@ -102,5 +111,8 @@ files.map((fileName) => {
     .seems-ok {
       display: none;
     }
+  }
+  #toggle {
+    margin-bottom: 1rem;
   }
 </style>
