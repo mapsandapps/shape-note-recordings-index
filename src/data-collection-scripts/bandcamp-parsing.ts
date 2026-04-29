@@ -52,6 +52,7 @@ const fetchRecordings = async (
   url: string,
   bookSlug: string,
   date: string,
+  allRightsReserved?: boolean,
 ): Promise<PendingRecording[] | undefined> => {
   try {
     const response = await fetch(url, {
@@ -112,7 +113,7 @@ const fetchRecordings = async (
       tracks.push({
         title,
         url,
-        embed: url,
+        embed: allRightsReserved ? "NO_EMBED" : url,
       });
     });
 
@@ -131,15 +132,21 @@ export const pullOneBandcampItem = async (
   album: string,
   bookSlug: string,
   date: string,
+  allRightsReserved?: boolean,
 ) => {
-  console.log('Starting to find recordings...')
+  console.log("Starting to find recordings...");
   const filePath = path.join(
     process.cwd(),
     `db/data/recordings/${artist}-${album}-pending.json`,
   );
 
   const url = `https://${artist}.bandcamp.com/album/${album}`;
-  const recordings = await fetchRecordings(url, bookSlug, date);
+  const recordings = await fetchRecordings(
+    url,
+    bookSlug,
+    date,
+    allRightsReserved,
+  );
   fs.writeFileSync(filePath, JSON.stringify(recordings, null, 2));
   console.log(`Finished writing to file ${filePath}`);
 };
