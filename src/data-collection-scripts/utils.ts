@@ -1,4 +1,5 @@
 import { and, db, eq, Page, Recording } from "astro:db";
+import books from "../../db/data/books.json";
 
 // from https://github.com/mapsandapps/minutes-tune-names/blob/main/src/helpers.ts
 const getRegexOneBook = (bookAbbreviation: string): RegExp => {
@@ -11,9 +12,12 @@ const getRegexOneBook = (bookAbbreviation: string): RegExp => {
 
 export const findPageNumber = (
   title: string,
-  bookAbbreviation: string,
+  bookSlug: string,
 ): string | null => {
-  if (!title) return null;
+  const bookAbbreviation = books.find(
+    (book) => book.slug === bookSlug,
+  )?.abbreviation;
+  if (!title || !bookAbbreviation) return null;
 
   const matches = title.match(getRegexOneBook(bookAbbreviation));
 

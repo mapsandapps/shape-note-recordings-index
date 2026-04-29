@@ -44,7 +44,7 @@ const recordings = await db
     embedUrl: Recording.embedUrl,
   })
   .from(Recording)
-  .where(and(eq(Recording.bookSlug, page.bookSlug), eq(Recording.page, pageNumber), eq(Recording.status, "CONFIRMED")))
+  .where(and(eq(Recording.bookSlug, page.bookSlug), eq(Recording.page, pageNumber)))
   .orderBy(desc(Recording.date), desc(Recording.id));
 
 // get other tunes with same name

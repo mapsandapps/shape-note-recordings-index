@@ -1,5 +1,5 @@
 import * as path from "path";
-import books from "../db/data/books.json";
+import books from "../../db/data/books.json";
 import { Recording, type Book } from "astro:db";
 import { format, formatDate, isAfter } from "date-fns";
 import fs from "node:fs";
@@ -98,14 +98,12 @@ const getRecordings = async (data: any) => {
     };
 
     if (books.length === 1) {
-      recording.page =
-        findPageNumber(file.title, books[0].abbreviation) || undefined;
+      recording.page = findPageNumber(file.title, books[0].slug) || undefined;
       recording.bookSlug = books[0].slug;
     } else {
       books.forEach((book) => {
         if (file.title.includes(book.abbreviation)) {
-          recording.page =
-            findPageNumber(file.title, book.abbreviation) || undefined;
+          recording.page = findPageNumber(file.title, book.slug) || undefined;
           recording.bookSlug = book.slug;
         }
       });
@@ -130,13 +128,13 @@ const getRecordings = async (data: any) => {
         recording.status = "PAGE_NUMBER_PROBLEM";
       }
     } else {
-      recording.singing = recording.singing || "";
-      recording.date = recording.date || "";
-      recording.recordist = recording.recordist || "";
-      recording.bookSlug = recording.bookSlug || "";
-      recording.page = recording.page || "";
-      recording.url = recording.url || "";
-      recording.embedUrl = recording.embedUrl || "";
+      recording.singing ??= "";
+      recording.date ??= "";
+      recording.recordist ??= "";
+      recording.bookSlug ??= "";
+      recording.page ??= "";
+      recording.url ??= "";
+      recording.embedUrl ??= "";
       recording.status = "MISSING_DATA";
     }
 
@@ -197,6 +195,7 @@ const findNewRecordings = async (startDate: Date, endDate?: Date) => {
   );
 
   const items = await fetchItems(startDate, endDate);
+  // const items = [{ fields: { identifier: "2021-08-14-do-re-mi-sat" } }];
   let recordings: any[] = [];
 
   for (const item of items) {
