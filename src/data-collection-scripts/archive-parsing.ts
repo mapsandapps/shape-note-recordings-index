@@ -3,7 +3,12 @@ import books from "../../db/data/books.json";
 import { Recording, type Book } from "astro:db";
 import { format, formatDate, isAfter } from "date-fns";
 import fs from "node:fs";
-import { findDuplicates, findPageNumber, findPageNumberInDB } from "./utils";
+import {
+  findDuplicates,
+  findPageNumber,
+  findPageNumberInDB,
+  getRecordingStatus,
+} from "./utils";
 
 type BookSelect = typeof Book.$inferSelect;
 type RecordingInsert = typeof Recording.$inferInsert;
@@ -85,7 +90,7 @@ const getRecordings = async (data: any) => {
   const files = data.files.filter((file: any) => Boolean(file.track));
 
   for (const file of files) {
-    const recording: PendingRecording = {
+    let recording: PendingRecording = {
       singing: data.metadata.title,
       date: data.metadata.date,
       recordist: data.metadata.creator,
@@ -109,34 +114,7 @@ const getRecordings = async (data: any) => {
       });
     }
 
-    if (
-      recording.singing &&
-      recording.date &&
-      recording.recordist &&
-      recording.bookSlug &&
-      recording.page &&
-      recording.url &&
-      recording.embedUrl
-    ) {
-      // use astro DB to find recordings already in DB
-      if (await findDuplicates(recording)) {
-        recording.status = "DUPLICATE";
-      } else if (await findPageNumberInDB(recording)) {
-        // use astro DB to find incorrect page numbers
-        recording.status = "PENDING";
-      } else {
-        recording.status = "PAGE_NUMBER_PROBLEM";
-      }
-    } else {
-      recording.singing ??= "";
-      recording.date ??= "";
-      recording.recordist ??= "";
-      recording.bookSlug ??= "";
-      recording.page ??= "";
-      recording.url ??= "";
-      recording.embedUrl ??= "";
-      recording.status = "MISSING_DATA";
-    }
+    recording = await getRecordingStatus(recording);
 
     recordings.push(recording);
   }

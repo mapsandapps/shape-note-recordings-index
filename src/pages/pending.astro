@@ -5,7 +5,9 @@ import YouTubeEmbed from "../components/embeds/YouTubeEmbed.astro";
 import fs from "node:fs";
 import path from "node:path";
 import { type PendingRecording } from '../data-collection-scripts/archive-parsing'
-import { pullNewData } from "../data-collection-scripts/pull-all-data";
+// import { pullOneArchiveItem } from '../data-collection-scripts/archive-parsing'
+// import { pullOneBandcampItem } from "../data-collection-scripts/bandcamp-parsing";
+// import { pullNewData } from "../data-collection-scripts/pull-all-data";
 
 var jsons: PendingRecording[][] = [];
 
@@ -26,7 +28,10 @@ files.map((fileName) => {
   jsons.push(recordings);
 });
 
-pullNewData();
+// pullNewData();
+// pullOneArchiveItem('posh2022-10-16.PNWC-OC.mosquito.flac24')
+// pullOneBandcampItem('corksacredharp', 'black-book-monday', 'ch-2010', '2019-03-04')
+// pullOneBandcampItem('corksacredharp', 'the-first-ireland-convention-2011-sunday', 'sh-1991', '2011-03-06')
 
 ---
 <Layout title="Pending Recordings">

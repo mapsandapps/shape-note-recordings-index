@@ -21,3 +21,12 @@ Currently using Astro DB, and currently all data is getting imported via db/seed
 - Remove the string '-pending' from the json file name
 - The next time the app builds, all the new data will be included automatically
 - Rebuild the app and commit the new file now
+
+### Bandcamp "Album"
+
+- Change pending.astro to make a call to `pullOneBandcampItem()` with the relevant items
+- Visit http://localhost:4321/pending
+- (It will be loading data in the background)
+- Remove or comment out the change to pending.astro
+- Visit http://localhost:4321/pending again and the new data should be there
+- Follow the remaining steps as above

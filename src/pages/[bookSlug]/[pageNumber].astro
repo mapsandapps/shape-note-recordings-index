@@ -2,6 +2,7 @@
 import { Book, Page, Recording, and, asc, db, desc, eq, ne } from "astro:db";
 import Layout from "../../layouts/Layout.astro";
 import ArchiveLink from "../../components/embeds/ArchiveLink.astro";
+import BandcampLink from "../../components/embeds/BandcampLink.astro";
 import YouTubeEmbed from "../../components/embeds/YouTubeEmbed.astro";
 import { getYear } from "../../utils/dates";
 
@@ -82,6 +83,7 @@ const tunes = await db
         {recordings.map(recording => {
           const isYouTube = recording.embedUrl.includes("youtube.com");
           const isArchive = recording.embedUrl.includes("archive.org");
+          const isBandcamp = recording.url.includes("bandcamp.com");
           const year = getYear(recording.date);
 
           const singingText = recording.singing.includes(year) ? recording.singing : `${recording.singing}, ${year}`
@@ -92,6 +94,9 @@ const tunes = await db
               <td>
                 {isArchive && (
                   <ArchiveLink href={recording.embedUrl} />
+                )}
+                {isBandcamp && (
+                  <BandcampLink href={recording.url} />
                 )}
                 {isYouTube && (
                   <YouTubeEmbed src={recording.embedUrl} />

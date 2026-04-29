@@ -16,6 +16,10 @@
     "@astrojs/vercel": "^10.0.4",
     "@vercel/analytics": "^2.0.1",
     "astro": "^6.1.6",
-    "date-fns": "^4.1.0"
+    "date-fns": "^4.1.0",
+    "jsdom": "^28.1.0"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^28.0.1"
   }
 }
