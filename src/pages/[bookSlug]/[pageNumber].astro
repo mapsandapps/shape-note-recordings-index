@@ -70,35 +70,39 @@ const tunes = await db
 
   <h1>{page.bookName} ({page.year}) &mdash; {page.pageNumber} {page.tuneName}</h1>
 
-  <table>
-    <thead>
-      <th>Singing</th>
-      <th>Link</th>
-    </thead>
-    <tbody>
-      {recordings.map(recording => {
-        const isYouTube = recording.embedUrl.includes("youtube.com");
-        const isArchive = recording.embedUrl.includes("archive.org");
-        const year = getYear(recording.date);
+  {recordings.length === 0 ? (
+    <p>No recordings yet&hellip;</p>
+  ) : (
+    <table>
+      <thead>
+        <th>Singing</th>
+        <th>Link</th>
+      </thead>
+      <tbody>
+        {recordings.map(recording => {
+          const isYouTube = recording.embedUrl.includes("youtube.com");
+          const isArchive = recording.embedUrl.includes("archive.org");
+          const year = getYear(recording.date);
 
-        const singingText = recording.singing.includes(year) ? recording.singing : `${recording.singing}, ${year}`
+          const singingText = recording.singing.includes(year) ? recording.singing : `${recording.singing}, ${year}`
 
-        return (
-          <tr>
-            <td>{singingText}<br />Recorded by {recording.recordist}</td>
-            <td>
-              {isArchive && (
-                <ArchiveLink href={recording.embedUrl} />
-              )}
-              {isYouTube && (
-                <YouTubeEmbed src={recording.embedUrl} />
-              )}
-            </td>
-          </tr>
-        )
-      })}
-    </tbody>
-  </table>
+          return (
+            <tr>
+              <td>{singingText}<br />Recorded by {recording.recordist}</td>
+              <td>
+                {isArchive && (
+                  <ArchiveLink href={recording.embedUrl} />
+                )}
+                {isYouTube && (
+                  <YouTubeEmbed src={recording.embedUrl} />
+                )}
+              </td>
+            </tr>
+          )
+        })}
+      </tbody>
+    </table>
+  )}
 
   {tunes.length > 0 && (
     <hr />
