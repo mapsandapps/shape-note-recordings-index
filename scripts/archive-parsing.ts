@@ -164,7 +164,9 @@ const fetchItems = async (startDate: Date, endDate?: Date) => {
   const start = format(startDate, "yyyy-MM-dd");
   const end = endDate ? format(endDate, "yyyy-MM-dd") : `null`;
 
-  const url = `https://archive.org/services/search/beta/page_production/?user_query=creator%3A%28Nathan+Rees%29+AND+date%3A%5B${start}%20+TO+%20${end}%5D`;
+  const url = `https://archive.org/services/search/beta/page_production/?user_query=creator%3A%28Nathan+Rees%29+AND+date%3A%5B${start}+TO+${end}%5D`;
+
+  console.log(url);
   try {
     const response = await fetch(url, {
       headers: {

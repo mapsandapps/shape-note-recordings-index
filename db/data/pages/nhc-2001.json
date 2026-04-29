@@ -853,8 +853,8 @@
     "tuneName": "Edom"
   },
   {
-    "page": "147b",
-    "pageSort": 147.2,
+    "page": "147",
+    "pageSort": 147,
     "tuneName": "Mexico"
   },
   {
@@ -913,8 +913,8 @@
     "tuneName": "Montgomery"
   },
   {
-    "page": "159b",
-    "pageSort": 159.2,
+    "page": "159",
+    "pageSort": 159,
     "tuneName": "Ocean"
   },
   {
@@ -978,8 +978,8 @@
     "tuneName": "The Rivulet"
   },
   {
-    "page": "175b",
-    "pageSort": 175.2,
+    "page": "175",
+    "pageSort": 175,
     "tuneName": "Huntingdon"
   },
   {
@@ -1066,6 +1066,11 @@
     "page": "219",
     "pageSort": 219,
     "tuneName": "Farewell Anthem"
+  },
+  {
+    "page": "A 11",
+    "pageSort": "1011",
+    "tuneName": "Old Hundred"
   },
   {
     "page": "A 20",
@@ -1198,12 +1203,12 @@
     "tuneName": "David's Victory"
   },
   {
-    "page": "A 97T",
+    "page": "A 97t",
     "pageSort": "1097.1",
     "tuneName": "Africa"
   },
   {
-    "page": "A 97B",
+    "page": "A 97b",
     "pageSort": "1097.2",
     "tuneName": "Athens"
   },

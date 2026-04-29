@@ -13,7 +13,10 @@ export const findPageNumber = (
   title: string,
   bookAbbreviation: string,
 ): string | null => {
+  if (!title) return null;
+
   const matches = title.match(getRegexOneBook(bookAbbreviation));
+
   let match = matches
     ? matches[0].replace("T", "t").replace("B", "b").trim()
     : null;
