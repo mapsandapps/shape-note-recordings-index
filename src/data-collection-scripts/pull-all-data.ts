@@ -1,5 +1,5 @@
-import { findArchiveRecordingsSinceMostRecent } from "./archive-parsing";
+import { findArchiveLessonsSinceMostRecent } from "./archive-parsing";
 
 export const pullNewData = async () => {
-  findArchiveRecordingsSinceMostRecent();
+  findArchiveLessonsSinceMostRecent();
 };

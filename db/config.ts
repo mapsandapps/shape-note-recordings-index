@@ -11,20 +11,28 @@ const Book = defineTable({
 
 const Recording = defineTable({
   columns: {
-    id: column.number({ primaryKey: true }),
+    id: column.text({ primaryKey: true }),
     singing: column.text(),
     date: column.text(),
     recordist: column.text(),
+    url: column.text({ unique: true }),
+    createdAt: column.date(),
+  },
+});
+
+const Lesson = defineTable({
+  columns: {
+    id: column.number({ primaryKey: true }),
+    recordingId: column.text({ references: () => Recording.columns.id }),
     page: column.text(),
     bookSlug: column.text({ references: () => Book.columns.slug }),
-    url: column.text(),
-    embedUrl: column.text(),
+    url: column.text({ unique: true }),
+    embedUrl: column.text({ unique: true, optional: true }),
     status: column.text({
       // other statuses can be in json files before they get added to the DB
       // but DB records should only have this one status
       enum: ["CONFIRMED"],
     }),
-    createdAt: column.date(),
   },
 });
 
@@ -40,5 +48,5 @@ const Page = defineTable({
 
 // https://astro.build/db/config
 export default defineDb({
-  tables: { Book, Page, Recording },
+  tables: { Book, Lesson, Page, Recording },
 });

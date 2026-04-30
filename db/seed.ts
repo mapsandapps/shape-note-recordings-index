@@ -1,10 +1,21 @@
-import { Book, Page, Recording, db } from "astro:db";
+import { Book, Lesson, Page, Recording, db } from "astro:db";
 import books from "./data/books.json";
+import recordings from "./data/recordings.json";
 import fs from "node:fs";
 import path from "node:path";
 
 const importBooks = async () => {
   await db.insert(Book).values(books);
+};
+
+const importRecordings = async () => {
+  await db.insert(Recording).values(
+    recordings.map((recording) => ({
+      ...recording,
+      // convert date string to js date
+      createdAt: new Date(recording.createdAt),
+    })),
+  );
 };
 
 const importPages = async () => {
@@ -26,10 +37,10 @@ const importPages = async () => {
   });
 };
 
-const importRecordings = async () => {
-  const recordingsDir = path.join(process.cwd(), "db/data/recordings");
+const importLessons = async () => {
+  const lessonsDir = path.join(process.cwd(), "db/data/lessons");
 
-  const files = fs.readdirSync(recordingsDir).filter((f) => {
+  const files = fs.readdirSync(lessonsDir).filter((f) => {
     return (
       f.endsWith(".json") && !f.includes("-pending") && !f.includes("-temp")
     );
@@ -37,18 +48,9 @@ const importRecordings = async () => {
 
   files.map(async (fileName) => {
     // import one file at a time to avoid hitting limits
-    const content = fs.readFileSync(
-      path.join(recordingsDir, fileName),
-      "utf-8",
-    );
-    const recordings = JSON.parse(content);
-    await db.insert(Recording).values(
-      recordings.map((recording) => ({
-        ...recording,
-        // convert date string to js date
-        createdAt: new Date(recording.createdAt),
-      })),
-    );
+    const content = fs.readFileSync(path.join(lessonsDir, fileName), "utf-8");
+    const lessons = JSON.parse(content);
+    await db.insert(Lesson).values(lessons);
   });
 };
 
@@ -57,4 +59,5 @@ export default async function seed() {
   importBooks();
   importPages();
   importRecordings();
+  importLessons();
 }

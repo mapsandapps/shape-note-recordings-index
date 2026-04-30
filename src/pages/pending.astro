@@ -2,37 +2,37 @@
 import Layout from "../layouts/Layout.astro";
 import fs from "node:fs";
 import path from "node:path";
-import { type PendingRecording } from '../data-collection-scripts/archive-parsing'
+import { type PendingLesson } from '../data-collection-scripts/utils'
 import RecordingLink from "../components/embeds/RecordingLink.astro";
-// import { pullOneArchiveItem } from '../data-collection-scripts/archive-parsing'
-// import { pullOneBandcampItem } from "../data-collection-scripts/bandcamp-parsing";
-// import { pullOneYoutubeItem } from "../data-collection-scripts/youtube-parsing";
-// import { pullNewData } from "../data-collection-scripts/pull-all-data";
+import type { Recording } from "astro:db";
+import type { Lesson } from "astro:db";
 
-var jsons: PendingRecording[][] = [];
+type RecordingSelect = typeof Recording.$inferSelect;
 
-const recordingsDir = path.join(process.cwd(), "db/data/recordings");
+var jsons: PendingLesson[][] = [];
+
+const lessonsDir = path.join(process.cwd(), "db/data/lessons");
 
 const files = fs
-  .readdirSync(recordingsDir)
+  .readdirSync(lessonsDir)
   .filter((f) => {
     return f.endsWith(".json") && f.includes("-pending");
   });
 
 files.map((fileName) => {
   const content = fs.readFileSync(
-    path.join(recordingsDir, fileName),
+    path.join(lessonsDir, fileName),
     "utf-8",
   );
-  const recordings = JSON.parse(content);
-  jsons.push(recordings);
+  const lessons = JSON.parse(content);
+  jsons.push(lessons);
 });
 
-// pullNewData();
-// pullOneArchiveItem('posh2022-10-16.PNWC-OC.mosquito.flac24')
-// pullOneBandcampItem('corksacredharp', 'black-book-monday', 'ch-2010', '2019-03-04')
-// pullOneBandcampItem('richmondshapenotesingers', 'shenandoah-harmony-sessions-from-the-james-river-sacred-harp-convention-2013', 'shh-2013', '2013-11-09', true)
-// pullOneYoutubeItem('QzzT_8FgpN4', 'cb-2012', '2025-03-15')
+const recordings = JSON.parse(fs.readFileSync(path.join(process.cwd(), "db/data/recordings.json"), 'utf-8'));
+
+const getRecordingForLesson = (lesson: PendingLesson): RecordingSelect => {
+  return recordings.find((recording: RecordingSelect) => recording.id === lesson.recordingId)
+}
 
 ---
 <Layout title="Pending Recordings">
@@ -44,46 +44,37 @@ files.map((fileName) => {
   <h1>Pending Recordings</h1>
 
   {jsons.length === 0 && (
-    <div>No pending recordings</div>
+    <div class="empty">No pending recordings<br /><a href="./pull-data">Pull more data</a></div>
   )}
 
   <div>
     <button id="toggle">Show only known problems</button>
   </div>
 
-  <div id="recordings">
-    {jsons.map((recordings) => {
-      return recordings.map((recording, i) => {
-        if (recording.status === "CONFIRMED") return
+  <div id="lessons">
+    {jsons.map((lessons) => {
+      return lessons.map((lesson, i) => {
+        if (lesson.status === "CONFIRMED") return
 
-        const isArchive = recording.embedUrl?.includes("archive.org");
-        const isBandcamp = recording.embedUrl?.includes("bandcamp.com");
-        const isYouTube = recording.embedUrl?.includes("youtube.com");
+        const isArchive = lesson.url?.includes("archive.org");
 
-        const hasError = recording.status !== "PENDING"
+        const hasError = lesson.status !== "PENDING"
 
         return (
-          <div class={`recording ${hasError ? 'has-error' : 'seems-ok'}`}>
-            {recording.status === "MISSING_DATA" && (
+          <div class={`lesson ${hasError ? 'has-error' : 'seems-ok'}`}>
+            {lesson.status === "MISSING_DATA" && (
               <div class="error">MISSING DATA:</div>
             )}
-            {recording.status === "DUPLICATE" && (
+            {lesson.status === "DUPLICATE" && (
               <div class="error">DUPLICATE:</div>
             )}
-            {recording.status === "PAGE_NUMBER_PROBLEM" && (
+            {lesson.status === "PAGE_NUMBER_PROBLEM" && (
               <div class="error">PAGE NUMBER NOT IN BOOK:</div>
             )}
-            <pre>{JSON.stringify(recording, null, 2)}</pre>
+            <pre>{JSON.stringify(lesson, null, 2)}</pre>
 
-            {isArchive && (
-              <RecordingLink href={recording.embedUrl || ""} />
-            )}
-            {(isYouTube || isBandcamp) && (
-              <RecordingLink href={recording.url || ""} />
-            )}
-            {isArchive && (
-              <a href={recording.url} target="_blank">Page</a>
-            )}
+            <RecordingLink href={lesson.url || ""} />
+            <a href={getRecordingForLesson(lesson).url} target="_blank">Page</a>
           </div>
         )
       })
@@ -92,11 +83,11 @@ files.map((fileName) => {
 </Layout>
 
 <script define:vars={{ jsons }}>
-  const recordingsList = document.getElementById('recordings');
+  const lessonsList = document.getElementById('lessons');
   const toggleButton = document.getElementById('toggle');
 
   toggleButton.addEventListener('click', () => {
-    recordingsList?.classList.toggle('hide-ok');
+    lessonsList?.classList.toggle('hide-ok');
     if (toggleButton.innerText === 'Show only known problems') {
       toggleButton.innerText = 'Show all pending'
     } else {
@@ -124,5 +115,9 @@ files.map((fileName) => {
   }
   #toggle {
     margin-bottom: 1rem;
+  }
+
+  .empty {
+    padding-bottom: 1rem;
   }
 </style>

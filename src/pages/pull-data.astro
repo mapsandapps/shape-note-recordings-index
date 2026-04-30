@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+// import { pullOneArchiveItem } from '../data-collection-scripts/archive-parsing'
+// import { pullOneBandcampItem } from "../data-collection-scripts/bandcamp-parsing";
+// import { pullOneYoutubeItem } from "../data-collection-scripts/youtube-parsing";
+// import { pullNewData } from "../data-collection-scripts/pull-all-data";
+
+// pullNewData();
+// pullOneArchiveItem('posh2022-10-16.PNWC-OC.mosquito.flac24')
+// pullOneArchiveItem('2025-07-06-henagar-union');
+// pullOneBandcampItem('corksacredharp', 'black-book-monday', 'ch-2010', '2019-03-04')
+// pullOneBandcampItem('richmondshapenotesingers', 'shenandoah-harmony-sessions-from-the-james-river-sacred-harp-convention-2013', 'shh-2013', '2013-11-09', true)
+// pullOneYoutubeItem('QzzT_8FgpN4', 'cb-2012', '2025-03-15')
+
+---
+<Layout title="Pull Data">
+  <ul class="breadcrumbs">
+    <li><a href="/">Home</a></li>
+    <li>Pull data</li>
+  </ul>
+
+  <h1>Pull Data</h1>
+
+  <div>
+    By viewing this page, you run whatever functions are in it. You will immediately be navigated to the Pending page.
+  </div>
+</Layout>
+
+<script>
+  window.location.href = "/pending"
+</script>

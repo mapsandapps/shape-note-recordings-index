@@ -1,7 +1,7 @@
 ---
 import { Book, Page, and, asc, count, db, eq, isNotNull } from 'astro:db';
 import Layout from '../../layouts/Layout.astro';
-import { Recording } from 'astro:db';
+import { Lesson } from 'astro:db';
 
 export async function getStaticPaths() {
   const books = await db
@@ -32,13 +32,13 @@ const pages = await db
   .select({
     page: Page.page,
     tuneName: Page.tuneName,
-    hasRecording: isNotNull(Recording.id),
-    recordingsCount: count(Recording.id)
+    hasLesson: isNotNull(Lesson.id),
+    lessonsCount: count(Lesson.id)
   })
   .from(Page)
   .where(eq(Page.bookSlug, book.slug))
   .orderBy(asc(Page.pageSort))
-  .leftJoin(Recording, and(eq(Recording.page, Page.page), eq(Recording.bookSlug, Page.bookSlug)))
+  .leftJoin(Lesson, and(eq(Lesson.page, Page.page), eq(Lesson.bookSlug, Page.bookSlug)))
   .groupBy(Page.id);
 ---
 
@@ -60,13 +60,13 @@ const pages = await db
 
   <ul id="pages" class="hide-empty-pages">
     {pages.map(page => {
-      const recordingsPlural = page.recordingsCount === 1 ? "recording" : "recordings";
+      const recordingsPlural = page.lessonsCount === 1 ? "recording" : "recordings";
 
-      if (page.hasRecording) return (
-        <li><a href={`/${book.slug}/${page.page}`}>{page.page} {page.tuneName}</a> ({page.recordingsCount} {recordingsPlural})</li>
+      if (page.hasLesson) return (
+        <li><a href={`/${book.slug}/${page.page}`}>{page.page} {page.tuneName}</a> ({page.lessonsCount} {recordingsPlural})</li>
       )
       return (
-        <li class="no-recordings"><a href={`/${book.slug}/${page.page}`}>{page.page} {page.tuneName}</a> ({page.recordingsCount} {recordingsPlural})</li>
+        <li class="no-recordings"><a href={`/${book.slug}/${page.page}`}>{page.page} {page.tuneName}</a> ({page.lessonsCount} {recordingsPlural})</li>
       )}
     )}
   </ul>

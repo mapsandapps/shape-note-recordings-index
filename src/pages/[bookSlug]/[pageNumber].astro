@@ -1,5 +1,5 @@
 ---
-import { Book, Page, Recording, and, asc, db, desc, eq, ne } from "astro:db";
+import { Book, Lesson, Page, Recording, and, asc, db, desc, eq, ne } from "astro:db";
 import Layout from "../../layouts/Layout.astro";
 import RecordingLink from "../../components/embeds/RecordingLink.astro";
 import { getYear } from "../../utils/dates";
@@ -33,18 +33,19 @@ const [page] = await db
   .from(Page)
   .innerJoin(Book, and(eq(Book.slug, bookSlug), eq(Page.bookSlug, bookSlug), eq(Page.page, pageNumber)));
 
-const recordings = await db
+const lessons = await db
   .select({
-    id: Recording.id,
+    id: Lesson.id,
     singing: Recording.singing,
     date: Recording.date,
     recordist: Recording.recordist,
-    url: Recording.url,
-    embedUrl: Recording.embedUrl,
+    url: Lesson.url,
+    embedUrl: Lesson.embedUrl,
   })
-  .from(Recording)
-  .where(and(eq(Recording.bookSlug, page.bookSlug), eq(Recording.page, pageNumber)))
-  .orderBy(desc(Recording.date), desc(Recording.id));
+  .from(Lesson)
+  .innerJoin(Recording, eq(Recording.id, Lesson.recordingId))
+  .where(and(eq(Lesson.bookSlug, page.bookSlug), eq(Lesson.page, pageNumber)))
+  .orderBy(desc(Recording.date), desc(Lesson.id));
 
 // get other tunes with same name
 const tunes = await db
@@ -69,7 +70,7 @@ const tunes = await db
 
   <h1>{page.bookName} ({page.year}) &mdash; {page.pageNumber} {page.tuneName}</h1>
 
-  {recordings.length === 0 ? (
+  {lessons.length === 0 ? (
     <p>No recordings yet&hellip;</p>
   ) : (
     <table>
@@ -80,24 +81,16 @@ const tunes = await db
         </tr>
       </thead>
       <tbody>
-        {recordings.map(recording => {
-          const isYouTube = recording.embedUrl.includes("youtube.com");
-          const isArchive = recording.embedUrl.includes("archive.org");
-          const isBandcamp = recording.url.includes("bandcamp.com");
-          const year = getYear(recording.date);
+        {lessons.map(lesson => {
+          const year = getYear(lesson.date);
 
-          const singingText = recording.singing.includes(year) ? recording.singing : `${recording.singing}, ${year}`
+          const singingText = lesson.singing.includes(year) ? lesson.singing : `${lesson.singing}, ${year}`
 
           return (
             <tr>
-              <td>{singingText}<br />Recorded by {recording.recordist}</td>
+              <td>{singingText}<br />Recorded by {lesson.recordist}</td>
               <td>
-                {isArchive && (
-                  <RecordingLink href={recording.embedUrl} />
-                )}
-                {(isBandcamp || isYouTube) && (
-                  <RecordingLink href={recording.url} />
-                )}
+                <RecordingLink href={lesson.url} />
               </td>
             </tr>
           )

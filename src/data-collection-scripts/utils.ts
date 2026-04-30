@@ -1,6 +1,68 @@
-import { and, db, eq, Page, Recording } from "astro:db";
+import * as path from "path";
+import fs from "node:fs";
+import { and, db, eq, Lesson, Page, Recording } from "astro:db";
 import books from "../../db/data/books.json";
-import type { PendingRecording } from "./archive-parsing";
+
+type LessonInsert = typeof Lesson.$inferInsert;
+type RecordingInsert = typeof Recording.$inferInsert;
+
+export type PendingLesson = Partial<Omit<LessonInsert, "status">> & {
+  status:
+    | "CONFIRMED"
+    | "PENDING"
+    | "MISSING_DATA"
+    | "DUPLICATE"
+    | "PAGE_NUMBER_PROBLEM";
+};
+
+export type PendingRecording = Partial<Omit<RecordingInsert, "createdAt">> & {
+  createdAt: string;
+};
+
+export const addLessonsToDB = (
+  lessons: PendingLesson[] | undefined,
+  filename: string,
+) => {
+  if (!lessons) {
+    console.error("No lessons found");
+    return;
+  }
+
+  const filePath = path.join(
+    process.cwd(),
+    `db/data/lessons/${filename}-pending.json`,
+  );
+
+  fs.writeFileSync(filePath, JSON.stringify(lessons, null, 2));
+};
+
+export const addRecordingToDB = (recording: PendingRecording) => {
+  const filePath = path.join(process.cwd(), `db/data/recordings.json`);
+
+  if (
+    !recording.id ||
+    !recording.singing ||
+    !recording.date ||
+    !recording.recordist ||
+    !recording.url ||
+    !recording.createdAt
+  ) {
+    console.error("Could not add recording to DB");
+    return;
+  }
+
+  try {
+    const existingData = fs.readFileSync(filePath, "utf-8");
+    const json = JSON.parse(existingData);
+
+    json.push(recording);
+
+    fs.writeFileSync(filePath, JSON.stringify(json, null, 2), "utf-8");
+    console.log("Added recording to DB");
+  } catch (error) {
+    console.error("Error adding recording to DB:", error);
+  }
+};
 
 // from https://github.com/mapsandapps/minutes-tune-names/blob/main/src/helpers.ts
 const getRegexOneBook = (bookAbbreviation: string): RegExp => {
@@ -11,37 +73,25 @@ const getRegexOneBook = (bookAbbreviation: string): RegExp => {
   return new RegExp(/\d+[tbTB]*/);
 };
 
-export const getRecordingStatus = async (recording: PendingRecording) => {
-  if (
-    recording.singing &&
-    recording.date &&
-    recording.recordist &&
-    recording.bookSlug &&
-    recording.page &&
-    recording.url &&
-    recording.embedUrl
-  ) {
-    // use astro DB to find recordings already in DB
-    if (await findDuplicates(recording)) {
-      recording.status = "DUPLICATE";
-    } else if (await findPageNumberInDB(recording)) {
+export const getLessonStatus = async (lesson: PendingLesson) => {
+  if (lesson.bookSlug && lesson.page && lesson.url) {
+    // use astro DB to find lessons already in DB
+    if (await findDuplicates(lesson)) {
+      lesson.status = "DUPLICATE";
+    } else if (await findPageNumberInDB(lesson)) {
       // use astro DB to find incorrect page numbers
-      recording.status = "PENDING";
+      lesson.status = "PENDING";
     } else {
-      recording.status = "PAGE_NUMBER_PROBLEM";
+      lesson.status = "PAGE_NUMBER_PROBLEM";
     }
   } else {
-    recording.singing ??= "";
-    recording.date ??= "";
-    recording.recordist ??= "";
-    recording.bookSlug ??= "";
-    recording.page ??= "";
-    recording.url ??= "";
-    recording.embedUrl ??= "";
-    recording.status = "MISSING_DATA";
+    lesson.bookSlug ??= "";
+    lesson.page ??= "";
+    lesson.url ??= "";
+    lesson.status = "MISSING_DATA";
   }
 
-  return recording;
+  return lesson;
 };
 
 export const findPageNumber = (
@@ -68,21 +118,15 @@ export const findPageNumber = (
   return match;
 };
 
-export const findDuplicates = async (recording: any) => {
-  const similarRecordings = await db
+export const findDuplicates = async (lesson: any) => {
+  const similarLessons = await db
     .select({
-      embedUrl: Recording.embedUrl,
-      url: Recording.url,
+      url: Lesson.url,
     })
-    .from(Recording)
-    .where(
-      and(
-        eq(Recording.embedUrl, recording.embedUrl),
-        eq(Recording.url, recording.url),
-      ),
-    );
+    .from(Lesson)
+    .where(eq(Lesson.url, lesson.url));
 
-  return similarRecordings?.length > 0;
+  return similarLessons?.length > 0;
 };
 
 export const findPageNumberInDB = async (recording: any) => {
