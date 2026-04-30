@@ -1,0 +1,66 @@
+---
+import { Book, Page, and, asc, db, desc, eq, gte, sql } from 'astro:db';
+import Layout from '../layouts/Layout.astro';
+import { Recording } from 'astro:db';
+import RecordingLink from '../components/embeds/RecordingLink.astro';
+
+const recordings = await db
+  .select({
+    singing: Recording.singing,
+    date: Recording.date,
+    recordist: Recording.recordist,
+    page: Recording.page,
+    bookSlug: Recording.bookSlug,
+    url: Recording.url,
+    embedUrl: Recording.embedUrl,
+    createdAt: Recording.createdAt,
+    tuneName: Page.tuneName,
+    bookName: Book.name,
+    bookYear: Book.year
+  })
+  .from(Recording)
+  .innerJoin(Book, and(eq(Book.slug, Recording.bookSlug)))
+  .innerJoin(Page, and(eq(Page.page, Recording.page), eq(Page.bookSlug, Recording.bookSlug)))
+  .orderBy(desc(Recording.createdAt))
+  .where(gte(Recording.createdAt, sql`datetime('now', '-1 days')`))
+---
+
+<Layout>
+  <ul class="breadcrumbs">
+    <li><a href="/">Home</a></li>
+    <li>Recent additions</li>
+  </ul>
+
+  <h1>Recent Additions</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Tune</th>
+        <th>Singing</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      {recordings.map(recording => {
+        const isYouTube = recording.embedUrl.includes("youtube.com");
+        const isArchive = recording.embedUrl.includes("archive.org");
+        const isBandcamp = recording.url.includes("bandcamp.com");
+
+        return (
+          <tr>
+            <td><a href={`${recording.bookSlug}/${recording.page}`}>{recording.page} {recording.tuneName}</a><br />{recording.bookName} ({recording.bookYear})</td>
+            <td>{recording.singing}<br />Recorded by {recording.recordist}</td>
+            <td>
+              {isArchive && (
+                <RecordingLink href={recording.embedUrl} />
+              )}
+              {(isBandcamp || isYouTube) && (
+                <RecordingLink href={recording.url} />
+              )}
+            </td>
+          </tr>
+        )}
+      )}
+    </tbody>
+  </table>
+</Layout>

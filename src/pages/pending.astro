@@ -1,10 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ArchiveLink from "../components/embeds/ArchiveLink.astro";
-import YouTubeEmbed from "../components/embeds/YouTubeEmbed.astro";
 import fs from "node:fs";
 import path from "node:path";
 import { type PendingRecording } from '../data-collection-scripts/archive-parsing'
+import RecordingLink from "../components/embeds/RecordingLink.astro";
 // import { pullOneArchiveItem } from '../data-collection-scripts/archive-parsing'
 // import { pullOneBandcampItem } from "../data-collection-scripts/bandcamp-parsing";
 // import { pullOneYoutubeItem } from "../data-collection-scripts/youtube-parsing";
@@ -57,8 +56,9 @@ files.map((fileName) => {
       return recordings.map((recording, i) => {
         if (recording.status === "CONFIRMED") return
 
-        const isYouTube = recording.embedUrl?.includes("youtube.com");
         const isArchive = recording.embedUrl?.includes("archive.org");
+        const isBandcamp = recording.embedUrl?.includes("bandcamp.com");
+        const isYouTube = recording.embedUrl?.includes("youtube.com");
 
         const hasError = recording.status !== "PENDING"
 
@@ -76,13 +76,13 @@ files.map((fileName) => {
             <pre>{JSON.stringify(recording, null, 2)}</pre>
 
             {isArchive && (
-              <ArchiveLink href={recording.embedUrl || ""} />
+              <RecordingLink href={recording.embedUrl || ""} />
+            )}
+            {(isYouTube || isBandcamp) && (
+              <RecordingLink href={recording.url || ""} />
             )}
             {isArchive && (
               <a href={recording.url} target="_blank">Page</a>
-            )}
-            {isYouTube && (
-              <YouTubeEmbed src={recording.embedUrl || ""} />
             )}
           </div>
         )

@@ -1,9 +1,7 @@
 ---
 import { Book, Page, Recording, and, asc, db, desc, eq, ne } from "astro:db";
 import Layout from "../../layouts/Layout.astro";
-import ArchiveLink from "../../components/embeds/ArchiveLink.astro";
-import BandcampLink from "../../components/embeds/BandcampLink.astro";
-import YouTubeLink from "../../components/embeds/YouTubeLink.astro";
+import RecordingLink from "../../components/embeds/RecordingLink.astro";
 import { getYear } from "../../utils/dates";
 
 export async function getStaticPaths() {
@@ -76,8 +74,10 @@ const tunes = await db
   ) : (
     <table>
       <thead>
-        <th>Singing</th>
-        <th>Link</th>
+        <tr>
+          <th>Singing</th>
+          <th>Link</th>
+        </tr>
       </thead>
       <tbody>
         {recordings.map(recording => {
@@ -93,13 +93,10 @@ const tunes = await db
               <td>{singingText}<br />Recorded by {recording.recordist}</td>
               <td>
                 {isArchive && (
-                  <ArchiveLink href={recording.embedUrl} />
+                  <RecordingLink href={recording.embedUrl} />
                 )}
-                {isBandcamp && (
-                  <BandcampLink href={recording.url} />
-                )}
-                {isYouTube && (
-                  <YouTubeLink href={recording.url} />
+                {(isBandcamp || isYouTube) && (
+                  <RecordingLink href={recording.url} />
                 )}
               </td>
             </tr>
