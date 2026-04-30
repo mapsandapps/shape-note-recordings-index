@@ -3,7 +3,6 @@ import fs from "node:fs";
 import jsdom from "jsdom";
 import type { PendingRecording } from "./archive-parsing";
 import { findPageNumber, getRecordingStatus } from "./utils";
-import { format, parse } from "date-fns";
 
 const { JSDOM } = jsdom;
 

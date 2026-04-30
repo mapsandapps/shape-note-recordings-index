@@ -3,7 +3,7 @@ import { Book, Page, Recording, and, asc, db, desc, eq, ne } from "astro:db";
 import Layout from "../../layouts/Layout.astro";
 import ArchiveLink from "../../components/embeds/ArchiveLink.astro";
 import BandcampLink from "../../components/embeds/BandcampLink.astro";
-import YouTubeEmbed from "../../components/embeds/YouTubeEmbed.astro";
+import YouTubeLink from "../../components/embeds/YouTubeLink.astro";
 import { getYear } from "../../utils/dates";
 
 export async function getStaticPaths() {
@@ -99,7 +99,7 @@ const tunes = await db
                   <BandcampLink href={recording.url} />
                 )}
                 {isYouTube && (
-                  <YouTubeEmbed src={recording.embedUrl} />
+                  <YouTubeLink href={recording.url} />
                 )}
               </td>
             </tr>
