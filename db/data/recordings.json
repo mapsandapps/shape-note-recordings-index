@@ -1822,5 +1822,37 @@
     "url": "https://richmondshapenotesingers.bandcamp.com/album/shenandoah-harmony-sessions-from-the-james-river-sacred-harp-convention-2013",
     "recordist": "Richmond Shape Note Singers",
     "createdAt": "2026-04-29T20:47:31.016Z"
+  },
+  {
+    "id": "71028477-f929-484e-af61-e00116bda136",
+    "date": "2022-10-16",
+    "url": "https://archive.org/details/posh2022-10-16.PNWC-OC.mosquito.flac24",
+    "singing": "PNW Convention - Oregon Session 2022",
+    "recordist": "Portland Oregon Sacred Harp",
+    "createdAt": "2026-04-30T23:57:26.613Z"
+  },
+  {
+    "id": "9e653a26-1b27-4247-bf6c-0a20905c5269",
+    "date": "2022-10-16",
+    "url": "https://archive.org/details/posh2022-10-16.PNWC-OS.mosquito.v2.flac24",
+    "singing": "PNW Convention - Oregon Session 2022 v2",
+    "recordist": "Portland Oregon Sacred Harp",
+    "createdAt": "2026-05-01T00:04:44.604Z"
+  },
+  {
+    "id": "24b7b046-f514-4863-88a3-f693e5e3690a",
+    "date": "2018-02-04",
+    "url": "https://archive.org/details/bash2018-02-04.SHMS.mosquito.flac24",
+    "singing": "Steve Helwig Memorial Singing 2018",
+    "recordist": "Bay Area Sacred Harp",
+    "createdAt": "2026-05-01T00:09:32.896Z"
+  },
+  {
+    "id": "20ae1d62-6513-45b4-ab76-bc4e1491c69c",
+    "date": "2018-08-25",
+    "url": "https://archive.org/details/bash2018-08-25.Palo_Alto.mosquito.flac24",
+    "singing": "Palo Alto Sacred Harp Singing, 2018",
+    "recordist": "Mosquito, for Bay Area Sacred Harp (BASH)",
+    "createdAt": "2026-05-01T00:18:49.784Z"
   }
 ]

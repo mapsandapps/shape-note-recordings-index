@@ -84,7 +84,10 @@ const fetchRecordingData = async (url: string) => {
 const getLessons = async (url: string) => {
   const data = await fetchRecordingData(url);
 
-  if (!data) return;
+  if (!data) {
+    console.error("no data");
+    return;
+  }
 
   const books = guessBooks(data.metadata.description, data.metadata.date);
   let lessons: PendingLesson[] = [];
@@ -106,7 +109,10 @@ const getLessons = async (url: string) => {
 
   addRecordingToDB(recording);
 
-  const files = data.files.filter((file: any) => Boolean(file.track));
+  const files = data.files.filter(
+    // (file: any) => file.format === "24bit Flac" && file.source === "original",
+    (file: any) => Boolean(file.track) && file.source === "original",
+  );
 
   for (const file of files) {
     let lesson: PendingLesson = {
