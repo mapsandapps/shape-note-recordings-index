@@ -1854,5 +1854,101 @@
     "singing": "Palo Alto Sacred Harp Singing, 2018",
     "recordist": "Mosquito, for Bay Area Sacred Harp (BASH)",
     "createdAt": "2026-05-01T00:18:49.784Z"
+  },
+  {
+    "id": "f3301d2b-05ef-449b-953d-641ebf8c947c",
+    "singing": "Sacred Harp Singing at Mount Olive, 1971, side 1",
+    "date": "1971-10-18",
+    "recordist": "Sacred Harp Museum",
+    "url": "https://www.youtube.com/watch?v=kEJfsgud13E",
+    "createdAt": "2026-05-01T01:35:10.976Z"
+  },
+  {
+    "id": "a9c123c8-f1ba-419e-b6e5-467a14dba1e7",
+    "singing": "Sacred Harp Singing at Mount Olive, 1971, side 2a",
+    "date": "1971-10-18",
+    "recordist": "Sacred Harp Museum",
+    "url": "https://www.youtube.com/watch?v=Q7-xXMDQglc",
+    "createdAt": "2026-05-01T01:37:23.707Z"
+  },
+  {
+    "id": "7c0bd049-570f-4f38-ae30-f8ec75a06ca0",
+    "singing": "Sacred Harp Singing at Mount Olive, 1971, side 2b",
+    "date": "1971-10-18",
+    "recordist": "Sacred Harp Museum",
+    "url": "https://www.youtube.com/watch?v=Bcibzbcb6Y0",
+    "createdAt": "2026-05-01T01:40:28.736Z"
+  },
+  {
+    "id": "8b88cba0-2698-4c5e-bdbc-1f440dbfcc81",
+    "singing": "New Year's Eve Sacred Harp Singing at Mack Wootten's Home, 1971, side 2",
+    "date": "1971-12-31",
+    "recordist": "Sacred Harp Museum",
+    "url": "https://www.youtube.com/watch?v=f4zCKxFKBfk",
+    "createdAt": "2026-05-01T01:45:38.039Z"
+  },
+  {
+    "id": "46053c4a-35d0-4d56-8fe2-1ab4ee499705",
+    "singing": "New Year's Eve Sacred Harp Singing at Mack Wootten's Home, 1971, side 3",
+    "date": "1971-12-31",
+    "recordist": "Sacred Harp Museum",
+    "url": "https://www.youtube.com/watch?v=lwGcdyGWnog",
+    "createdAt": "2026-05-01T01:46:57.177Z"
+  },
+  {
+    "id": "f04a3588-8e85-4a39-836f-a5d82a5f3234",
+    "singing": "New Year's Eve Sacred Harp Singing at Mack Wootten's Home, 1971, side 4",
+    "date": "1971-12-31",
+    "recordist": "Sacred Harp Museum",
+    "url": "https://www.youtube.com/watch?v=N5RsPm6ao9Y",
+    "createdAt": "2026-05-01T01:48:17.734Z"
+  },
+  {
+    "id": "32132f6d-a9a2-47e2-a141-c1778c1aec0e",
+    "singing": "New Year's Eve Sacred Harp Singing at Mack Wootten's Home, 1971, side 5",
+    "date": "1971-12-31",
+    "recordist": "Sacred Harp Museum",
+    "url": "https://www.youtube.com/watch?v=ISq4ZYTL4W8",
+    "createdAt": "2026-05-01T01:49:09.861Z"
+  },
+  {
+    "id": "bc7188ea-7eb4-4f77-8594-9dc97825c15f",
+    "singing": "United Sacred Harp Convention at Antioch, 1977, Side 1",
+    "date": "1977-09-09",
+    "recordist": "Sacred Harp Museum",
+    "url": "https://www.youtube.com/watch?v=GM4wEkrJhnY",
+    "createdAt": "2026-05-01T01:50:54.409Z"
+  },
+  {
+    "id": "7f85171d-f93d-4edc-811c-9e7ebbcc0501",
+    "singing": "United Sacred Harp Convention at Antioch, 1977, Side 2",
+    "date": "1977-09-10",
+    "recordist": "Sacred Harp Museum",
+    "url": "https://www.youtube.com/watch?v=McnZUjlzylU",
+    "createdAt": "2026-05-01T01:52:07.015Z"
+  },
+  {
+    "id": "8e57f0cc-c036-4bb6-9efd-b64c1c4571fe",
+    "singing": "Sacred Harp Singing at Antioch, 1982",
+    "date": "1982-04-12",
+    "recordist": "Sacred Harp Museum",
+    "url": "https://www.youtube.com/watch?v=-fFbkoxFnqU",
+    "createdAt": "2026-05-01T01:55:58.290Z"
+  },
+  {
+    "id": "7c7af0c7-d44e-433f-8881-60e29b8b8ad2",
+    "singing": "South Georgia Sacred Harp Singing Convention - Tifton GA (May 1977)",
+    "date": "1977-05-01",
+    "recordist": "Jeremiah Ledbetter",
+    "url": "https://www.youtube.com/watch?v=RgA3DPNa9qU",
+    "createdAt": "2026-05-01T02:00:09.211Z"
+  },
+  {
+    "id": "2f5b4f38-5eb2-4da2-bac7-00af88b2d612",
+    "singing": "Sacred Harp Singing in Mt Zion GA (July 1977) & Extended Interview with Raymond Hamrick",
+    "date": "1977-07-24",
+    "recordist": "Jeremiah Ledbetter",
+    "url": "https://www.youtube.com/watch?v=2jMhuJw0V74",
+    "createdAt": "2026-05-01T02:06:45.543Z"
   }
 ]
