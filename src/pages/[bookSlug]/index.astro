@@ -45,10 +45,14 @@ const pages = await db
 <Layout title={`Index of Recordings from ${book.name} (${book.year})`}>
   <ul class="breadcrumbs">
     <li><a href="/">Home</a></li>
-    <li>{book.name}</li>
+    <li>{book.name} ({book.year})</li>
   </ul>
 
   <h1>{book.name} ({book.year})</h1>
+
+  {book.slug === 'sh-1936' && (
+    <p>Note: My index for this book is not complete</p>
+  )}
 
   {book.slug === 'cb-2012' && (
     <p>Note: Cooper Book songs from non-Cooper Book singings have not yet been divided by year of revision</p>
