@@ -38,11 +38,13 @@ const importPages = async () => {
   });
 };
 
-const getAllFiles = async (dirPath: string) => {
-  const files = await readdir(dirPath, { recursive: true });
+export const getAllFiles = async () => {
+  const lessonsDir = path.join(process.cwd(), "db/data/lessons");
+
+  const files = await readdir(lessonsDir, { recursive: true });
 
   return files
-    .map((file) => path.join(dirPath, file))
+    .map((file) => path.join(lessonsDir, file))
     .filter((f) => {
       return (
         f.endsWith(".json") && !f.includes("-pending") && !f.includes("-temp")
@@ -51,9 +53,7 @@ const getAllFiles = async (dirPath: string) => {
 };
 
 const importLessons = async () => {
-  const lessonsDir = path.join(process.cwd(), "db/data/lessons");
-
-  const files = await getAllFiles(lessonsDir);
+  const files = await getAllFiles();
 
   files.map(async (fileName) => {
     // import one file at a time to avoid hitting limits

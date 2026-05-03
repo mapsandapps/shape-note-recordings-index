@@ -2,7 +2,6 @@ import * as path from "path";
 import books from "../../db/data/books.json";
 import { type Book } from "astro:db";
 import { format, formatDate, isAfter } from "date-fns";
-import fs from "node:fs";
 import {
   addLessonsToDB,
   addRecordingToDB,
@@ -10,6 +9,7 @@ import {
   getLessonStatus,
 } from "./utils";
 import type { PendingLesson, PendingRecording } from "./utils";
+import { getAllFiles } from "../../db/seed";
 
 type BookSelect = typeof Book.$inferSelect;
 
@@ -207,14 +207,13 @@ export const pullOneArchiveItem = async (identifier: string) => {
 export const findArchiveLessonsSinceMostRecent = async () => {
   const lessonsDir = path.join(process.cwd(), "db/data/lessons");
 
-  const files = fs.readdirSync(lessonsDir).filter((f) => {
-    return (
-      f.endsWith(".json") && !f.includes("-pending") && !f.includes("-temp")
-    );
-  });
+  const files = await getAllFiles();
+
   // files without dates in the name should be ignored
   // only look at filenames starting with a number
-  const dateFiles = files.filter((filename) => /^\d/.test(filename));
+  const dateFiles = files
+    .map((file: string) => file.substring(file.lastIndexOf("/") + 1))
+    .filter((filename) => /^\d/.test(filename));
   const lastFilename = dateFiles.sort().at(-1);
 
   if (!lastFilename) {
@@ -223,6 +222,8 @@ export const findArchiveLessonsSinceMostRecent = async () => {
   }
 
   const latestDate = new Date(lastFilename.replace(".json", ""));
+
+  console.log(`Getting recordings since ${latestDate}`);
 
   findNewLessons(latestDate);
 };
