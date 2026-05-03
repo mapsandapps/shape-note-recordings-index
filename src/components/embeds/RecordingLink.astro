@@ -4,7 +4,13 @@ interface Props {
 }
 
 const { href } = Astro.props;
+
+const isArchive = href.includes('archive.org');
+const isBandcamp = href.includes('bandcamp.com');
+const isYoutube = href.includes('youtube.com');
+
+const text = isArchive ? 'Archive.org' : isBandcamp ? 'Bandcamp' : isYoutube ? 'YouTube' : "Recording"
 ---
 <div>
-  <a href={href} target="_blank">Recording</a>
+  <a href={href} target="_blank">{text}</a>
 </div>
