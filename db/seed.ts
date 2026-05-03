@@ -3,6 +3,7 @@ import books from "./data/books.json";
 import recordings from "./data/recordings.json";
 import fs from "node:fs";
 import path from "node:path";
+import { readdir } from "node:fs/promises";
 
 const importBooks = async () => {
   await db.insert(Book).values(books);
@@ -37,18 +38,26 @@ const importPages = async () => {
   });
 };
 
+const getAllFiles = async (dirPath: string) => {
+  const files = await readdir(dirPath, { recursive: true });
+
+  return files
+    .map((file) => path.join(dirPath, file))
+    .filter((f) => {
+      return (
+        f.endsWith(".json") && !f.includes("-pending") && !f.includes("-temp")
+      );
+    });
+};
+
 const importLessons = async () => {
   const lessonsDir = path.join(process.cwd(), "db/data/lessons");
 
-  const files = fs.readdirSync(lessonsDir).filter((f) => {
-    return (
-      f.endsWith(".json") && !f.includes("-pending") && !f.includes("-temp")
-    );
-  });
+  const files = await getAllFiles(lessonsDir);
 
   files.map(async (fileName) => {
     // import one file at a time to avoid hitting limits
-    const content = fs.readFileSync(path.join(lessonsDir, fileName), "utf-8");
+    const content = fs.readFileSync(fileName, "utf-8");
     const lessons = JSON.parse(content);
     await db.insert(Lesson).values(lessons);
   });
