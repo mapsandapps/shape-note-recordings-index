@@ -3,6 +3,7 @@ import { Book, Lesson, Page, Recording, and, asc, db, desc, eq, ne } from "astro
 import Layout from "../../layouts/Layout.astro";
 import RecordingLink from "../../components/embeds/RecordingLink.astro";
 import { getYear } from "../../utils/dates";
+import { getNormalizedComparisionPage, getNormalizedCurrentPage } from "../../utils/tune-name-comparisons";
 
 export async function getStaticPaths() {
   const pages = await db
@@ -57,7 +58,11 @@ const tunes = await db
     bookYear: Book.year
   })
   .from(Page)
-  .where(and(eq(Page.tuneName, page.tuneName), ne(Page.bookSlug, page.bookSlug)))
+  .where(and(
+    // eq(Page.tuneName, page.tuneName),
+    eq(getNormalizedComparisionPage(Page), getNormalizedCurrentPage(page)),
+    ne(Page.bookSlug, page.bookSlug)
+  ))
   .innerJoin(Book, and(eq(Book.slug, Page.bookSlug)))
   .orderBy(asc(Page.tuneName), asc(Book.name), desc(Book.year))
 ---
