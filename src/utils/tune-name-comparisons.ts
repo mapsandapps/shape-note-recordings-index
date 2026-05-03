@@ -10,14 +10,22 @@ interface Page {
 export const getNormalizedCurrentPage = (page: Page) =>
   page.bookSlug.startsWith("cb-")
     ? // extract content inside parens, or use full name if no parens
-      (page.tuneName.match(/\(([^)]+)\)/)?.[1]?.trim() ?? page.tuneName)
+      (
+        page.tuneName
+          .match(/\(([^)]+)\)/)?.[1]
+          ?.trim()
+          .toLowerCase() ?? page.tuneName
+      ).toLowerCase()
     : // strip parens and surrounding spaces
-      page.tuneName.replace(/\s*\([^)]*\)\s*/g, "").trim();
+      page.tuneName
+        .replace(/\s*\([^)]*\)\s*/g, "")
+        .trim()
+        .toLowerCase();
 
 // for Cooper Book songs, compare *only* the part of the name inside parentheses (if there are parentheses)
 // for all other books, remove anything inside parentheses
 export const getNormalizedComparisionPage = (Page: any) => sql<string>`
-  CASE
+  LOWER(CASE
     WHEN ${Page.bookSlug} LIKE 'cb-%' THEN
       CASE
         WHEN ${Page.tuneName} LIKE '%(%)%'
@@ -40,5 +48,5 @@ export const getNormalizedComparisionPage = (Page: any) => sql<string>`
           ELSE ${Page.tuneName}
         END
       )
-  END
+  END)
 `;
