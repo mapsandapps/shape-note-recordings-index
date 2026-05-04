@@ -1,9 +1,8 @@
 ---
 import { Book, Lesson, Page, Recording, and, asc, db, desc, eq, ne } from "astro:db";
-import Layout from "../../layouts/Layout.astro";
-import RecordingLink from "../../components/embeds/RecordingLink.astro";
-import { getYear } from "../../utils/dates";
-import { getNormalizedComparisionPage, getNormalizedCurrentPage } from "../../utils/tune-name-comparisons";
+import Layout from "../../../layouts/Layout.astro";
+import { getNormalizedComparisionPage, getNormalizedCurrentPage } from "../../../utils/tune-name-comparisons";
+import LessonsList from "../../../components/embeds/LessonsList.astro";
 
 export async function getStaticPaths() {
   const pages = await db
@@ -69,44 +68,21 @@ const tunes = await db
 <Layout title={`Recordings of ${page.pageNumber} ${page.tuneName}`}>
   <ul class="breadcrumbs">
     <li><a href="/">Home</a></li>
-    <li><a href="./">{page.bookName}</a></li>
+    <li><a href={`/${bookSlug}`}>{page.bookName}</a></li>
     <li>{page.pageNumber}</li>
   </ul>
 
   <h1>{page.bookName} ({page.year}) &mdash; {page.pageNumber} {page.tuneName}</h1>
 
-  {lessons.length === 0 ? (
+  {lessons.length === 0 && (
     <p>No recordings yet&hellip;</p>
-  ) : (
-    <table>
-      <thead>
-        <tr>
-          <th>Singing</th>
-          <th>Link</th>
-        </tr>
-      </thead>
-      <tbody>
-        {lessons.map(lesson => {
-          const year = getYear(lesson.date);
-
-          const singingText = lesson.singing.includes(year) ? lesson.singing : `${lesson.singing}, ${year}`
-
-          return (
-            <tr>
-              <td>{singingText}<br />Recorded by {lesson.recordist}</td>
-              <td>
-                <RecordingLink href={lesson.url} />
-              </td>
-            </tr>
-          )
-        })}
-      </tbody>
-    </table>
   )}
+
+  <LessonsList lessons={lessons} />
 
   {tunes.length > 0 && (
     <hr />
-    <p>Same tune name in other books:</p>
+    <h2>Same Tune Name In Other Books</h2>
   )}
   <ul>
     {tunes.map(tune => (

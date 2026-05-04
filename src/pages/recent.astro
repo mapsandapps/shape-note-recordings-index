@@ -1,7 +1,10 @@
 ---
 import { Book, Lesson, Page, Recording, and, db, desc, eq, gte, sql } from 'astro:db';
 import Layout from '../layouts/Layout.astro';
-import RecordingLink from '../components/embeds/RecordingLink.astro';
+import LessonsList from '../components/embeds/LessonsList.astro';
+
+const NUMBER_OF_DAYS = 1;
+const daysFilter = `-${NUMBER_OF_DAYS} days`
 
 const lessons = await db
   .select({
@@ -22,7 +25,7 @@ const lessons = await db
   .innerJoin(Page, and(eq(Page.page, Lesson.page), eq(Page.bookSlug, Lesson.bookSlug)))
   .innerJoin(Recording, eq(Recording.id, Lesson.recordingId))
   .orderBy(desc(Recording.createdAt))
-  .where(gte(Recording.createdAt, sql`datetime('now', '-1 days')`))
+  .where(gte(Recording.createdAt, sql`datetime('now', ${daysFilter})`))
 ---
 
 <Layout>
@@ -32,27 +35,10 @@ const lessons = await db
   </ul>
 
   <h1>Recent Additions</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Tune</th>
-        <th>Singing</th>
-        <th>Link</th>
-      </tr>
-    </thead>
-    <tbody>
-      {lessons.map(lesson => {
 
-        return (
-          <tr>
-            <td><a href={`${lesson.bookSlug}/${lesson.page}`}>{lesson.page} {lesson.tuneName}</a><br />{lesson.bookName} ({lesson.bookYear})</td>
-            <td>{lesson.singing}<br />Recorded by {lesson.recordist}</td>
-            <td>
-              <RecordingLink href={lesson.url} />
-            </td>
-          </tr>
-        )}
-      )}
-    </tbody>
-  </table>
+  {lessons.length === 0 && (
+    <p>No recordings added in the last {NUMBER_OF_DAYS} {NUMBER_OF_DAYS == 1 ? 'day' : 'days'}</p>
+  )}
+
+  <LessonsList lessons={lessons} shouldIncludePage />
 </Layout>

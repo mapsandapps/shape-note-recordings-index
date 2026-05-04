@@ -1,0 +1,56 @@
+---
+import { getShortSingingName } from '../../utils';
+import RecordingLink from "./RecordingLink.astro";
+
+export interface LessonOnPage {
+  singing: string;
+  date: string;
+  recordist: string;
+  url: string;
+  embedUrl: string | null;
+  bookSlug?: string;
+  bookName?: string;
+  bookYear?: string;
+  page?: string;
+  tuneName?: string;
+}
+
+interface Props {
+  lessons: LessonOnPage[];
+  shouldIncludePage?: boolean;
+}
+
+const { lessons = [], shouldIncludePage = false } = Astro.props;
+---
+<div>
+  {lessons.length > 0 && (
+    <table>
+      <thead>
+        <tr>
+          {shouldIncludePage && (
+            <th>Tune</th>
+          )}
+          <th>Singing</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        {lessons.map(lesson => {
+          const singingText = getShortSingingName(lesson.singing, lesson.date);
+
+          return (
+            <tr>
+              {shouldIncludePage && (
+                <td><a href={`${lesson.bookSlug}/${lesson.page}`}>{lesson.page} {lesson.tuneName}</a><br />{lesson.bookName} ({lesson.bookYear})</td>
+              )}
+              <td>{singingText}<br />Recorded by {lesson.recordist}</td>
+              <td>
+                <RecordingLink href={lesson.url} />
+              </td>
+            </tr>
+          )
+        })}
+      </tbody>
+    </table>
+  )}
+</div>
