@@ -64,6 +64,8 @@ const tunes = await db
   ))
   .innerJoin(Book, and(eq(Book.slug, Page.bookSlug)))
   .orderBy(asc(Page.tuneName), asc(Book.name), desc(Book.year))
+
+const youTubeSearchLink = encodeURI(`https://www.youtube.com/results?search_query=${page.bookName} ${pageNumber}`);
 ---
 <Layout title={`Recordings of ${page.pageNumber} ${page.tuneName}`}>
   <ul class="breadcrumbs">
@@ -79,6 +81,9 @@ const tunes = await db
   )}
 
   <LessonsList lessons={lessons} />
+
+  <hr />
+  <p>Note: The recordings collected on this site are mostly ones it's hard to search for. You may find additional recordings via a simple <a href={youTubeSearchLink} target="_blank">YouTube search</a>.</p>
 
   {tunes.length > 0 && (
     <hr />
