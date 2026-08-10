@@ -1,23 +1,8 @@
 import * as path from "path";
+import { db } from "../../db/db";
 import fs from "node:fs";
-import { and, db, eq, Lesson, Page, Recording } from "astro:db";
 import books from "../../db/data/books.json";
-
-type LessonInsert = typeof Lesson.$inferInsert;
-type RecordingInsert = typeof Recording.$inferInsert;
-
-export type PendingLesson = Partial<Omit<LessonInsert, "status">> & {
-  status:
-    | "CONFIRMED"
-    | "PENDING"
-    | "MISSING_DATA"
-    | "DUPLICATE"
-    | "PAGE_NUMBER_PROBLEM";
-};
-
-export type PendingRecording = Partial<Omit<RecordingInsert, "createdAt">> & {
-  createdAt: string;
-};
+import type { PendingLesson, PendingRecording } from "./types";
 
 export const addLessonsToDB = (
   lessons: PendingLesson[] | undefined,
@@ -75,11 +60,11 @@ const getRegexOneBook = (bookAbbreviation: string): RegExp => {
 
 export const getLessonStatus = async (lesson: PendingLesson) => {
   if (lesson.bookSlug && lesson.page && lesson.url) {
-    // use astro DB to find lessons already in DB
+    // find lessons already in DB
     if (await findDuplicates(lesson)) {
       lesson.status = "DUPLICATE";
     } else if (await findPageNumberInDB(lesson)) {
-      // use astro DB to find incorrect page numbers
+      // find incorrect page numbers
       lesson.status = "PENDING";
     } else {
       lesson.status = "PAGE_NUMBER_PROBLEM";
@@ -118,27 +103,18 @@ export const findPageNumber = (
   return match;
 };
 
-export const findDuplicates = async (lesson: any) => {
-  const similarLessons = await db
-    .select({
-      url: Lesson.url,
-    })
-    .from(Lesson)
-    .where(eq(Lesson.url, lesson.url));
+export const findDuplicates = (lesson: any): boolean => {
+  const existing = db
+    .prepare("SELECT url FROM Lesson WHERE url = ?")
+    .get(lesson.url);
 
-  return similarLessons?.length > 0;
+  return existing !== undefined;
 };
 
-export const findPageNumberInDB = async (recording: any) => {
-  const pages = await db
-    .select({
-      bookSlug: Page.bookSlug,
-      page: Page.page,
-    })
-    .from(Page)
-    .where(
-      and(eq(Page.bookSlug, recording.bookSlug), eq(Page.page, recording.page)),
-    );
+export const findPageNumberInDB = (recording: any): boolean => {
+  const page = db
+    .prepare("SELECT bookSlug, page FROM Page WHERE bookSlug = ? AND page = ?")
+    .get(recording.bookSlug, recording.page);
 
-  return pages?.length > 0;
+  return page !== undefined;
 };

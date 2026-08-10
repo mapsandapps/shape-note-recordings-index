@@ -2,12 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import fs from "node:fs";
 import path from "node:path";
-import { type PendingLesson } from '../data-collection-scripts/utils'
+import { type PendingLesson, type Recording } from '../data-collection-scripts/types'
 import RecordingLink from "../components/embeds/RecordingLink.astro";
-import type { Recording } from "astro:db";
-import type { Lesson } from "astro:db";
-
-type RecordingSelect = typeof Recording.$inferSelect;
 
 var jsons: PendingLesson[][] = [];
 
@@ -30,8 +26,8 @@ files.map((fileName) => {
 
 const recordings = JSON.parse(fs.readFileSync(path.join(process.cwd(), "db/data/recordings.json"), 'utf-8'));
 
-const getRecordingForLesson = (lesson: PendingLesson): RecordingSelect => {
-  return recordings.find((recording: RecordingSelect) => recording.id === lesson.recordingId)
+const getRecordingForLesson = (lesson: PendingLesson): Recording => {
+  return recordings.find((recording: Recording) => recording.id === lesson.recordingId)
 }
 
 ---

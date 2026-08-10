@@ -1,6 +1,5 @@
 import * as path from "path";
 import books from "../../db/data/books.json";
-import { type Book } from "astro:db";
 import { format, formatDate, isAfter } from "date-fns";
 import {
   addLessonsToDB,
@@ -8,10 +7,8 @@ import {
   findPageNumber,
   getLessonStatus,
 } from "./utils";
-import type { PendingLesson, PendingRecording } from "./utils";
+import type { Book, PendingLesson, PendingRecording } from "./types";
 import { getAllFiles } from "../../db/seed";
-
-type BookSelect = typeof Book.$inferSelect;
 
 const isAfterBookLaunch = (recordingDate: string) => {
   const date = new Date(recordingDate);
@@ -38,7 +35,7 @@ const isUsing1971 = (recordingDate: string) => {
 };
 
 const guessBooks = (description: string, recordingDate: string) => {
-  const includedBooks: BookSelect[] = [];
+  const includedBooks: Book[] = [];
 
   // do SH first
   if (description.includes("Sacred Harp")) {

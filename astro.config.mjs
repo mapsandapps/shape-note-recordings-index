@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import db from "@astrojs/db";
 import vercel from "@astrojs/vercel";
 import path from "node:path";
 
@@ -13,7 +12,6 @@ export default defineConfig({
     },
   }),
   integrations: [
-    db(),
     {
       name: "watch-lesson-files",
       hooks: {

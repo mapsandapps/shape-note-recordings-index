@@ -1,5 +1,3 @@
-import { sql } from "astro:db";
-
 interface Page {
   tuneName: string;
   bookSlug: string;
@@ -24,28 +22,27 @@ export const getNormalizedCurrentPage = (page: Page) =>
 
 // for Cooper Book songs, compare *only* the part of the name inside parentheses (if there are parentheses)
 // for all other books, remove anything inside parentheses
-export const getNormalizedComparisionPage = (Page: any) => sql<string>`
+export const NORMALIZED_TUNE_NAME_SQL = `
   LOWER(CASE
-    WHEN ${Page.bookSlug} LIKE 'cb-%' THEN
+    WHEN Page.bookSlug LIKE 'cb-%' THEN
       CASE
-        WHEN ${Page.tuneName} LIKE '%(%)%'
+        WHEN Page.tuneName LIKE '%(%)%'
         THEN TRIM(SUBSTR(
-          ${Page.tuneName},
-          INSTR(${Page.tuneName}, '(') + 1,
-          INSTR(${Page.tuneName}, ')') - INSTR(${Page.tuneName}, '(') - 1
+          Page.tuneName,
+          INSTR(Page.tuneName, '(') + 1,
+          INSTR(Page.tuneName, ')') - INSTR(Page.tuneName, '(') - 1
         ))
-        ELSE ${Page.tuneName}
+        ELSE Page.tuneName
       END
     ELSE
-      -- strip everything from the first '(' to the matching ')'
       TRIM(
         CASE
-          WHEN ${Page.tuneName} LIKE '%(%)%'
+          WHEN Page.tuneName LIKE '%(%)%'
           THEN TRIM(
-            SUBSTR(${Page.tuneName}, 1, INSTR(${Page.tuneName}, '(') - 1) ||
-            SUBSTR(${Page.tuneName}, INSTR(${Page.tuneName}, ')') + 1)
+            SUBSTR(Page.tuneName, 1, INSTR(Page.tuneName, '(') - 1) ||
+            SUBSTR(Page.tuneName, INSTR(Page.tuneName, ')') + 1)
           )
-          ELSE ${Page.tuneName}
+          ELSE Page.tuneName
         END
       )
   END)

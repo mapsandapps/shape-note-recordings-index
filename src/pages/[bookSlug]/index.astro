@@ -1,45 +1,55 @@
 ---
-import { Book, Page, and, asc, count, db, eq, isNotNull } from 'astro:db';
 import Layout from '../../layouts/Layout.astro';
-import { Lesson } from 'astro:db';
+import { db } from "../../../db/db";
+import type { Book } from "../../data-collection-scripts/types";
+
+interface BookSlug {
+  slug: string;
+}
 
 export async function getStaticPaths() {
-  const books = await db
-    .select({
-      slug: Book.slug,
-    })
-    .from(Book);
+  const books = db
+    .prepare(`SELECT slug FROM Book`)
+    .all() as unknown as BookSlug[];
 
-  return books.map(book => ({
+  return books.map((book) => ({
     params: {
       bookSlug: book.slug,
-    }
-  }))
+    },
+  }));
 }
 
 const { bookSlug } = Astro.params;
 
-const [book] = await db
-  .select({
-    slug: Book.slug,
-    name: Book.name,
-    year: Book.year,
-  })
-  .from(Book)
-  .where(eq(Book.slug, bookSlug));
+const book = db
+  .prepare(`SELECT slug, name, year FROM Book WHERE slug = ?`)
+  .get(bookSlug) as unknown as Pick<Book, "slug" | "name" | "year"> | undefined;
 
-const pages = await db
-  .select({
-    page: Page.page,
-    tuneName: Page.tuneName,
-    hasLesson: isNotNull(Lesson.id),
-    lessonsCount: count(Lesson.id)
-  })
-  .from(Page)
-  .where(eq(Page.bookSlug, book.slug))
-  .orderBy(asc(Page.pageSort))
-  .leftJoin(Lesson, and(eq(Lesson.page, Page.page), eq(Lesson.bookSlug, Page.bookSlug)))
-  .groupBy(Page.id);
+if (!book) {
+  return new Response(null, { status: 404 });
+}
+
+interface PageWithLessonInfo {
+  page: string;
+  tuneName: string;
+  hasLesson: number; // SQLite has no boolean type — 0 or 1
+  lessonsCount: number;
+}
+
+const pages = db
+  .prepare(
+    `SELECT
+       Page.page,
+       Page.tuneName,
+       (COUNT(Lesson.id) > 0) AS hasLesson,
+       COUNT(Lesson.id) AS lessonsCount
+     FROM Page
+     LEFT JOIN Lesson ON Lesson.page = Page.page AND Lesson.bookSlug = Page.bookSlug
+     WHERE Page.bookSlug = ?
+     GROUP BY Page.id
+     ORDER BY Page.pageSort ASC`,
+  )
+  .all(book?.slug) as unknown as PageWithLessonInfo[];
 ---
 
 <Layout title={`Index of Recordings from ${book.name} (${book.year})`}>

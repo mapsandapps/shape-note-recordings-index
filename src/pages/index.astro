@@ -1,17 +1,17 @@
 ---
-import { Book, db, desc } from 'astro:db';
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 const bookImages = import.meta.glob('../assets/books/*.jpg', { eager: true });
+import { db } from "../../db/db"; // adjust path
+import type { Book } from '../data-collection-scripts/types';
 
-const books = await db
-  .select({
-    name: Book.name,
-    year: Book.year,
-    slug: Book.slug,
-  })
-  .from(Book)
-  .orderBy(desc(Book.year));
+const books = db
+  .prepare(
+    `SELECT *
+     FROM Book
+     ORDER BY Book.year DESC`,
+  )
+  .all() as unknown as Book[];
 
 const booksWithImages = Object.entries(bookImages).map(([path, module]) => {
   const slug = path.split('/').pop()?.replace('.jpg', '');

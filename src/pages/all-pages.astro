@@ -1,18 +1,28 @@
 ---
-import { Book, Page, and, asc, db, desc, eq } from 'astro:db';
 import Layout from '../layouts/Layout.astro';
+import { db } from "../../db/db"; // adjust path
 
-const pages = await db
-  .select({
-    page: Page.page,
-    tuneName: Page.tuneName,
-    bookSlug: Page.bookSlug,
-    bookName: Book.name,
-    bookYear: Book.year
-  })
-  .from(Page)
-  .innerJoin(Book, and(eq(Book.slug, Page.bookSlug)))
-  .orderBy(asc(Page.tuneName), desc(Book.year))
+interface PageWithBook {
+  page: string;
+  tuneName: string;
+  bookSlug: string;
+  bookName: string;
+  bookYear: string;
+}
+
+const pages = db
+  .prepare(
+    `SELECT
+       Page.page,
+       Page.tuneName,
+       Page.bookSlug,
+       Book.name AS bookName,
+       Book.year AS bookYear
+     FROM Page
+     INNER JOIN Book ON Book.slug = Page.bookSlug
+     ORDER BY Page.tuneName ASC, Book.year DESC`,
+  )
+  .all() as unknown as PageWithBook[];
 ---
 
 <Layout>

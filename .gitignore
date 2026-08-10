@@ -1,5 +1,6 @@
 # build output
 dist/
+db/content.db
 
 # generated types
 .astro/

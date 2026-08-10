@@ -1,31 +1,47 @@
 ---
-import { Book, Lesson, Page, Recording, and, db, desc, eq, gte, sql } from 'astro:db';
 import Layout from '../layouts/Layout.astro';
 import LessonsList from '../components/embeds/LessonsList.astro';
+import { db } from "../../db/db"; // adjust path
 
 const NUMBER_OF_DAYS = 1;
 const daysFilter = `-${NUMBER_OF_DAYS} days`
 
-const lessons = await db
-  .select({
-    singing: Recording.singing,
-    date: Recording.date,
-    recordist: Recording.recordist,
-    page: Lesson.page,
-    bookSlug: Lesson.bookSlug,
-    url: Lesson.url,
-    embedUrl: Lesson.embedUrl,
-    createdAt: Recording.createdAt,
-    tuneName: Page.tuneName,
-    bookName: Book.name,
-    bookYear: Book.year
-  })
-  .from(Lesson)
-  .innerJoin(Book, and(eq(Book.slug, Lesson.bookSlug)))
-  .innerJoin(Page, and(eq(Page.page, Lesson.page), eq(Page.bookSlug, Lesson.bookSlug)))
-  .innerJoin(Recording, eq(Recording.id, Lesson.recordingId))
-  .orderBy(desc(Recording.createdAt))
-  .where(gte(Recording.createdAt, sql`datetime('now', ${daysFilter})`))
+interface LessonWithDetails {
+  singing: string;
+  date: string;
+  recordist: string;
+  page: string;
+  bookSlug: string;
+  url: string;
+  embedUrl: string | null;
+  createdAt: string;
+  tuneName: string;
+  bookName: string;
+  bookYear: string;
+}
+
+const lessons = db
+  .prepare(
+    `SELECT
+       Recording.singing,
+       Recording.date,
+       Recording.recordist,
+       Lesson.page,
+       Lesson.bookSlug,
+       Lesson.url,
+       Lesson.embedUrl,
+       Recording.createdAt,
+       Page.tuneName,
+       Book.name AS bookName,
+       Book.year AS bookYear
+     FROM Lesson
+     INNER JOIN Book ON Book.slug = Lesson.bookSlug
+     INNER JOIN Page ON Page.page = Lesson.page AND Page.bookSlug = Lesson.bookSlug
+     INNER JOIN Recording ON Recording.id = Lesson.recordingId
+     WHERE Recording.createdAt >= datetime('now', ?)
+     ORDER BY Recording.createdAt DESC`,
+  )
+  .all(daysFilter) as unknown as LessonWithDetails[];
 ---
 
 <Layout>

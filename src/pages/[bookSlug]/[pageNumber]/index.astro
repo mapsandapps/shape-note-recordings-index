@@ -1,80 +1,90 @@
 ---
-import { Book, Lesson, Page, Recording, and, asc, db, desc, eq, ne } from "astro:db";
 import Layout from "../../../layouts/Layout.astro";
-import { getNormalizedComparisionPage, getNormalizedCurrentPage } from "../../../utils/tune-name-comparisons";
+import { getNormalizedCurrentPage, NORMALIZED_TUNE_NAME_SQL } from "../../../utils/tune-name-comparisons";
 import LessonsList from "../../../components/embeds/LessonsList.astro";
+import { db } from "../../../../db/db";
+import type { LessonDetail, Page, PageDetail } from "../../../data-collection-scripts/types";
 
 export async function getStaticPaths() {
-  const pages = await db
-    .select({
-      page: Page.page,
-      bookSlug: Page.bookSlug,
-    })
-    .from(Page);
+  const pages = db
+    .prepare(`SELECT * FROM Page`)
+    .all() as unknown as Page[];
 
-  return pages.map(page => ({
+  return pages.map((page) => ({
     params: {
       bookSlug: page.bookSlug,
-      pageNumber: page.page
-    }
+      pageNumber: page.page,
+    },
   }));
-};
+}
 
 const { bookSlug, pageNumber } = Astro.params;
 
-const [page] = await db
-  .select({
-    pageNumber: Page.page,
-    tuneName: Page.tuneName,
-    bookSlug: Page.bookSlug,
-    bookName: Book.name,
-    year: Book.year,
-  })
-  .from(Page)
-  .innerJoin(Book, and(eq(Book.slug, bookSlug), eq(Page.bookSlug, bookSlug), eq(Page.page, pageNumber)));
+if (!bookSlug || !pageNumber) {
+  return new Response(null, { status: 404 });
+}
 
-const lessons = await db
-  .select({
-    id: Lesson.id,
-    singing: Recording.singing,
-    date: Recording.date,
-    recordist: Recording.recordist,
-    url: Lesson.url,
-    embedUrl: Lesson.embedUrl,
-  })
-  .from(Lesson)
-  .innerJoin(Recording, eq(Recording.id, Lesson.recordingId))
-  .where(and(eq(Lesson.bookSlug, page.bookSlug), eq(Lesson.page, pageNumber)))
-  .orderBy(desc(Recording.date), desc(Lesson.id));
+const page = db
+  .prepare(
+    `SELECT
+       Page.page AS pageNumber,
+       Page.tuneName,
+       Page.bookSlug,
+       Book.name AS bookName,
+       Book.year AS bookYear
+     FROM Page
+     INNER JOIN Book ON Book.slug = Page.bookSlug
+     WHERE Page.bookSlug = ? AND Page.page = ?`,
+  )
+  .get(bookSlug, pageNumber) as unknown as PageDetail | undefined;
+
+if (!page) {
+  return new Response(null, { status: 404 });
+}
+
+const lessons = db
+  .prepare(
+    `SELECT
+       Lesson.id,
+       Recording.singing,
+       Recording.date,
+       Recording.recordist,
+       Lesson.url,
+       Lesson.embedUrl
+     FROM Lesson
+     INNER JOIN Recording ON Recording.id = Lesson.recordingId
+     WHERE Lesson.bookSlug = ? AND Lesson.page = ?
+     ORDER BY Recording.date DESC, Lesson.id DESC`,
+  )
+  .all(page.bookSlug, pageNumber) as unknown as LessonDetail[];
 
 // get other tunes with same name
-const tunes = await db
-  .select({
-    page: Page.page,
-    tuneName: Page.tuneName,
-    bookSlug: Page.bookSlug,
-    bookName: Book.name,
-    bookYear: Book.year
-  })
-  .from(Page)
-  .where(and(
-    // eq(Page.tuneName, page.tuneName),
-    eq(getNormalizedComparisionPage(Page), getNormalizedCurrentPage(page)),
-    ne(Page.bookSlug, page.bookSlug)
-  ))
-  .innerJoin(Book, and(eq(Book.slug, Page.bookSlug)))
-  .orderBy(asc(Page.tuneName), asc(Book.name), desc(Book.year));
+const tunes = db
+  .prepare(
+    `SELECT
+       Page.page AS pageNumber,
+       Page.tuneName,
+       Page.bookSlug,
+       Book.name AS bookName,
+       Book.year AS bookYear
+     FROM Page
+     INNER JOIN Book ON Book.slug = Page.bookSlug
+     WHERE (${NORMALIZED_TUNE_NAME_SQL}) = ?
+       AND Page.bookSlug != ?
+     ORDER BY Page.tuneName ASC, Book.name ASC, Book.year DESC`,
+  )
+  .all(getNormalizedCurrentPage(page), page.bookSlug) as unknown as PageDetail[];
 
 const youTubeSearchLink = encodeURI(`https://www.youtube.com/results?search_query=${page.bookName} ${pageNumber}`);
 ---
-<Layout title={`Recordings of ${page.pageNumber} ${page.tuneName}`}>
+<Layout title={`Recordings of ${page.page} ${page.tuneName}`}>
   <ul class="breadcrumbs">
     <li><a href="/">Home</a></li>
     <li><a href={`/${bookSlug}`}>{page.bookName}</a></li>
-    <li>{page.pageNumber}</li>
+    <li>{page.page}</li>
   </ul>
 
-  <h1>{page.bookName} ({page.year}) &mdash; {page.pageNumber} {page.tuneName}</h1>
+  <h1>{page.bookName} ({page.bookYear}) &mdash; {page.page} {page.tuneName}</h1>
 
   {lessons.length === 0 && (
     <p>No recordings yet&hellip;</p>
