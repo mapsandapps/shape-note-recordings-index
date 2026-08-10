@@ -63,7 +63,7 @@ const tunes = await db
     ne(Page.bookSlug, page.bookSlug)
   ))
   .innerJoin(Book, and(eq(Book.slug, Page.bookSlug)))
-  .orderBy(asc(Page.tuneName), asc(Book.name), desc(Book.year))
+  .orderBy(asc(Page.tuneName), asc(Book.name), desc(Book.year));
 
 const youTubeSearchLink = encodeURI(`https://www.youtube.com/results?search_query=${page.bookName} ${pageNumber}`);
 ---
