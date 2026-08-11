@@ -27,7 +27,7 @@ if (!bookSlug || !pageNumber) {
 const page = db
   .prepare(
     `SELECT
-       Page.page AS pageNumber,
+       Page.page,
        Page.tuneName,
        Page.bookSlug,
        Book.name AS bookName,
@@ -77,14 +77,14 @@ const tunes = db
 
 const youTubeSearchLink = encodeURI(`https://www.youtube.com/results?search_query=${page.bookName} ${pageNumber}`);
 ---
-<Layout title={`Recordings of ${page.page} ${page.tuneName}`}>
+<Layout title={`Recordings of ${pageNumber} ${page.tuneName}`}>
   <ul class="breadcrumbs">
     <li><a href="/">Home</a></li>
     <li><a href={`/${bookSlug}`}>{page.bookName}</a></li>
-    <li>{page.page}</li>
+    <li>{pageNumber}</li>
   </ul>
 
-  <h1>{page.bookName} ({page.bookYear}) &mdash; {page.page} {page.tuneName}</h1>
+  <h1>{page.bookName} ({page.bookYear}) &mdash; {pageNumber} {page.tuneName}</h1>
 
   {lessons.length === 0 && (
     <p>No recordings yet&hellip;</p>
