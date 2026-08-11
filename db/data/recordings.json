@@ -2582,5 +2582,45 @@
     "singing": "Huntsville Sacred Harp Singing, May 2, 2026",
     "recordist": "Nathan Rees",
     "createdAt": "2026-05-03T21:30:03.218Z"
+  },
+  {
+    "id": "a75f43d7-6ddd-4221-b152-3c365f89d2f7",
+    "date": "2026-07-07",
+    "url": "https://nycsacredharp.bandcamp.com/album/weekly-singing-july-29-2026",
+    "singing": "Weekly Singing - July 29, 2026, New York, New York",
+    "recordist": "NYC Sacred Harp",
+    "createdAt": "2026-08-10T22:50:28.811Z"
+  },
+  {
+    "id": "8975e4c6-a59d-4787-aebc-7eca30affdce",
+    "date": "2026-06-27",
+    "url": "https://nycsacredharp.bandcamp.com/album/camp-singers-2026",
+    "singing": "Camp Singers 2026, New York, New York",
+    "recordist": "NYC Sacred Harp",
+    "createdAt": "2026-08-11T17:15:36.692Z"
+  },
+  {
+    "id": "62b1b845-9ca9-4ae6-b630-9b15dd55efe0",
+    "date": "2026-06-29",
+    "url": "https://nycsacredharp.bandcamp.com/album/june-2026-cooper-book-singing",
+    "singing": "June 2026 Cooper Book Singing, New York, New York",
+    "recordist": "NYC Sacred Harp",
+    "createdAt": "2026-08-11T17:18:00.409Z"
+  },
+  {
+    "id": "0e10c9b5-fab6-41e0-85f9-34dfc9753452",
+    "date": "2026-05-17",
+    "url": "https://nycsacredharp.bandcamp.com/album/2026-half-day-singing",
+    "singing": "2026 Half-Day Singing, New York, New York",
+    "recordist": "NYC Sacred Harp",
+    "createdAt": "2026-08-11T17:22:18.572Z"
+  },
+  {
+    "id": "eeeb720a-fc6f-4de6-bc7a-1dea156bd970",
+    "date": "2026-05-16",
+    "url": "https://nycsacredharp.bandcamp.com/album/2026-christian-harmony-all-day",
+    "singing": "2026 Christian Harmony All Day, New York, New York",
+    "recordist": "NYC Sacred Harp",
+    "createdAt": "2026-08-11T17:26:00.964Z"
   }
 ]
