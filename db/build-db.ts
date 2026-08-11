@@ -7,31 +7,38 @@ const DB_PATH = path.join(ROOT, "db/content.db");
 const SCHEMA_PATH = path.join(ROOT, "db/schema.sql");
 const DATA_DIR = path.join(ROOT, "db/data");
 
-// start fresh on every rebuild
-if (fs.existsSync(DB_PATH)) fs.rmSync(DB_PATH);
+export function buildDb() {
+  const db = new DatabaseSync(DB_PATH);
+  db.exec(fs.readFileSync(SCHEMA_PATH, "utf-8"));
 
-const db = new DatabaseSync(DB_PATH);
-db.exec(fs.readFileSync(SCHEMA_PATH, "utf-8"));
+  db.exec("BEGIN");
 
-db.exec("BEGIN");
+  try {
+    db.exec(`
+      DROP TABLE IF EXISTS Lesson;
+      DROP TABLE IF EXISTS Page;
+      DROP TABLE IF EXISTS Recording;
+      DROP TABLE IF EXISTS Book;
+    `);
+    db.exec(fs.readFileSync(SCHEMA_PATH, "utf-8"));
 
-try {
-  importBooks();
-  importRecordings();
-  importPages();
-  importLessons();
+    importBooks(db);
+    importRecordings(db);
+    importPages(db);
+    importLessons(db);
 
-  db.exec("COMMIT");
-  console.log("db/content.db built successfully.");
-} catch (err) {
-  db.exec("ROLLBACK");
-  console.error("Build failed, rolled back:", err);
-  process.exitCode = 1;
-} finally {
-  db.close();
+    db.exec("COMMIT");
+    console.log("db/content.db built successfully.");
+  } catch (err) {
+    db.exec("ROLLBACK");
+    console.error("Build failed, rolled back:", err);
+    process.exitCode = 1;
+  } finally {
+    db.close();
+  }
 }
 
-function importBooks() {
+function importBooks(db: DatabaseSync) {
   const books = JSON.parse(
     fs.readFileSync(path.join(DATA_DIR, "books.json"), "utf-8"),
   );
@@ -41,12 +48,18 @@ function importBooks() {
   );
 
   for (const book of books) {
-    insert.run(book.abbreviation, book.slug, book.name, book.year);
+    try {
+      insert.run(book.abbreviation, book.slug, book.name, book.year);
+    } catch (err) {
+      throw new Error(
+        `Failed inserting Book slug="${book.slug}": ${(err as Error).message}`,
+      );
+    }
   }
   console.log(`  Book: ${books.length} rows`);
 }
 
-function importRecordings() {
+function importRecordings(db: DatabaseSync) {
   const recordings = JSON.parse(
     fs.readFileSync(path.join(DATA_DIR, "recordings.json"), "utf-8"),
   );
@@ -56,19 +69,27 @@ function importRecordings() {
   );
 
   for (const r of recordings) {
-    insert.run(
-      r.id,
-      r.singing,
-      r.date,
-      r.recordist,
-      r.url,
-      new Date(r.createdAt).toISOString(),
-    );
+    try {
+      insert.run(
+        r.id,
+        r.singing,
+        r.date,
+        r.recordist,
+        r.url,
+        new Date(r.createdAt).toISOString(),
+      );
+    } catch (err) {
+      throw new Error(
+        `Failed inserting Recording id="${r.id}" url="${r.url}": ${
+          (err as Error).message
+        }`,
+      );
+    }
   }
   console.log(`  Recording: ${recordings.length} rows`);
 }
 
-function importPages() {
+function importPages(db: DatabaseSync) {
   const pagesDir = path.join(DATA_DIR, "pages");
   const files = fs.readdirSync(pagesDir).filter((f) => f.endsWith(".json"));
 
@@ -83,14 +104,21 @@ function importPages() {
     const pages = JSON.parse(content);
 
     for (const p of pages) {
-      insert.run(bookSlug, p.page, p.pageSort, p.tuneName);
-      total++;
+      try {
+        insert.run(bookSlug, p.page, p.pageSort, p.tuneName);
+      } catch (err) {
+        throw new Error(
+          `Failed inserting Page bookSlug="${bookSlug}" page="${p.page}" (from ${fileName}): ${
+            (err as Error).message
+          }`,
+        );
+      }
     }
   }
   console.log(`  Page: ${total} rows across ${files.length} books`);
 }
 
-function getAllLessonFiles(): string[] {
+export function getAllLessonFiles(): string[] {
   const lessonsDir = path.join(DATA_DIR, "lessons");
   const files = fs.readdirSync(lessonsDir, { recursive: true }) as string[];
 
@@ -102,7 +130,7 @@ function getAllLessonFiles(): string[] {
     );
 }
 
-function importLessons() {
+function importLessons(db: DatabaseSync) {
   const files = getAllLessonFiles();
 
   const insert = db.prepare(
@@ -115,16 +143,28 @@ function importLessons() {
     const lessons = JSON.parse(content);
 
     for (const l of lessons) {
-      insert.run(
-        l.recordingId,
-        l.page,
-        l.bookSlug,
-        l.url,
-        l.embedUrl ?? null,
-        l.status,
-      );
-      total++;
+      try {
+        insert.run(
+          l.recordingId,
+          l.page,
+          l.bookSlug,
+          l.url,
+          l.embedUrl ?? null,
+          l.status,
+        );
+        total++;
+      } catch (err) {
+        throw new Error(
+          `Failed inserting Lesson recordingId="${l.recordingId}" page="${l.page}" bookSlug="${l.bookSlug}" (from ${fileName}): ${
+            (err as Error).message
+          }`,
+        );
+      }
     }
   }
   console.log(`  Lesson: ${total} rows across ${files.length} files`);
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  buildDb();
 }

@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 import vercel from "@astrojs/vercel";
 import path from "node:path";
+import dbWatcherIntegration from "./db/watch-db";
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,6 +13,7 @@ export default defineConfig({
     },
   }),
   integrations: [
+    dbWatcherIntegration(),
     {
       name: "watch-lesson-files",
       hooks: {

@@ -62,7 +62,7 @@ const lessons = db
 const tunes = db
   .prepare(
     `SELECT
-       Page.page AS pageNumber,
+       Page.page,
        Page.tuneName,
        Page.bookSlug,
        Book.name AS bookName,

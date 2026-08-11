@@ -1,12 +1,11 @@
 import jsdom from "jsdom";
-import type { PendingLesson } from "./utils";
 import {
   addLessonsToDB,
   addRecordingToDB,
   findPageNumber,
   getLessonStatus,
-  type PendingRecording,
 } from "./utils";
+import type { PendingLesson, PendingRecording } from "./types";
 
 const { JSDOM } = jsdom;
 
@@ -101,22 +100,25 @@ export const pullOneBandcampItem = async (
 
   const domTracks = doc.querySelectorAll("#track_table tbody tr");
   for (const track of domTracks) {
-    let url = `${domain}${(track.querySelector(".title a") as HTMLLinkElement).href}`;
-    let title = track.querySelector(".track-title")?.innerHTML || "";
-    const lesson: PendingLesson = {
-      recordingId,
-      page: findPageNumber(title, bookSlug) || undefined,
-      bookSlug,
-      url,
-      embedUrl: allRightsReserved ? undefined : url,
-      status: "MISSING_DATA",
-    };
+    let aEl = track.querySelector(".title a") as HTMLLinkElement;
+    if (aEl) {
+      let url = `${domain}${aEl.href}`;
+      let title = track.querySelector(".track-title")?.innerHTML || "";
+      const lesson: PendingLesson = {
+        recordingId,
+        page: findPageNumber(title, bookSlug) || undefined,
+        bookSlug,
+        url,
+        embedUrl: allRightsReserved ? undefined : url,
+        status: "MISSING_DATA",
+      };
 
-    lessons.push(await getLessonStatus(lesson));
+      lessons.push(await getLessonStatus(lesson));
+    }
   }
 
   if (lessons) {
-    addLessonsToDB(lessons, `${artist}-${album}`);
+    addLessonsToDB(lessons, "bandcamp", `${artist}-${album}`);
   } else {
     console.error("No lessons to add to DB");
   }

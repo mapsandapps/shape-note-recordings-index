@@ -10,7 +10,7 @@ var jsons: PendingLesson[][] = [];
 const lessonsDir = path.join(process.cwd(), "db/data/lessons");
 
 const files = fs
-  .readdirSync(lessonsDir)
+  .readdirSync(lessonsDir, { recursive: true })
   .filter((f) => {
     return f.endsWith(".json") && f.includes("-pending");
   });

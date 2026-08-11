@@ -8,7 +8,7 @@ import {
   getLessonStatus,
 } from "./utils";
 import type { Book, PendingLesson, PendingRecording } from "./types";
-import { getAllFiles } from "../../db/seed";
+import { getAllLessonFiles } from "../../db/build-db";
 
 const isAfterBookLaunch = (recordingDate: string) => {
   const date = new Date(recordingDate);
@@ -190,21 +190,25 @@ const findNewLessons = async (startDate: Date, endDate?: Date) => {
     await delay(1000);
   }
 
-  addLessonsToDB(lessons, currentDate);
+  addLessonsToDB(lessons, "archive-nathan", currentDate);
   console.log(`Finished writing to file ${currentDate}-pending.json`);
 };
 
 // to use this, call it (for example) in the top section of pending.astro and then load the page
-export const pullOneArchiveItem = async (identifier: string) => {
+export const pullOneArchiveItem = async (
+  identifier: string,
+  isNathan: boolean,
+) => {
   const url = `https://archive.org/metadata/${identifier}`;
   const lessons = await getLessons(url);
-  addLessonsToDB(lessons, identifier);
+  const subDir = isNathan ? "archive-nathan" : "archive-other";
+  addLessonsToDB(lessons, subDir, identifier);
 };
 
 export const findArchiveLessonsSinceMostRecent = async () => {
   const lessonsDir = path.join(process.cwd(), "db/data/lessons");
 
-  const files = await getAllFiles();
+  const files = await getAllLessonFiles();
 
   // files without dates in the name should be ignored
   // only look at filenames starting with a number

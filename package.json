@@ -6,7 +6,6 @@
     "node": ">=24.0.0"
   },
   "scripts": {
-    "predev": "node db/build-db.ts",
     "dev": "astro dev",
     "prebuild": "node db/build-db.ts",
     "build": "astro build",
@@ -21,6 +20,7 @@
     "jsdom": "^28.1.0"
   },
   "devDependencies": {
-    "@types/jsdom": "^28.0.1"
+    "@types/jsdom": "^28.0.1",
+    "chokidar": "^5.0.0"
   }
 }

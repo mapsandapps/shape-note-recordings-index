@@ -6,6 +6,7 @@ import type { PendingLesson, PendingRecording } from "./types";
 
 export const addLessonsToDB = (
   lessons: PendingLesson[] | undefined,
+  subDir: string | undefined,
   filename: string,
 ) => {
   if (!lessons) {
@@ -13,9 +14,11 @@ export const addLessonsToDB = (
     return;
   }
 
+  const subDirPathSegment = subDir ? `${subDir}/` : "";
+
   const filePath = path.join(
     process.cwd(),
-    `db/data/lessons/${filename}-pending.json`,
+    `db/data/lessons/${subDirPathSegment}${filename}-pending.json`,
   );
 
   fs.writeFileSync(filePath, JSON.stringify(lessons, null, 2));

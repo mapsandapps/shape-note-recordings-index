@@ -69,7 +69,7 @@ export const pullOneYoutubeItem = async (
 
   addRecordingToDB(recording);
 
-  addLessonsToDB(lessons, `yt-${recording.recordist}-${videoId}`);
+  addLessonsToDB(lessons, "yt-other", `yt-${recording.recordist}-${videoId}`);
 
   console.log(
     `Finished writing to file yt-${recording.recordist}-${videoId}-pending.json`,
