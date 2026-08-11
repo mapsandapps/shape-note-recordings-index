@@ -2622,5 +2622,21 @@
     "singing": "2026 Christian Harmony All Day, New York, New York",
     "recordist": "NYC Sacred Harp",
     "createdAt": "2026-08-11T17:26:00.964Z"
+  },
+  {
+    "id": "c51dbe60-7bd2-426a-98b7-5a3156a878de",
+    "date": "2026-07-05",
+    "url": "https://archive.org/details/2025-07-05-henagar-union-sun",
+    "singing": "Sacred Harp Singing at the Henagar Union Convention, July 5, 2026",
+    "recordist": "Nathan Rees",
+    "createdAt": "2026-08-11T17:37:18.306Z"
+  },
+  {
+    "id": "748f8851-0515-4e44-b5df-dd536a156afd",
+    "date": "2026-07-04",
+    "url": "https://archive.org/details/2025-07-04-henagar-union-sat-019",
+    "singing": "Sacred Harp Singing at the Henagar Union Convention, July 4, 2026",
+    "recordist": "Nathan Rees",
+    "createdAt": "2026-08-11T17:37:19.476Z"
   }
 ]
