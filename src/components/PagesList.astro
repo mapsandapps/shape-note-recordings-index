@@ -4,13 +4,11 @@ import Layout from '../layouts/Layout.astro';
 import type { PageWithLessonInfo } from '../pages/[bookSlug]/index.astro';
 
 interface Props {
-  data: {
-    book: Book,
-    pages: PageWithLessonInfo[],
-    href: string
-  }
+  book: Book,
+  pages: PageWithLessonInfo[],
+  href: string
 }
-const { book, pages, href } = Astro.props.data;
+const { book, pages, href } = Astro.props;
 ---
 
 <Layout title={`Index of Recordings from ${book.name} (${book.year})`}>

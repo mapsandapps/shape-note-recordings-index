@@ -52,4 +52,4 @@ const pages = db
   .all(book?.slug) as unknown as PageWithLessonInfo[];
 ---
 
-<PagesList data={{ book, pages, href:`/${bookSlug}/alphabetical` }} />
+<PagesList book={book} pages={pages} href={`/${bookSlug}/alphabetical`} />

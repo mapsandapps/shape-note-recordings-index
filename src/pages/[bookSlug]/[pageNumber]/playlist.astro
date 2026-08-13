@@ -1,0 +1,79 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import MultiEmbed from "../../../components/embeds/MultiEmbed.astro";
+import { db } from "../../../../db/db";
+import type { LessonDetail, Page, PageDetail } from "../../../data-collection-scripts/types";
+
+export async function getStaticPaths() {
+  const pages = db
+    .prepare(`SELECT * FROM Page`)
+    .all() as unknown as Page[];
+
+  return pages.map((page) => ({
+    params: {
+      bookSlug: page.bookSlug,
+      pageNumber: page.page,
+    },
+  }));
+}
+
+const { bookSlug, pageNumber } = Astro.params;
+
+if (!bookSlug || !pageNumber) {
+  return new Response(null, { status: 404 });
+}
+
+const page = db
+  .prepare(
+    `SELECT
+       Page.page,
+       Page.tuneName,
+       Page.bookSlug,
+       Book.name AS bookName,
+       Book.year AS bookYear
+     FROM Page
+     INNER JOIN Book ON Book.slug = Page.bookSlug
+     WHERE Page.bookSlug = ? AND Page.page = ?`,
+  )
+  .get(bookSlug, pageNumber) as unknown as PageDetail | undefined;
+
+if (!page) {
+  return new Response(null, { status: 404 });
+}
+
+const lessons = db
+  .prepare(
+    `SELECT
+       Lesson.id,
+       Recording.singing,
+       Recording.date,
+       Recording.recordist,
+       Lesson.url,
+       Lesson.embedUrl
+     FROM Lesson
+     INNER JOIN Recording ON Recording.id = Lesson.recordingId
+     WHERE Lesson.bookSlug = ? AND Lesson.page = ?
+     ORDER BY Recording.date DESC, Lesson.id DESC`,
+  )
+  .all(page.bookSlug, pageNumber) as unknown as LessonDetail[];
+
+const multiEmbedLessons = lessons.filter(lesson => lesson.embedUrl?.includes('archive.org'));
+---
+<Layout title={`Playlist of ${page.page} ${page.tuneName}`}>
+  <ul class="breadcrumbs">
+    <li><a href="/">Home</a></li>
+    <li><a href={`/${bookSlug}`}>{page.bookName}</a></li>
+    <li><a href={`/${bookSlug}/${pageNumber}`}>{pageNumber}</a></li>
+    <li>Playlist</li>
+  </ul>
+
+  <h1>{page.bookName} ({page.bookYear}) &mdash; {page.page} {page.tuneName}</h1>
+
+  {lessons.length === 0 && (
+    <p>No recordings yet&hellip;</p>
+  )}
+
+  {multiEmbedLessons.length > 0 && (
+    <MultiEmbed lessons={multiEmbedLessons} page={page} />
+  )}
+</Layout>

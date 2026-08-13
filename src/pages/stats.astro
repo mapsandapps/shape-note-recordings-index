@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { db } from '../../db/db';
+
+const lessonsCount = (
+  db.prepare(`SELECT COUNT(*) AS count FROM Lesson`).get() as unknown as {
+    count: number;
+  }
+).count;
+
+const recordingsCount = (
+  db.prepare(`SELECT COUNT(*) AS count FROM Recording`).get() as unknown as {
+    count: number
+  }
+).count;
+
+interface PageFrequency {
+  bookSlug: string;
+  page: string;
+  count: number;
+}
+
+const getMostFrequentPages = (bookSlug: string): PageFrequency[] =>
+  db
+    .prepare(
+      `SELECT bookSlug, page, COUNT(page) AS count
+      FROM Lesson
+      WHERE bookSlug = ?
+      GROUP BY page
+      ORDER BY count DESC
+      LIMIT 10`,
+    )
+    .all(bookSlug) as unknown as PageFrequency[];
+
+const mostFrequentPages1991 = getMostFrequentPages("sh-1991");
+const mostFrequentPages2025 = getMostFrequentPages("sh-2025");
+---
+
+<Layout>
+  <ul class="breadcrumbs">
+    <li><a href="/">Home</a></li>
+    <li>Stats</li>
+  </ul>
+
+  <h1>Stats</h1>
+
+  <ul>
+    <li>Number of lessons: {lessonsCount}</li>
+    <li>Number of recordings (approx singing days): {recordingsCount}</li>
+    <!-- <li>% of books covered</li> -->
+  </ul>
+
+  <p>Most frequent pages in 1991 SH:</p>
+  <ul>
+    {mostFrequentPages1991.map(page => (
+      <li><a href={`/sh-1991/${page.page}`}>{page.page}</a></li>
+    ))}
+  </ul>
+
+  <p>Most frequent pages in 2025 SH:</p>
+  <ul>
+    {mostFrequentPages2025.map(page => (
+      <li><a href={`/sh-2025/${page.page}`}>{page.page}</a></li>
+    ))}
+  </ul>
+</Layout>

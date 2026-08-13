@@ -1,0 +1,279 @@
+---
+import { getShortSingingName } from '../../utils';
+import { Image } from 'astro:assets';
+import spinner from '../../assets/icons/spinner.svg';
+
+export interface LessonOnPage {
+  id: number;
+  singing: string;
+  date: string;
+  recordist: string;
+  url: string;
+  embedUrl: string | null;
+}
+
+interface Props {
+  lessons: LessonOnPage[];
+  page: {
+    page: string,
+    tuneName: string,
+  }
+}
+
+const { lessons = [], page } = Astro.props;
+const pathname = Astro.url.pathname.replace(/\/$/, "");
+---
+<div>
+  <p id="error" class="error hidden">Having problems? Try switching to <a href={`${pathname}/list`}>list mode</a>, where you can play recordings one at a time.</p>
+
+  <div class="player">
+    <div id="currently-playing"></div>
+    <div class="player-controls">
+      <button id="previous-track">⏮</button>
+      <div class="audio-container">
+        <audio id="audio" preload="none" controls />
+      </div>
+      <button id="next-track">⏭</button>
+      <Image src={spinner} id="spinner" class="hidden" alt="loading icon" />
+    </div>
+    <hr />
+    <ul class="playlist">
+      {lessons.map((lesson, i) => {
+        return (
+          <a href="#" data-play-lesson={i} class="track-listing"><li>{getShortSingingName(lesson.singing, lesson.date)}</li></a>
+        )
+      })}
+    </ul>
+  </div>
+</div>
+
+<script define:vars={{ lessons, page }}>
+  const player = document.getElementById("audio");
+  const currentlyPlaying = document.getElementById("currently-playing");
+  const links = document.getElementsByClassName("track-listing");
+  const error = document.getElementById("error");
+  const spinner = document.getElementById("spinner");
+  var currentTrack = 0;
+
+  const playPreviousTrack = () => {
+    currentTrack--;
+
+    const embedUrl = lessons[currentTrack].embedUrl;
+
+    if (embedUrl) {
+      setActiveItem();
+      player.load();
+      player.play();
+    }
+  }
+
+  const playNextTrack = () => {
+    const wasLastTrack = currentTrack === links.length - 1;
+    if (wasLastTrack) {
+      // if the last one finished, start over from the top, but don't play it
+      currentTrack = 0;
+      return
+    } else {
+      currentTrack++;
+    }
+
+    const embedUrl = lessons[currentTrack].embedUrl;
+
+    if (embedUrl) {
+      setActiveItem();
+      player.load();
+      if (!wasLastTrack) player.play();
+    }
+  }
+
+  const setActiveItem = () => {
+    for (let i = 0; i < links.length; i++) {
+      links[i].classList.remove('active');
+    }
+    links[currentTrack].classList.add('active');
+
+    const lesson = lessons[currentTrack];
+    const url = new URL(lesson.url);
+    currentlyPlaying.innerHTML = `Now playing: ${page.page} ${page.tuneName}<br />${lesson.singing}<br />Recorded by ${lesson.recordist}<br /><a href="${lesson.url}" target="_blank">View on ${url.hostname}</a>`;
+
+    const embedUrl = lessons[currentTrack].embedUrl;
+    if (embedUrl) {
+      player.setAttribute("src", embedUrl?.replace('/embed', '/download'));
+    }
+  }
+  setActiveItem(currentTrack); // onInit
+
+  player.addEventListener('ended', () => {
+    playNextTrack();
+  });
+
+  player.addEventListener('waiting', () => {
+    console.log('waiting');
+    // spinner could start here
+    spinner.classList.remove("hidden");
+  });
+
+  player.addEventListener('canplay', () => {
+    console.log('canplay')
+    spinner.classList.add('hidden');
+    error.classList.add('hidden');
+  });
+
+  player.addEventListener('canplaythrough', () => {
+    console.log('canplaythrough')
+  });
+
+  player.addEventListener('error', (e) => {
+    console.error(e.target.error);
+
+    spinner.classList.add('hidden');
+
+    if (currentTrack === links.length - 1) {
+      // if this was the last track, show an error
+      error.classList.remove('hidden');
+    } else {
+      // otherwise, wait a second, then try to play next track
+      setTimeout(() => {
+        playNextTrack();
+      });
+    }
+  }, true);
+
+  document.getElementById("next-track").addEventListener("click", () => { playNextTrack() });
+  document.getElementById("previous-track").addEventListener("click", () => { playPreviousTrack() });
+
+  for (let i = 0; i < links.length; i++) {
+    const link = links[i];
+    const embedUrl = lessons[i].embedUrl;
+
+    if (embedUrl && player) {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const i = link.getAttribute("data-play-lesson");
+        currentTrack = Number(i);
+
+        setActiveItem();
+        player.load();
+        player.play();
+      })
+    };
+  }
+</script>
+
+<style>
+  audio,
+  #spinner {
+    vertical-align: middle;
+  }
+
+  #spinner {
+    position: absolute;
+    left: calc(50% - 12px);
+  }
+
+  .error {
+    background-color: #ffe6eb;
+    color: darkred;
+    padding: 1rem;
+  }
+
+  .hidden {
+    visibility: hidden;
+    height: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .player {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .player-controls {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    padding: 8px 0px;
+    box-sizing: border-box;
+  }
+
+  .player-controls button {
+    flex: none;
+    background: #f2f3f4;
+    border: 0;
+    border-radius: 18px;
+    padding: 4px 12px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  .player-controls button:hover {
+    background: #e6e7e8;
+  }
+
+  .player-controls .audio-container {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .player-controls audio {
+    min-width: 280px;
+    width: 100%;
+    height: 32px;
+  }
+
+  .playlist {
+    border-top: 1px solid var(--pl-border);
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .playlist .track-listing {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 6px;
+    border-radius: var(--pl-radius);
+    cursor: pointer;
+    text-decoration: none;
+    color: currentColor;
+  }
+
+  .playlist .track-listing:hover {
+    background: #f7f6f2;
+  }
+
+  .playlist .track-listing.active {
+    background: #e8f0fe;
+    color: #2f6feb;
+  }
+
+  #currently-playing {
+    padding-bottom: 8px;
+  }
+
+  @media (max-width: 400px) {
+    .player-controls {
+      flex-wrap: wrap;
+    }
+
+    .player-controls button {
+      order: 2;
+    }
+
+    audio {
+      order: 1;
+    }
+  }
+</style>
