@@ -1,11 +1,19 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import LessonsList from '../components/embeds/LessonsList.astro';
-import { db } from "../../db/db"; // adjust path
-import type { Recording } from '../data-collection-scripts/types';
+import Layout from '../../layouts/Layout.astro';
+import LessonsList from '../../components/embeds/LessonsList.astro';
+import { db } from "../../../db/db"; // adjust path
+import type { Recording } from '../../data-collection-scripts/types';
 
-const NUMBER_OF_DAYS = 7;
-const daysFilter = `-${NUMBER_OF_DAYS} days`
+export async function getStaticPaths() {
+  return [
+    { params: { days: '1' } },
+    { params: { days: '7' } },
+    { params: { days: '30' } },
+  ]
+}
+
+const { days } = Astro.params;
+const daysFilter = `-${days} days`
 
 interface LessonWithDetails {
   singing: string;
@@ -78,10 +86,16 @@ const recordingsWithLessons = recordings.map(recording => ({
   <h1>Recent Additions</h1>
 
   {lessons.length === 0 ? (
-    <p>No recordings added in the last {NUMBER_OF_DAYS} {NUMBER_OF_DAYS == 1 ? 'day' : 'days'}</p>
+    <p>No recordings were ingested in the last {days} {Number(days) === 1 ? 'day' : 'days'}</p>
   ) : (
-    <p>These are recordings ingested in the last {NUMBER_OF_DAYS} {NUMBER_OF_DAYS == 1 ? 'day' : 'days'}</p>
+    <p>These recordings were ingested in the last {days} {Number(days) === 1 ? 'day' : 'days'}</p>
   )}
+
+  <p>
+    <a href="./1">View last 1 day</a><br />
+    <a href="./7">View last 7 days</a><br />
+    <a href="./30">View last 30 days</a>
+  </p>
 
   {recordingsWithLessons.map(recording => (
     <details>
