@@ -102,6 +102,7 @@ const getLessons = async (url: string) => {
     singing: data.metadata.title,
     recordist: data.metadata.creator,
     createdAt: new Date().toJSON(),
+    license: data.metadata.licenseurl,
   };
 
   addRecordingToDB(recording);

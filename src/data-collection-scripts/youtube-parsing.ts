@@ -1,11 +1,12 @@
+// NOTE: to search for youtube videos with chapters, include "0:00" in your search (with quotes)
+
 import { YT_API_KEY } from "../../KEYS.json";
-import type { PendingLesson } from "./utils";
+import type { PendingLesson, PendingRecording } from "./types";
 import {
   addLessonsToDB,
   addRecordingToDB,
   findPageNumber,
   getLessonStatus,
-  type PendingRecording,
 } from "./utils";
 
 const getSeconds = (timestamp: string) => {
@@ -17,15 +18,13 @@ export const pullOneYoutubeItem = async (
   bookSlug: string,
   date: string, // yyyy-MM-dd format
 ) => {
-  console.log("Starting to find recordings...");
-
   const recordingId = crypto.randomUUID();
 
   const parts = "snippet,status"; // may also want 'player'
 
-  const res = await fetch(
-    `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=${parts}&key=${YT_API_KEY}`,
-  );
+  const fetchUrl = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=${parts}&key=${YT_API_KEY}`;
+  console.log(`Starting to find recordings for ${fetchUrl}...`);
+  const res = await fetch(fetchUrl);
   const data = await res.json();
   const video = data.items[0];
 
@@ -40,6 +39,7 @@ export const pullOneYoutubeItem = async (
     recordist: video.snippet.channelTitle,
     url: `https://www.youtube.com/watch?v=${videoId}`,
     createdAt: new Date().toJSON(),
+    license: video.status.license,
   };
 
   for (const line of descriptionLines) {

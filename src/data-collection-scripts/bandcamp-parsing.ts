@@ -47,7 +47,6 @@ export const pullOneBandcampItem = async (
   album: string,
   bookSlug: string,
   date: string,
-  allRightsReserved?: boolean,
 ) => {
   console.log("Starting to find recordings...");
 
@@ -59,9 +58,9 @@ export const pullOneBandcampItem = async (
     return;
   }
 
-  const data: any = doc.querySelector(
-    'script[type="application/ld+json"]',
-  )?.innerHTML;
+  const data: any = JSON.parse(
+    doc.querySelector('script[type="application/ld+json"]')?.textContent || "",
+  );
   if (!data) {
     console.error("no data found!");
     return;
@@ -79,6 +78,8 @@ export const pullOneBandcampItem = async (
   )?.innerHTML;
   const fullSinging = location ? `${singing}, ${location}` : singing;
 
+  const allRightsReserved = data.copyrightNotice === "All Rights Reserved";
+
   const recordingId = crypto.randomUUID();
   const recording: PendingRecording = {
     id: recordingId,
@@ -90,6 +91,7 @@ export const pullOneBandcampItem = async (
       doc.querySelector("#name-section h3 span a")?.innerHTML ||
       "",
     createdAt: new Date().toJSON(),
+    license: data.copyrightNotice,
   };
 
   addRecordingToDB(recording);

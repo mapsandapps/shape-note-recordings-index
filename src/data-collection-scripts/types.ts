@@ -14,6 +14,7 @@ export interface Recording {
   recordist: string;
   url: string;
   createdAt: string;
+  license: string;
 }
 
 // table

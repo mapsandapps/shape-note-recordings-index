@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS Recording (
   date TEXT NOT NULL,
   recordist TEXT NOT NULL,
   url TEXT NOT NULL UNIQUE,
+  license TEXT,
   createdAt TEXT NOT NULL
 );
 
