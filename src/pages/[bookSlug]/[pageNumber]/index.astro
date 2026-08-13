@@ -2,6 +2,7 @@
 import Layout from "../../../layouts/Layout.astro";
 import { getNormalizedCurrentPage, NORMALIZED_TUNE_NAME_SQL } from "../../../utils/tune-name-comparisons";
 import LessonsList from "../../../components/embeds/LessonsList.astro";
+import MultiEmbed from "../../../components/embeds/MultiEmbed.astro";
 import { db } from "../../../../db/db";
 import type { LessonDetail, Page, PageDetail } from "../../../data-collection-scripts/types";
 
@@ -58,6 +59,8 @@ const lessons = db
   )
   .all(page.bookSlug, pageNumber) as unknown as LessonDetail[];
 
+const multiEmbedLessons = lessons.filter(lesson => lesson.embedUrl?.includes('archive.org'));
+
 // get other tunes with same name
 const tunes = db
   .prepare(
@@ -89,6 +92,14 @@ const youTubeSearchLink = encodeURI(`https://www.youtube.com/results?search_quer
   {lessons.length === 0 && (
     <p>No recordings yet&hellip;</p>
   )}
+
+  <h2>Playlist of Archive.org Tracks</h2>
+
+  {multiEmbedLessons.length > 0 && (
+    <MultiEmbed lessons={multiEmbedLessons} page={page} />
+  )}
+
+  <h2>All Recordings</h2>
 
   <LessonsList lessons={lessons} />
 
