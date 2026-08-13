@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import LessonsList from '../components/embeds/LessonsList.astro';
 import { db } from "../../db/db"; // adjust path
+import type { Recording } from '../data-collection-scripts/types';
 
 const NUMBER_OF_DAYS = 7;
 const daysFilter = `-${NUMBER_OF_DAYS} days`
@@ -18,7 +19,17 @@ interface LessonWithDetails {
   tuneName: string;
   bookName: string;
   bookYear: string;
+  recordingId: string;
 }
+
+const recordings = db
+  .prepare(
+    `SELECT *
+     FROM Recording
+     WHERE Recording.createdAt >= datetime('now', ?)
+     ORDER BY Recording.createdAt DESC`
+  )
+  .all(daysFilter) as unknown as Recording[];
 
 const lessons = db
   .prepare(
@@ -30,6 +41,7 @@ const lessons = db
        Lesson.bookSlug,
        Lesson.url,
        Lesson.embedUrl,
+       Lesson.recordingId,
        Recording.createdAt,
        Page.tuneName,
        Book.name AS bookName,
@@ -42,6 +54,19 @@ const lessons = db
      ORDER BY Recording.createdAt DESC`,
   )
   .all(daysFilter) as unknown as LessonWithDetails[];
+
+const lessonsByRecordingId = new Map();
+for (const lesson of lessons) {
+  if (!lessonsByRecordingId.has(lesson.recordingId)) {
+    lessonsByRecordingId.set(lesson.recordingId, []);
+  }
+  lessonsByRecordingId.get(lesson.recordingId).push(lesson);
+}
+
+const recordingsWithLessons = recordings.map(recording => ({
+  ...recording,
+  lessons: lessonsByRecordingId.get(recording.id) ?? [],
+}));
 ---
 
 <Layout>
@@ -52,9 +77,25 @@ const lessons = db
 
   <h1>Recent Additions</h1>
 
-  {lessons.length === 0 && (
+  {lessons.length === 0 ? (
     <p>No recordings added in the last {NUMBER_OF_DAYS} {NUMBER_OF_DAYS == 1 ? 'day' : 'days'}</p>
+  ) : (
+    <p>These are recordings ingested in the last {NUMBER_OF_DAYS} {NUMBER_OF_DAYS == 1 ? 'day' : 'days'}</p>
   )}
 
-  <LessonsList lessons={lessons} shouldIncludePage />
+  {recordingsWithLessons.map(recording => (
+    <details>
+      <summary>{recording.singing}</summary>
+      <LessonsList lessons={recording.lessons} shouldIncludePage />
+    </details>
+  ))}
+
 </Layout>
+
+<style>
+  summary {
+    margin-block-start: 1.66em;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+</style>
