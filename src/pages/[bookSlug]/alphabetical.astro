@@ -29,7 +29,7 @@ if (!book) {
   return new Response(null, { status: 404 });
 }
 
-export interface PageWithLessonInfo {
+interface PageWithLessonInfo {
   page: string;
   tuneName: string;
   hasLesson: number; // SQLite has no boolean type — 0 or 1
@@ -47,9 +47,9 @@ const pages = db
      LEFT JOIN Lesson ON Lesson.page = Page.page AND Lesson.bookSlug = Page.bookSlug
      WHERE Page.bookSlug = ?
      GROUP BY Page.id
-     ORDER BY Page.pageSort ASC`,
+     ORDER BY Page.tuneName ASC`,
   )
   .all(book?.slug) as unknown as PageWithLessonInfo[];
 ---
 
-<PagesList data={{ book, pages, href:`/${bookSlug}/alphabetical` }} />
+<PagesList data={{ book, pages, href:`./` }} />

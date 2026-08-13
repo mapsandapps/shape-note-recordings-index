@@ -1,0 +1,82 @@
+---
+import type { Book } from '../data-collection-scripts/types';
+import Layout from '../layouts/Layout.astro';
+import type { PageWithLessonInfo } from '../pages/[bookSlug]/index.astro';
+
+interface Props {
+  data: {
+    book: Book,
+    pages: PageWithLessonInfo[],
+    href: string
+  }
+}
+const { book, pages, href } = Astro.props.data;
+---
+
+<Layout title={`Index of Recordings from ${book.name} (${book.year})`}>
+  <ul class="breadcrumbs">
+    <li><a href="/">Home</a></li>
+    <li>{book.name} ({book.year})</li>
+  </ul>
+
+  <h1>{book.name} ({book.year})</h1>
+
+  {book.slug === 'sh-1936' && (
+    <p>Note: My index for this book is not complete</p>
+  )}
+
+  {book.slug === 'cb-2012' && (
+    <p>Note: Cooper Book songs from non-Cooper Book singings have not yet been divided by year of revision</p>
+  )}
+
+  <p></p>
+
+  <a href={href}><button>Sort by tune name</button></a><br />
+  <button id="filter">Show pages without recordings</button>
+
+  <ul id="pages" class="hide-empty-pages">
+    {pages.map(page => {
+      const recordingsPlural = page.lessonsCount === 1 ? "recording" : "recordings";
+
+      if (page.hasLesson) return (
+        <li><a href={`/${book.slug}/${page.page}`}>{page.page} {page.tuneName}</a> ({page.lessonsCount} {recordingsPlural})</li>
+      )
+      return (
+        <li class="no-recordings"><a href={`/${book.slug}/${page.page}`}>{page.page} {page.tuneName}</a> ({page.lessonsCount} {recordingsPlural})</li>
+      )}
+    )}
+  </ul>
+</Layout>
+
+<script>
+  const pageList = document.getElementById('pages');
+  const filterButton = document.getElementById('filter')!;
+
+  filterButton.addEventListener('click', () => {
+    pageList?.classList.toggle('hide-empty-pages');
+    if (filterButton.innerText === 'Show pages without recordings') {
+      filterButton.innerText = 'Hide pages without recordings'
+    } else {
+      filterButton.innerText = 'Show pages without recordings'
+    }
+  })
+
+</script>
+
+<style>
+button {
+  margin: 4px 0px;
+}
+
+#pages.hide-empty-pages {
+  .no-recordings {
+    display: none;
+  }
+}
+
+.no-recordings,
+.no-recordings a {
+  color: dimgray;
+  text-decoration-style: dashed;
+}
+</style>
