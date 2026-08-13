@@ -14,6 +14,36 @@ const recordingsCount = (
   }
 ).count;
 
+const archiveCount = (
+  db.prepare(`
+    SELECT COUNT(*) AS count
+    FROM Recording
+    WHERE url LIKE '%archive.org%'
+  `).get() as unknown as {
+    count: number
+  }
+).count;
+
+const bandcampCount = (
+  db.prepare(`
+    SELECT COUNT(*) AS count
+    FROM Recording
+    WHERE url LIKE '%bandcamp.com%'
+  `).get() as unknown as {
+    count: number
+  }
+).count;
+
+const youtubeCount = (
+  db.prepare(`
+    SELECT COUNT(*) AS count
+    FROM Recording
+    WHERE url LIKE '%youtube.com%'
+  `).get() as unknown as {
+    count: number
+  }
+).count;
+
 interface PageFrequency {
   bookSlug: string;
   page: string;
@@ -45,9 +75,17 @@ const mostFrequentPages2025 = getMostFrequentPages("sh-2025");
   <h1>Stats</h1>
 
   <ul>
-    <li>Number of lessons: {lessonsCount}</li>
-    <li>Number of recordings (approx singing days): {recordingsCount}</li>
+    <li>Number of lessons: {lessonsCount.toLocaleString()}</li>
+    <li>Number of recordings (approx singing days): {recordingsCount.toLocaleString()}</li>
     <!-- <li>% of books covered</li> -->
+  </ul>
+
+  <p>Recordings from:</p>
+
+  <ul>
+    <li>Archive.org: {archiveCount.toLocaleString()}</li>
+    <li>Bandcamp: {bandcampCount.toLocaleString()}</li>
+    <li>YouTube: {youtubeCount.toLocaleString()}</li>
   </ul>
 
   <p>Most frequent pages in 1991 SH:</p>
