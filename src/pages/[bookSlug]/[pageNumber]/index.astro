@@ -93,10 +93,11 @@ const youTubeSearchLink = encodeURI(`https://www.youtube.com/results?search_quer
     <p>No recordings yet&hellip;</p>
   )}
 
-  <h2>Playlist of Archive.org Tracks</h2>
-
   {multiEmbedLessons.length > 0 && (
-    <MultiEmbed lessons={multiEmbedLessons} page={page} />
+    <>
+      <h2>Playlist of Archive.org Tracks</h2>
+      <MultiEmbed lessons={multiEmbedLessons} page={page} />
+    </>
   )}
 
   <h2>All Recordings</h2>
