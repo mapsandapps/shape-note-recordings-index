@@ -2647,5 +2647,175 @@
     "url": "https://www.youtube.com/watch?v=kw1sBEEgmRc",
     "createdAt": "2026-08-14T18:38:57.930Z",
     "license": "youtube"
+  },
+  {
+    "id": "70bae8a4-ab02-4c24-bb99-c51eb2d4819f",
+    "date": "1955-03-12",
+    "url": "https://archive.org/details/jhcarter-tape-02-19580312-sheltonville",
+    "singing": "Sheltonville Sacred Harp Singing, March 12, 1955",
+    "recordist": "Sacred Harp Museum,J. H. Carter",
+    "createdAt": "2026-08-22T19:54:51.761Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "f9633e54-b210-49d2-ab9c-03f871e9139d",
+    "date": "1955-02-13",
+    "url": "https://archive.org/details/jhcarter-tape-19-19550213-zion-rest",
+    "singing": "Sacred Harp Singing at Zion Rest, Feb. 13, 1955",
+    "recordist": "Sacred Harp Museum,J. H. Carter",
+    "createdAt": "2026-08-22T19:54:53.533Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "17208710-fd79-4b3d-b94f-3d9086a475fb",
+    "date": "1957-02-10",
+    "url": "https://archive.org/details/bruce-johnson-02_1957_02_10",
+    "singing": "Sacred Harp Singing at Zion Rest, Feb. 10, 1957 (tape 2)",
+    "recordist": "Sacred Harp Museum, Bruce Johnson",
+    "createdAt": "2026-08-22T19:54:54.940Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "e2b8b787-76fd-4989-acea-a38d18a4ffcd",
+    "date": "1958-07-13",
+    "url": "https://archive.org/details/bruceJohnson_1958_07_13_1",
+    "singing": "Cullman County Courthouse Sacred Harp Singing, July 13, 1958 (tape 1)",
+    "recordist": "Sacred Harp Museum, Bruce Johnson",
+    "createdAt": "2026-08-22T19:54:56.733Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "401bdb3f-a941-4da5-9d7d-8a8019472d8b",
+    "date": "2025-09-13",
+    "url": "https://archive.org/details/sacredharp2025edition",
+    "singing": "New Songs in The Sacred Harp: 2025 Edition",
+    "recordist": "Sacred Harp Publishing Company",
+    "createdAt": "2026-08-22T19:54:58.304Z"
+  },
+  {
+    "id": "accfc8c3-f99c-4a34-a1bd-b82948548a57",
+    "date": "1950-01-01",
+    "url": "https://archive.org/details/bruceJohnsonCD",
+    "singing": "Sacred Harp Singing Recorded by Bruce Johnson, c. 1950s",
+    "recordist": "Sacred Harp Museum,Bruce Johnson",
+    "createdAt": "2026-08-22T19:55:00.012Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "9a10fed0-5990-432b-8833-6c553a8c78c9",
+    "date": "1957-02-10",
+    "url": "https://archive.org/details/ZionRest1957_01",
+    "singing": "Sacred Harp Singing at Zion Rest, Feb. 10, 1957 (tape 1)",
+    "recordist": "Sacred Harp Museum,Bruce Johnson",
+    "createdAt": "2026-08-22T19:55:01.776Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "289dc602-6dd8-4273-8945-9d11ba1e01e1",
+    "date": "1955-01-09",
+    "url": "https://archive.org/details/jhcarter-tape-19-19550109-zion-rest",
+    "singing": "Sacred Harp Singing at Zion Rest, Jan. 9, 1955",
+    "recordist": "Sacred Harp Museum,J. H. Carter",
+    "createdAt": "2026-08-22T19:55:03.359Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "2c19fb8c-2626-46d0-8d18-3170816a5919",
+    "date": "1958-07-13",
+    "url": "https://archive.org/details/bruceJohnson1958_07_13_2",
+    "singing": "Cullman County Courthouse Sacred Harp Singing, July 13, 1958 (tape 2)",
+    "recordist": "Sacred Harp Museum, Bruce Johnson",
+    "createdAt": "2026-08-22T19:55:04.827Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "6149e377-8197-4edd-96de-08161c7b1563",
+    "date": "1958-07-13",
+    "url": "https://archive.org/details/bruceJohnson1958_07_13_3",
+    "singing": "Cullman County Courthouse Sacred Harp Singing, July 13, 1958 (tape 3)",
+    "recordist": "Sacred Harp Museum, Bruce Johnson",
+    "createdAt": "2026-08-22T19:55:06.306Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "dc32f5b3-2077-417e-9a25-5a0a215bee65",
+    "date": "2025-09-14",
+    "url": "https://archive.org/details/2025-united-convention-sun",
+    "singing": "United Sacred Harp Musical Association, September 14, 2025",
+    "recordist": "Sacred Harp Publishing Company",
+    "createdAt": "2026-08-22T19:55:08.239Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "a8d957a1-68c2-4227-adf5-8ad1ce6cb018",
+    "date": "1955-05-01",
+    "url": "https://archive.org/details/jhcarter-tape-15-19550501-rabbittown-46",
+    "singing": "Sacred Harp Singing at Rabbittown, AL, May 1, 1955",
+    "recordist": "J. H. Carter,Sacred Harp Museum",
+    "createdAt": "2026-08-22T19:55:09.772Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "48a21b4b-4c9a-491f-b837-3977a3be651f",
+    "date": "1955-06-12",
+    "url": "https://archive.org/details/jhcarter-tape-11-19550612-oneonta",
+    "singing": "Sacred Harp Singing at Hopewell, June 12, 1955",
+    "recordist": "J. H. Carter,Sacred Harp Museum",
+    "createdAt": "2026-08-22T19:55:11.356Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "857d286e-25f0-4e06-bddc-65396b7ee861",
+    "date": "1989-08-26",
+    "url": "https://archive.org/details/1989-08-26-lookout-mountain",
+    "singing": "Lookout Mountain Sacred Harp Convention, Aut. 26-27, 1989",
+    "recordist": "James Page,Sacred Harp Museum",
+    "createdAt": "2026-08-22T19:55:12.651Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "dcc4a164-1944-46a4-b357-457daf7f6906",
+    "date": "1955-08-07",
+    "url": "https://archive.org/details/jhcarter-tape-10-19550807-pleasant-home",
+    "singing": "Sacred Harp Singing at Pleasant Hope, Aug. 7, 1955",
+    "recordist": "J. H. Carter,Sacred Harp Museum",
+    "createdAt": "2026-08-22T19:55:14.222Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "1780a84d-25aa-410f-ac68-22ded3f2637d",
+    "date": "1955-01-01",
+    "url": "https://archive.org/details/jhcarter-tape-02-unidentified",
+    "singing": "Unidentified Sacred Harp Singing, c. 1955",
+    "recordist": "J. H. Carter,Sacred Harp Museum",
+    "createdAt": "2026-08-22T19:55:15.757Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "aaaa8bed-1320-4db3-ae7f-4720c2e1d5ba",
+    "date": "1956-06-09",
+    "url": "https://archive.org/details/jhcarter-tape-17-19560609-oneonta",
+    "singing": "Sacred Harp Singing at Hopewell, June 9, 1956",
+    "recordist": "J. H. Carter,Sacred Harp Museum",
+    "createdAt": "2026-08-22T19:55:17.456Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "e33139ad-0dd1-4624-85d5-c336839cdf59",
+    "date": "1955-10-02",
+    "url": "https://archive.org/details/jhcarter-tape-22-19551002-hopewell",
+    "singing": "Sacred Harp Singing at Hopewell, Oct. 2, 1955",
+    "recordist": "J. H. Carter,Sacred Harp Museum",
+    "createdAt": "2026-08-22T19:55:18.948Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "ca19d9b0-2bce-4c03-ad74-0c5cd269d83d",
+    "date": "1956-06-30",
+    "url": "https://archive.org/details/jhcarter-tape-15-19560630-liberty",
+    "singing": "Henagar Union Sacred Harp Convention, June 30, 1956",
+    "recordist": "J. H. Carter,Sacred Harp Museum",
+    "createdAt": "2026-08-22T19:55:20.449Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
   }
 ]
