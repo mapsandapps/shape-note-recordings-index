@@ -66,3 +66,20 @@ export interface LessonDetail {
   url: string;
   embedUrl: string | null;
 }
+
+export interface ArchiveRecordingInfo {
+  identifier: string;
+  publicdate: string;
+  date: string;
+  title: string;
+}
+
+interface ArchiveUser {
+  emailUsername: string;
+  emailDomain: string;
+}
+
+export interface ArchiveSource {
+  directory: string;
+  user: ArchiveUser;
+}

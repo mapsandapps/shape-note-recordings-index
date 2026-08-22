@@ -1,14 +1,36 @@
-import * as path from "path";
 import books from "../../db/data/books.json";
-import { format, formatDate, isAfter } from "date-fns";
 import {
   addLessonsToDB,
   addRecordingToDB,
   findPageNumber,
   getLessonStatus,
+  stripFractionalSeconds,
 } from "./utils";
-import type { Book, PendingLesson, PendingRecording } from "./types";
-import { getAllLessonFiles } from "../../db/build-db";
+import type {
+  ArchiveRecordingInfo,
+  ArchiveSource,
+  Book,
+  PendingLesson,
+  PendingRecording,
+} from "./types";
+import { getAllLessonFilesInDir } from "../../db/build-db";
+
+const ARCHIVE_SOURCES: Record<string, ArchiveSource> = {
+  nathan: {
+    directory: "archive-nathan",
+    user: {
+      emailUsername: "nathankrees",
+      emailDomain: "gmail.com",
+    },
+  },
+  museum: {
+    directory: "archive-museum",
+    user: {
+      emailUsername: "ordering",
+      emailDomain: "sacredharp.com",
+    },
+  },
+};
 
 const isAfterBookLaunch = (recordingDate: string) => {
   const date = new Date(recordingDate);
@@ -152,11 +174,22 @@ const getLessons = async (url: string) => {
   return lessons;
 };
 
-const fetchItems = async (startDate: Date, endDate?: Date) => {
-  const start = format(startDate, "yyyy-MM-dd");
-  const end = endDate ? format(endDate, "yyyy-MM-dd") : `null`;
+/**
+ * @param source an ArchiveSource
+ * @param startDate in ISO format
+ * @param endDate in ISO format
+ * @returns promise with array of ArchiveRecordingInfo or undefined
+ */
+const fetchItems = async (
+  source: ArchiveSource,
+  startDate: string,
+  endDate: string,
+): Promise<ArchiveRecordingInfo[] | undefined> => {
+  // remove fractional seconds from dates (if present) because archive.org will error if you include them
+  const formattedStartDate = stripFractionalSeconds(startDate);
+  const formattedEndDate = stripFractionalSeconds(endDate);
 
-  const url = `https://archive.org/services/search/beta/page_production/?user_query=creator%3A%28Nathan+Rees%29+AND+date%3A%5B${start}+TO+${end}%5D`;
+  const url = `https://archive.org/advancedsearch.php?q=uploader:%22${source.user.emailUsername}%40${source.user.emailDomain}%22+AND+mediatype:audio+AND+publicdate:%5B${formattedStartDate}+TO+${formattedEndDate}%5D&fl[]=identifier,title,date,publicdate&output=json&rows=100`;
 
   try {
     const response = await fetch(url, {
@@ -166,31 +199,40 @@ const fetchItems = async (startDate: Date, endDate?: Date) => {
     });
     const data = await response.json();
 
-    // the query only lets you refine down to the date, not time, so remove any items before the search data
-    const items = data.response.body.hits.hits.filter((item: any) =>
-      isAfter(item.fields.publicdate, startDate),
-    );
-    return items;
+    return data.response.docs as ArchiveRecordingInfo[];
   } catch (error) {
     console.error("Fetching items failed", error);
+    return undefined;
   }
 };
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const findNewLessons = async (startDate: Date, endDate?: Date) => {
-  console.log(
-    `Starting to find lessons from ${formatDate(startDate, "yyyy-MM-dd")} to ${formatDate(endDate || new Date(), "yyyy-MM-dd")}...`,
-  );
-  const currentDate = new Date().toISOString();
+/**
+ *
+ * @param source an ArchiveSource
+ * @param startDate in ISO format
+ * @param endDate in ISO format
+ */
+const findNewLessons = async (
+  source: ArchiveSource,
+  startDate: string,
+  endDate?: string,
+) => {
+  const endOrNow = endDate || new Date().toISOString();
+  console.log(`Starting to find lessons from ${startDate} to ${endOrNow}...`);
 
-  const items = await fetchItems(startDate, endDate);
-  // const items = [{ fields: { identifier: "2021-08-14-do-re-mi-sat" } }];
+  const items = await fetchItems(source, startDate, endOrNow);
+
+  if (!items || items.length === 0) {
+    console.warn("No items found");
+    return;
+  }
+
   let lessons: any[] = [];
 
   for (const item of items) {
-    const identifier = item.fields.identifier;
-    const url = `https://archive.org/metadata/${identifier}`;
+    const url = `https://archive.org/metadata/${item.identifier}`;
     const itemLessons = await getLessons(url);
     if (itemLessons) {
       lessons = [...lessons, ...itemLessons];
@@ -200,25 +242,23 @@ const findNewLessons = async (startDate: Date, endDate?: Date) => {
     await delay(1000);
   }
 
-  addLessonsToDB(lessons, "archive-nathan", currentDate);
-  console.log(`Finished writing to file ${currentDate}-pending.json`);
+  addLessonsToDB(lessons, source.directory, endOrNow);
+  console.log(`Finished writing to file ${endOrNow}-pending.json`);
 };
 
-// to use this, call it (for example) in the top section of pending.astro and then load the page
-export const pullOneArchiveItem = async (
-  identifier: string,
-  isNathan: boolean,
-) => {
+/**
+ * To use this, uncomment it in pull-data.astro and then visit http://localhost:4321/pull-data
+ * Note: This is not meant to be used to find recordings by Nathan or the Sacred Harp Museum: use findArchiveLessonsSinceMostRecent() for those
+ * @param identifier The string used in the archive.org URL to identify this recording
+ */
+export const pullOneArchiveItem = async (identifier: string) => {
   const url = `https://archive.org/metadata/${identifier}`;
   const lessons = await getLessons(url);
-  const subDir = isNathan ? "archive-nathan" : "archive-other";
-  addLessonsToDB(lessons, subDir, identifier);
+  addLessonsToDB(lessons, "archive-other", identifier);
 };
 
-export const findArchiveLessonsSinceMostRecent = async () => {
-  const lessonsDir = path.join(process.cwd(), "db/data/lessons");
-
-  const files = await getAllLessonFiles();
+const findArchiveLessonsSinceMostRecent = async (source: ArchiveSource) => {
+  const files = await getAllLessonFilesInDir(source.directory);
 
   // files without dates in the name should be ignored
   // only look at filenames starting with a number
@@ -228,13 +268,25 @@ export const findArchiveLessonsSinceMostRecent = async () => {
   const lastFilename = dateFiles.sort().at(-1);
 
   if (!lastFilename) {
-    console.error("no last file");
-    return;
+    console.warn("no last file; using epoch as start date");
   }
 
-  const latestDate = new Date(lastFilename.replace(".json", ""));
+  const epoch = new Date(0).toISOString();
 
-  console.log(`Getting recordings since ${latestDate}`);
+  const latestPullDate = lastFilename
+    ? lastFilename.replace(".json", "")
+    : epoch;
 
-  findNewLessons(latestDate);
+  console.log(`Getting recordings since ${latestPullDate}`);
+
+  findNewLessons(source, latestPullDate);
+};
+
+/**
+ * Searches archive.org for the recordings from Nathan and the museum
+ * uploaded since the last time recordings were pulled
+ */
+export const pullArchiveLessonsSinceMostRecent = () => {
+  findArchiveLessonsSinceMostRecent(ARCHIVE_SOURCES.nathan);
+  findArchiveLessonsSinceMostRecent(ARCHIVE_SOURCES.museum);
 };

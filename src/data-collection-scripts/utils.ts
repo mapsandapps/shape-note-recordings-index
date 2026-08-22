@@ -4,6 +4,13 @@ import fs from "node:fs";
 import books from "../../db/data/books.json";
 import type { PendingLesson, PendingRecording } from "./types";
 
+/**
+ * @param date in ISO format, with or without fractional seconds
+ */
+export const stripFractionalSeconds = (date: string) => {
+  return date.replace(/\.\d{3}Z$/, "Z");
+};
+
 export const addLessonsToDB = (
   lessons: PendingLesson[] | undefined,
   subDir: string | undefined,
