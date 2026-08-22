@@ -66,6 +66,7 @@
     "pageSort": 34.1,
     "tuneName": "The Gospel Pool"
   },
+  { "page": "34b", "pageSort": 34.2, "tuneName": "The Teacher's Farewell" },
   {
     "page": "35",
     "pageSort": 35,
@@ -221,6 +222,11 @@
     "page": "65",
     "pageSort": 65,
     "tuneName": "Sweet Prospect"
+  },
+  {
+    "page": "66",
+    "pageSort": 66,
+    "tuneName": "Home"
   },
   {
     "page": "67",
@@ -459,6 +465,7 @@
   },
   { "page": "115", "pageSort": 115, "tuneName": "Edmonds" },
   { "page": "116", "pageSort": 116, "tuneName": "Union" },
+  { "page": "117", "pageSort": 117, "tuneName": "Timmons" },
   { "page": "118", "pageSort": 118, "tuneName": "Babylon Is Fallen" },
   {
     "page": "119",
@@ -971,6 +978,7 @@
     "tuneName": "Farewell Anthem"
   },
   { "page": "263", "pageSort": 263, "tuneName": "Doddridge" },
+  { "page": "266", "pageSort": 266, "tuneName": "Ode on Pious Life" },
   {
     "page": "268",
     "pageSort": 268,
@@ -1134,6 +1142,7 @@
     "pageSort": 302,
     "tuneName": "Logan"
   },
+  { "page": "303", "pageSort": 303, "tuneName": "Love" },
   {
     "page": "304",
     "pageSort": 304,
@@ -1368,6 +1377,7 @@
     "pageSort": 367,
     "tuneName": "Consolation"
   },
+  { "page": "368", "pageSort": 368, "tuneName": "Draketown" },
   {
     "page": "369",
     "pageSort": 369,
@@ -1379,6 +1389,7 @@
     "pageSort": 371,
     "tuneName": "Heavenly Dove"
   },
+  { "page": "372", "pageSort": 372, "tuneName": "Lakeland" },
   {
     "page": "373",
     "pageSort": 373,
@@ -1782,5 +1793,10 @@
     "page": "460",
     "pageSort": 460,
     "tuneName": "Sardis"
+  },
+  {
+    "page": "461",
+    "pageSort": 461,
+    "tuneName": "Farewell"
   }
 ]
