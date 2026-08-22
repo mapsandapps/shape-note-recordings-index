@@ -27,6 +27,12 @@ const isAfterBookLaunch = (recordingDate: string) => {
   return true;
 };
 
+const isUsing1936 = (recordingDate: string) => {
+  const date = new Date(recordingDate);
+
+  return date.getFullYear() < 1971;
+};
+
 const isUsing1971 = (recordingDate: string) => {
   const date = new Date(recordingDate);
 
@@ -41,6 +47,9 @@ const guessBooks = (description: string, recordingDate: string) => {
   if (description.includes("Sacred Harp")) {
     if (isAfterBookLaunch(recordingDate)) {
       const book = books.find((book) => book.slug === "sh-2025");
+      includedBooks.push(book!);
+    } else if (isUsing1936(recordingDate)) {
+      const book = books.find((book) => book.slug === "sh-1936");
       includedBooks.push(book!);
     } else if (isUsing1971(recordingDate)) {
       const book = books.find((book) => book.slug === "sh-1971");
