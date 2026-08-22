@@ -2638,5 +2638,14 @@
     "singing": "Sacred Harp Singing at the Henagar Union Convention, July 4, 2026",
     "recordist": "Nathan Rees",
     "createdAt": "2026-08-11T17:37:19.476Z"
+  },
+  {
+    "id": "3c8d7480-8f9d-4ce0-b9ac-38e1bd39a007",
+    "singing": "A selection of songs from the recordings of Terry Wootten (with lyrics)",
+    "date": "1982-01-01",
+    "recordist": "Tim'rous Europe",
+    "url": "https://www.youtube.com/watch?v=kw1sBEEgmRc",
+    "createdAt": "2026-08-14T18:38:57.930Z",
+    "license": "youtube"
   }
 ]
