@@ -32,38 +32,47 @@ const booksWithoutImages = books.filter(book => !booksWithImages.map(book => boo
 
 <Layout>
   <h1>Index of Recordings from Shape Note Tune Books</h1>
-  {booksWithImages.map(book => {
-    if (!book) return;
-    return (
-      <div>
-        <a href={`/${book.slug}`}>
-          <figure>
-            <Image src={book.image} alt={book.name || "book"} />
-            <figcaption>{book.name} ({book.year})</figcaption>
-          </figure>
-        </a>
-      </div>
+  <div class="gallery">
+    {booksWithImages.map(book => {
+      if (!book) return;
+      return (
+        <div class="book-with-image">
+          <a href={`/${book.slug}`}>
+            <figure>
+              <Image src={book.image} alt={book.name || "book"} />
+              <figcaption>{book.name} ({book.year})</figcaption>
+            </figure>
+          </a>
+        </div>
+      )}
     )}
-  )}
+  </div>
   <ul>
     {booksWithoutImages.map(book => (
       <li><a href={`/${book.slug}`}>{book.name} ({book.year})</a></li>
     ))}
   </ul>
-  <p>Or&hellip; view <a href="/all-pages">all pages from all books</a> or view <a href="/recent">recent additions</a></p>
+  <p>Or&hellip; view <a href="/all-pages">all pages from all books</a> or view <a href="/recent/7">recent additions</a></p>
 </Layout>
 
 <style>
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 200px);
+    justify-content: center;
+    gap: 16px;
+    padding-bottom: 32px;
+  }
+
+  .book-with-image {
+    display: inline-block;
+    max-width: 200px;
+    vertical-align: top;
+  }
+
   img {
     max-width: 200px;
     height: auto;
-  }
-
-  div {
-    display: inline-block;
-    max-width: 200px;
-    padding: 16px;
-    vertical-align: top;
   }
 
   figure {
@@ -77,5 +86,11 @@ const booksWithoutImages = books.filter(book => !booksWithImages.map(book => boo
 
   ul {
     padding-bottom: 3rem;
+  }
+
+  @media (max-width: 448px) {
+    .gallery {
+      grid-template-columns: repeat(1, 200px);
+    }
   }
 </style>
