@@ -24,7 +24,7 @@ const { lessons = [], page } = Astro.props;
 const pathname = Astro.url.pathname.replace(/\/$/, "");
 ---
 <div>
-  <p id="error" class="error hidden">Having problems? Try switching to <a href={`${pathname}/list`}>list mode</a>, where you can play recordings one at a time.</p>
+  <p id="error" class="error hidden">Having problems? Try accessing the recording directly via the link below.</p>
 
   <div class="player">
     <div id="currently-playing"></div>
