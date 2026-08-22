@@ -27,6 +27,10 @@ const { book, pages, href } = Astro.props;
     <p>Note: Cooper Book songs from non-Cooper Book singings have not yet been divided by year of revision</p>
   )}
 
+  {book.slug === 'wb-2007' && (
+    <p>Note: White Book songs from non-White Book singings have not yet been divided by year of revision</p>
+  )}
+
   <p></p>
 
   <a href={href}><button>Sort by tune name</button></a><br />
