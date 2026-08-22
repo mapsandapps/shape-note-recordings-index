@@ -118,8 +118,14 @@ function importPages(db: DatabaseSync) {
   console.log(`  Page: ${total} rows across ${files.length} books`);
 }
 
-export function getAllLessonFiles(): string[] {
-  const lessonsDir = path.join(DATA_DIR, "lessons");
+export function getAllLessonFilesInDir(dir: string): string[] {
+  const lessonsDir = path.join(DATA_DIR, "lessons", dir);
+
+  return getAllLessonFiles(lessonsDir);
+}
+
+function getAllLessonFiles(dir?: string): string[] {
+  const lessonsDir = dir || path.join(DATA_DIR, "lessons");
   const files = fs.readdirSync(lessonsDir, { recursive: true }) as string[];
 
   return files
