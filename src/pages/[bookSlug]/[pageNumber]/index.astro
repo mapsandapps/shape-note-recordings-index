@@ -62,18 +62,21 @@ const lessons = db
 const multiEmbedLessons = lessons.filter(lesson => lesson.embedUrl?.includes('archive.org'));
 
 // get other tunes with same name
-const tunes = db
+const pagesInOtherBooks = db
   .prepare(
     `SELECT
        Page.page,
        Page.tuneName,
        Page.bookSlug,
        Book.name AS bookName,
-       Book.year AS bookYear
+       Book.year AS bookYear,
+       COUNT(Lesson.id) AS lessonsCount
      FROM Page
      INNER JOIN Book ON Book.slug = Page.bookSlug
+     LEFT JOIN Lesson ON Lesson.page = Page.page AND Lesson.bookSlug = Page.bookSlug
      WHERE (${NORMALIZED_TUNE_NAME_SQL}) = ?
        AND Page.bookSlug != ?
+     GROUP BY Page.id
      ORDER BY Page.tuneName ASC, Book.name ASC, Book.year DESC`,
   )
   .all(getNormalizedCurrentPage(page), page.bookSlug) as unknown as PageDetail[];
@@ -107,13 +110,13 @@ const youTubeSearchLink = encodeURI(`https://www.youtube.com/results?search_quer
   <hr />
   <p>Note: The recordings collected on this site are mostly ones it's hard to search for. You may find additional recordings via a simple <a href={youTubeSearchLink} target="_blank">YouTube search</a>.</p>
 
-  {tunes.length > 0 && (
+  {pagesInOtherBooks.length > 0 && (
     <hr />
     <h2>Same Tune Name In Other Books</h2>
   )}
   <ul>
-    {tunes.map(tune => (
-      <li><a href={`/${tune.bookSlug}/${tune.page}`}>{tune.tuneName}</a> {tune.bookName} ({tune.bookYear}), pg. {tune.page}</li>
+    {pagesInOtherBooks.map(page => (
+      <li><a href={`/${page.bookSlug}/${page.page}`}>{page.tuneName}</a> ({page.lessonsCount} {page.lessonsCount === 1 ? 'recording' : 'recordings'}) {page.bookName} ({page.bookYear}), pg. {page.page}</li>
     ))}
   </ul>
 </Layout>

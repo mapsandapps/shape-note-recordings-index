@@ -56,6 +56,7 @@ export interface PageDetail {
   bookSlug: string;
   bookName: string;
   bookYear: string;
+  lessonsCount?: number;
 }
 
 export interface LessonDetail {
