@@ -1,10 +1,10 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import { getNormalizedCurrentPage, NORMALIZED_TUNE_NAME_SQL } from "../../../utils/tune-name-comparisons";
 import LessonsList from "../../../components/embeds/LessonsList.astro";
 import MultiEmbed from "../../../components/embeds/MultiEmbed.astro";
 import { db } from "../../../../db/db";
 import type { LessonDetail, Page, PageDetail } from "../../../data-collection-scripts/types";
+import { fuzzySearchNames } from "../../../utils/fuzzy-search";
 
 export async function getStaticPaths() {
   const pages = db
@@ -61,25 +61,7 @@ const lessons = db
 
 const multiEmbedLessons = lessons.filter(lesson => lesson.embedUrl?.includes('archive.org'));
 
-// get other tunes with same name
-const pagesInOtherBooks = db
-  .prepare(
-    `SELECT
-       Page.page,
-       Page.tuneName,
-       Page.bookSlug,
-       Book.name AS bookName,
-       Book.year AS bookYear,
-       COUNT(Lesson.id) AS lessonsCount
-     FROM Page
-     INNER JOIN Book ON Book.slug = Page.bookSlug
-     LEFT JOIN Lesson ON Lesson.page = Page.page AND Lesson.bookSlug = Page.bookSlug
-     WHERE (${NORMALIZED_TUNE_NAME_SQL}) = ?
-       AND Page.bookSlug != ?
-     GROUP BY Page.id
-     ORDER BY Page.tuneName ASC, Book.name ASC, Book.year DESC`,
-  )
-  .all(getNormalizedCurrentPage(page), page.bookSlug) as unknown as PageDetail[];
+const pagesInOtherBooks: PageDetail[] = await fuzzySearchNames(page);
 
 const youTubeSearchLink = encodeURI(`https://www.youtube.com/results?search_query=${page.bookName} ${pageNumber}`);
 ---
@@ -112,12 +94,15 @@ const youTubeSearchLink = encodeURI(`https://www.youtube.com/results?search_quer
 
   {pagesInOtherBooks.length > 0 && (
     <hr />
-    <h2>Same Tune Name In Other Books</h2>
+    <h2>Similar Tune Names In Other Books</h2>
   )}
   <ul>
-    {pagesInOtherBooks.map(page => (
-      <li><a href={`/${page.bookSlug}/${page.page}`}>{page.tuneName}</a> ({page.lessonsCount} {page.lessonsCount === 1 ? 'recording' : 'recordings'}) {page.bookName} ({page.bookYear}), pg. {page.page}</li>
-    ))}
+    {pagesInOtherBooks.map(otherPage => {
+      const link = <a href={`/${otherPage.bookSlug}/${otherPage.page}`}>{otherPage.tuneName}</a>
+      const isNameSame = otherPage.tuneName.toLowerCase() === page.tuneName.toLowerCase();
+
+      return (<li>{isNameSame ? <b>{link}</b> : link} ({otherPage.lessonsCount} {otherPage.lessonsCount === 1 ? 'recording' : 'recordings'}) {otherPage.bookName} ({otherPage.bookYear}), pg. {otherPage.page}</li>)
+    })}
   </ul>
 </Layout>
 
