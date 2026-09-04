@@ -44,15 +44,13 @@ const getRecordingForLesson = (lesson: PendingLesson): Recording => {
   )}
 
   <div>
-    <button id="toggle">Show only known problems</button>
+    <button id="toggle">Show all pending</button>
   </div>
 
-  <div id="lessons">
+  <div id="lessons" class="hide-ok">
     {jsons.map((lessons) => {
       return lessons.map((lesson, i) => {
         if (lesson.status === "CONFIRMED") return
-
-        const isArchive = lesson.url?.includes("archive.org");
 
         const hasError = lesson.status !== "PENDING"
 
