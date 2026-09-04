@@ -23,6 +23,18 @@ const pages = db
      ORDER BY Page.tuneName ASC, Book.year DESC`,
   )
   .all() as unknown as PageWithBook[];
+
+// alphabet links
+const ALL_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+const letterAnchorIndices: Record<string, number> = {};
+pages.forEach((page, index) => {
+  const firstLetter = page.tuneName?.charAt(0).toUpperCase();
+
+  if (firstLetter && !letterAnchorIndices[firstLetter]) {
+    letterAnchorIndices[firstLetter] = index;
+  }
+});
 ---
 
 <Layout>
@@ -32,10 +44,66 @@ const pages = db
   </ul>
 
   <h1>Index of Tunes from Shape Note Tune Books</h1>
+
+  <nav>
+    {ALL_LETTERS.map(letter => {
+      return Object.keys(letterAnchorIndices).includes(letter) ? (
+        <a href={`#letter-${letter}`}>
+          {letter}
+        </a>
+      ) : (
+        <span class="no-link">
+          {letter}
+        </span>
+      );
+    })}
+  </nav>
+  <button id="scroll-to-top">↑</button>
+
   <ul>
-    {pages.map(page => (
-      <li><a href={`/${page.bookSlug}/${page.page}`}>{page.tuneName}</a>, {page.bookName} ({page.bookYear}) pg. {page.page}</li>
-    ))}
+    {pages.map((page, i) => {
+      const firstLetter = page.tuneName.charAt(0);
+      const isFirstOfLetter = letterAnchorIndices[firstLetter] === i;
+
+      return(
+        <li id={isFirstOfLetter ? `letter-${firstLetter}`: undefined}><a href={`/${page.bookSlug}/${page.page}`}>{page.tuneName}</a>, {page.bookName} ({page.bookYear}) pg. {page.page}</li>
+      )
+    })}
   </ul>
   <p>Or&hellip; view pages from all books</p>
 </Layout>
+
+<script>
+  const scrollToTopButton = document.getElementById('scroll-to-top');
+
+  scrollToTopButton?.addEventListener('click', () => {
+    window.scrollTo({ top: 0 })
+  })
+</script>
+
+<style>
+  nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  nav .no-link {
+    color: #cccccc;
+    cursor: not-allowed;
+  }
+
+  #scroll-to-top {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    padding: 0.5rem 1rem;
+    fontSize: 14px;
+    border-radius: 4px;
+    background-color: white;
+    border-width: 0px;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
+</style>

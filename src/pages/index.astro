@@ -31,7 +31,8 @@ const booksWithoutImages = books.filter(book => !booksWithImages.map(book => boo
 ---
 
 <Layout>
-  <h1>Index of Recordings from Shape Note Tune Books</h1>
+  <h1>Shape Note Recordings Index</h1>
+  <p>An index of over 20,000 recordings of individual shape note songs, organized by page number</p>
   <div class="gallery">
     {booksWithImages.map(book => {
       if (!book) return;
