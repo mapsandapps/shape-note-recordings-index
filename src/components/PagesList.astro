@@ -23,8 +23,8 @@ const { book, pages, href } = Astro.props;
     <p>Note: My index for this book is not complete</p>
   )}
 
-  {book.slug === 'cb-2012' && (
-    <p>Note: Cooper Book songs from non-Cooper Book singings have not yet been divided by year of revision</p>
+  {book.slug.startsWith('cb') && (
+    <p>Note: Cooper Book songs from non-Cooper Book singings have not yet been divided by year of revision, also, my page indices are incomplete</p>
   )}
 
   {book.slug === 'wb-2007' && (
