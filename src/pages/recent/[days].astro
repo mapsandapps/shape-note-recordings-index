@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import LessonsList from '../../components/embeds/LessonsList.astro';
 import { db } from "../../../db/db"; // adjust path
 import type { Recording } from '../../data-collection-scripts/types';
+import { getShortSingingName } from '../../utils';
 
 export async function getStaticPaths() {
   return [
@@ -99,7 +100,7 @@ const recordingsWithLessons = recordings.map(recording => ({
 
   {recordingsWithLessons.map(recording => (
     <details>
-      <summary>{recording.singing}</summary>
+      <summary>{getShortSingingName(recording.singing, recording.date)}</summary>
       <LessonsList lessons={recording.lessons} shouldIncludePage />
     </details>
   ))}

@@ -34,6 +34,16 @@ const bandcampCount = (
   }
 ).count;
 
+const bostonSingCount = (
+  db.prepare(`
+    SELECT COUNT(*) AS count
+    FROM Recording
+    WHERE url LIKE '%bostonsing.org%'
+  `).get() as unknown as {
+    count: number
+  }
+).count;
+
 const youtubeCount = (
   db.prepare(`
     SELECT COUNT(*) AS count
@@ -85,6 +95,7 @@ const mostFrequentPages2025 = getMostFrequentPages("sh-2025");
   <ul>
     <li>Archive.org: {archiveCount.toLocaleString()}</li>
     <li>Bandcamp: {bandcampCount.toLocaleString()}</li>
+    <li>BostonSing.org: {bostonSingCount.toLocaleString()}</li>
     <li>YouTube: {youtubeCount.toLocaleString()}</li>
   </ul>
 
