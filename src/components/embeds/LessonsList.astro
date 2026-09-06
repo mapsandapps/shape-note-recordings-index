@@ -43,7 +43,17 @@ const { lessons = [], shouldIncludePage = false } = Astro.props;
               {shouldIncludePage && (
                 <td><a href={`/${lesson.bookSlug}/${lesson.page}`}>{lesson.page} {lesson.tuneName}</a><br />{lesson.bookName} ({lesson.bookYear})</td>
               )}
-              <td>{singingText}<br />Recorded by {lesson.recordist}</td>
+              {lesson.recordist === "Unknown" ? (
+                <td>
+                  {singingText}<br />
+                  Recordist unknown
+                </td>
+              ) : (
+                <td>
+                  {singingText}<br />
+                  Recorded by {lesson.recordist}
+                </td>
+              )}
               <td>
                 <RecordingLink href={lesson.url} />
               </td>

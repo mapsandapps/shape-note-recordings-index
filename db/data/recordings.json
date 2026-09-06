@@ -3432,5 +3432,141 @@
     "recordist": "Nate Green",
     "createdAt": "2026-09-06T00:45:08.198Z",
     "license": "All Rights Reserved"
+  },
+  {
+    "id": "3e2f39a6-c876-43ea-aa1f-20c75cdbb1cc",
+    "date": "1985-01-01",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#dallas-county-1985",
+    "singing": "Dallas County, 1985",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T01:42:22.000Z"
+  },
+  {
+    "id": "c864191c-b759-4b4d-aa17-90c3f2dc02e0",
+    "date": "1980-01-01",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#smith-county-1980",
+    "singing": "Smith County, 1980",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T01:50:00.000Z"
+  },
+  {
+    "id": "886ded5c-f6f6-4b44-8597-9d563f00985a",
+    "date": "1980-01-01",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#east-texas-1980",
+    "singing": "East Texas, 1980",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T01:54:00.000Z"
+  },
+  {
+    "id": "d52c90d8-1987-4408-89cb-b63c3ad4f9b2",
+    "date": "1973-01-01",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#east-texas-1973",
+    "singing": "East Texas Convention, 1973",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T01:57:00.000Z"
+  },
+  {
+    "id": "63a77b70-3a04-4ca7-94d0-b21d45149ed9",
+    "date": "1979-01-01",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#little-hope-1979",
+    "singing": "Little Hope, Huntington, TX, 1979",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T02:00:00.000Z"
+  },
+  {
+    "id": "c69e9b28-f0fd-41e3-9864-fd3b33cb92bf",
+    "date": "1996-01-01",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#hoboken-1996",
+    "singing": "Hoboken, 1996",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T02:02:00.000Z"
+  },
+  {
+    "id": "4e8a762f-471b-42fe-8081-7a7ccda03135",
+    "date": "1999-01-01",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#mississippi-1999",
+    "singing": "Mississippi Cooper Convention, 1999",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T02:05:00.000Z"
+  },
+  {
+    "id": "10af92de-4ece-4be1-ae7e-a4e70127e6e9",
+    "date": "1990-01-01",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#east-texas-1990",
+    "singing": "East Texas Convention, 1990",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T02:07:00.000Z"
+  },
+  {
+    "id": "cc73631b-a933-44bb-8ce9-e0bc72dd28c4",
+    "date": "1993-01-01",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#mt-ararat-1993",
+    "singing": "Mt. Ararat, 1993",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T02:10:00.000Z"
+  },
+  {
+    "id": "7adcc758-4c4a-48a8-9c0b-4cfb9838b590",
+    "date": "2002-01-01",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#hoboken-2002",
+    "singing": "Hoboken, 2002",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T02:13:00.000Z"
+  },
+  {
+    "id": "5ca49efb-ef3c-483e-85ab-cb4f49c75832",
+    "date": "2004-01-01",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#sw-texas-2004",
+    "singing": "Southwest Texas Convention, 2004",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T02:16:00.000Z"
+  },
+  {
+    "id": "6ed36398-6613-4616-9f9c-ef532fc159e5",
+    "date": "2004-01-01",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#smith-county-2004",
+    "singing": "Smith County, 2004",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T02:24:00.000Z"
+  },
+  {
+    "id": "59c64956-76d7-4f29-965c-3d4ca02f30d7",
+    "date": "2008-01-01",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#tallahassee-2008",
+    "singing": "Tri-State Convention, Tallahassee, 2008",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T02:49:00.000Z"
+  },
+  {
+    "id": "ddf680a7-8547-4ee6-aea3-6df486b92b24",
+    "date": "2008-03-15",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#hoboken-2008",
+    "singing": "Hoboken, 2008",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T03:00:00.000Z"
+  },
+  {
+    "id": "5735b2cf-4c9d-4ca3-8989-d44d395027aa",
+    "date": "2009-03-14",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#hoboken-2009",
+    "singing": "Hoboken, 2009",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T03:09:00.000Z"
+  },
+  {
+    "id": "12ae2419-a124-4db9-b4ba-15bc5c56a493",
+    "date": "2010-01-01",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#indiana-2010",
+    "singing": "Cooper Singing, Indiana, 2010",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T15:04:00.000Z"
+  },
+  {
+    "id": "5a7eb4e0-ada4-4fcb-82d9-7bb512b5a91e",
+    "date": "2010-01-01",
+    "url": "https://www.bostonsing.org/recordings/cooper-book-best-of/#tallahassee-2010",
+    "singing": "Tallahassee, 2010",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T15:06:00.000Z"
   }
 ]
