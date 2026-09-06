@@ -2817,5 +2817,620 @@
     "recordist": "J. H. Carter,Sacred Harp Museum",
     "createdAt": "2026-08-22T19:55:20.449Z",
     "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "26b43eed-208c-4ec1-8d42-9f66d25ae7e9",
+    "date": "2010-06-19",
+    "url": "https://www.bostonsing.org/recordings/addington-chapel/addington-2010/",
+    "singing": "Moore, Graves, and Calvert Memorial Singing, 2010",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-04T23:19:33.755Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "9d28cbd3-46ff-44fd-a910-2c31103dd718",
+    "date": "2011-06-18",
+    "url": "https://www.bostonsing.org/recordings/addington-chapel/addington-2011/",
+    "singing": "Moore, Graves, and Calvert Memorial Singing, 2011",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-04T23:31:43.448Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "47978bc7-2b2b-4400-a5eb-3ee573fd8745",
+    "date": "2010-11-27",
+    "url": "https://www.bostonsing.org/recordings/alabama-state-2010/",
+    "singing": "Alabama State Convention, 2010, Saturday",
+    "recordist": "Dr. Ian Quinn",
+    "createdAt": "2026-09-04T23:46:13.257Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "0b305db0-ceb2-4ca0-a6fa-809a9d4d74f4",
+    "date": "2010-11-28",
+    "url": "https://www.bostonsing.org/recordings/alabama-state-2010/?",
+    "singing": "Alabama State Convention, 2010, Sunday",
+    "recordist": "Dr. Ian Quinn",
+    "createdAt": "2026-09-04T23:46:13.258Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "a6d1ea6d-7c98-467d-9ed6-ac89eeca61fd",
+    "date": "2010-06-13",
+    "url": "https://www.bostonsing.org/recordings/aldridge-memorial/aldridge-2010/",
+    "singing": "Aldridge Memorial Singing, 2010",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T00:01:16.856Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "6c9d453c-2010-4858-bd65-ae3227e52c07",
+    "date": "2010-06-12",
+    "url": "https://www.bostonsing.org/recordings/aldridge-memorial/aldridge-2011/",
+    "singing": "Aldridge Memorial Singing, 2011",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T00:04:47.226Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "24483e9d-0a6d-4961-a4c6-92b0b57fe516",
+    "date": "2011-01-15",
+    "url": "https://www.bostonsing.org/recordings/all-california-2011/",
+    "singing": "California All-State All-California Sacred Harp Singing Convention, 2011, Saturday",
+    "recordist": "Nicoletta Rogers",
+    "createdAt": "2026-09-05T00:08:41.940Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "f1bb4aae-5074-4bac-b48f-36fc848ac2e7",
+    "date": "2011-01-16",
+    "url": "https://www.bostonsing.org/recordings/all-california-2011/?",
+    "singing": "California All-State All-California Sacred Harp Singing Convention, 2011, Sunday",
+    "recordist": "Nicoletta Rogers",
+    "createdAt": "2026-09-05T00:08:41.941Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "a7cfd374-d62c-4147-9675-a1b9a02e4d7c",
+    "date": "2013-10-26",
+    "url": "https://www.bostonsing.org/recordings/beacon-hill-friends-shh-2013/",
+    "singing": "Beacon Hill Friends House All-Day Singing",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T00:20:52.196Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "b0255415-c3ab-40e8-a02d-3bee75318b7c",
+    "date": "2010-11-13",
+    "url": "https://www.bostonsing.org/recordings/berkshire-foothills/berkshire-2010/",
+    "singing": "Berkshire Foothills Singing 2010",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T00:38:41.438Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "99930dee-5d6f-4efe-a56c-a0a3c6406f3f",
+    "date": "2011-11-12",
+    "url": "https://www.bostonsing.org/recordings/berkshire-foothills/berkshire-2011/",
+    "singing": "Berkshire Foothills Singing 2011",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T00:42:43.645Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "18565369-92f3-48d5-be86-3e935b1d0de3",
+    "date": "2010-05-09",
+    "url": "https://www.bostonsing.org/recordings/boston-all-day-2010/",
+    "singing": "Boston 1st Annual All-Day Singing",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T00:45:40.425Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "87062b5f-6755-48ee-88c2-2e12e43a8ba4",
+    "date": "2009-06-17",
+    "url": "https://www.bostonsing.org/recordings/camp-fasola/",
+    "singing": "Camp Fasola",
+    "recordist": "Al McCready",
+    "createdAt": "2026-09-05T00:54:45.700Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "71f81632-f64f-4a6a-a51d-f9b2e5ca0721",
+    "date": "2010-07-31",
+    "url": "https://www.bostonsing.org/recordings/chattahoochee-2010/",
+    "singing": "158th Annual Session of the Chattahoochee Sacred Harp Musical Convention, Saturday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T00:58:39.387Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "919c95ee-7fb0-4d7e-9dac-b647323a48ff",
+    "date": "2010-08-01",
+    "url": "https://www.bostonsing.org/recordings/chattahoochee-2010/?",
+    "singing": "158th Annual Session of the Chattahoochee Sacred Harp Musical Convention, Sunday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T00:58:39.388Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "5219c6bc-e1fd-4e0d-8264-c24f2939006c",
+    "date": "2010-09-25",
+    "url": "https://www.bostonsing.org/recordings/george-seiler-memorial/",
+    "singing": "George Seiler Memorial Singing",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T01:15:11.351Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "0a54005d-8b10-417a-b5b9-c48f5c3c6c9a",
+    "date": "2011-03-26",
+    "url": "https://www.bostonsing.org/recordings/georgia-state/",
+    "singing": "Georgia State Convention, 2011, Saturday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T01:21:18.801Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "7c40cf95-6374-41af-90ea-89bae91f9706",
+    "date": "2011-03-27",
+    "url": "https://www.bostonsing.org/recordings/georgia-state/?",
+    "singing": "Georgia State Convention, 2011, Sunday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T01:21:18.802Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "4214a5ec-142d-431d-bf46-41e090bc8562",
+    "date": "2010-03-13",
+    "url": "https://www.bostonsing.org/recordings/hoboken-cooper/hoboken-2010/",
+    "singing": "Hoboken School Singing",
+    "recordist": "John Plunkett",
+    "createdAt": "2026-09-05T01:29:44.176Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "74d41f94-fd6c-4871-9d0a-464dc6dd7492",
+    "date": "2012-03-17",
+    "url": "https://www.bostonsing.org/recordings/hoboken-cooper/hoboken-2012/",
+    "singing": "Hoboken School Singing, 2012",
+    "recordist": "Nicoletta Rogers",
+    "createdAt": "2026-09-05T01:41:14.164Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "1b463473-3fb6-4f81-b3f2-271378cf75b0",
+    "date": "2011-06-04",
+    "url": "https://www.bostonsing.org/recordings/holly-springs/",
+    "singing": "Holly Springs Primitive Baptist Church, Saturday",
+    "recordist": "Ian Quinn",
+    "createdAt": "2026-09-05T01:57:26.149Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "850df5e9-b89e-44ac-a797-41b90a414fa7",
+    "date": "2011-06-05",
+    "url": "https://www.bostonsing.org/recordings/holly-springs/?",
+    "singing": "Holly Springs Primitive Baptist Church, Sunday",
+    "recordist": "Ian Quinn",
+    "createdAt": "2026-09-05T01:57:26.554Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "d9bd5fc7-ada9-46d0-ade7-aa21a98a9049",
+    "date": "2010-06-20",
+    "url": "https://www.bostonsing.org/recordings/hopewell-ephesus/ephesus-2010/",
+    "singing": "Hopewell Primitive Baptist Church, 2010",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T02:11:11.518Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "b0b83918-d848-43ca-992a-61bcd2070bb3",
+    "date": "2010-06-19",
+    "url": "https://www.bostonsing.org/recordings/hopewell-ephesus/ephesus-2011/",
+    "singing": "Hopewell Primitive Baptist Church, 2011",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T02:14:39.437Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "3b0a9246-38a0-45fa-8a00-04cf69acf43e",
+    "date": "1985-06-09",
+    "url": "https://www.bostonsing.org/recordings/hopewell-homecoming/1985/",
+    "singing": "Hopewell Homecoming 1985",
+    "recordist": "Nate Green",
+    "createdAt": "2026-09-05T02:18:00.260Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "8c6a6693-65a0-4b5b-a724-2796c6a5685c",
+    "date": "2010-06-12",
+    "url": "https://www.bostonsing.org/recordings/hopewell-homecoming/2010/",
+    "singing": "Hopewell Homecoming, 2010",
+    "recordist": "Morgan Bunch",
+    "createdAt": "2026-09-05T02:23:15.213Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "dff9a493-cd7e-46bc-aab5-f4d443c77631",
+    "date": "2011-06-11",
+    "url": "https://www.bostonsing.org/recordings/hopewell-homecoming/2011/",
+    "singing": "Hopewell Homecoming, 2011, Saturday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T02:25:44.331Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "73f33280-f84c-4fcf-8278-36041ad9dfad",
+    "date": "2005-10-09",
+    "url": "https://www.bostonsing.org/recordings/ider-alabama/chestnut-grove-2005/",
+    "singing": "Chestnut Grove Baptist Church, 2005",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T02:52:54.254Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "84458fbe-c75e-4f38-a490-a5f4cfbd00d7",
+    "date": "2010-07-17",
+    "url": "https://www.bostonsing.org/recordings/ingalls-ch-2010/",
+    "singing": "Sixth Annual Jeremiah Ingalls All-Day Singing",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T03:05:46.301Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "4228ccf7-f2fd-4b00-b451-5e4e3fcc96f1",
+    "date": "2011-03-05",
+    "url": "https://www.bostonsing.org/recordings/ireland-2011/",
+    "singing": "First Ireland Sacred Harp Convention, Saturday",
+    "recordist": "Al McCready",
+    "createdAt": "2026-09-05T21:20:38.116Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "560edca5-8de1-4c17-ac17-c939f496497f",
+    "date": "2011-03-06",
+    "url": "https://www.bostonsing.org/recordings/ireland-2011/?",
+    "singing": "First Ireland Sacred Harp Convention, Sunday",
+    "recordist": "Al McCready",
+    "createdAt": "2026-09-05T21:20:38.117Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "9f6e74d7-a47f-485c-a91c-601f1c7609da",
+    "date": "2010-05-31",
+    "url": "https://www.bostonsing.org/recordings/jack-smith-mem-2010/",
+    "singing": "Tenth Annual Jack C. Smith Memorial Singing",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T21:27:44.441Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "15ba1104-8846-43a7-a80f-f4e9b9051171",
+    "date": "2010-05-16",
+    "url": "https://www.bostonsing.org/recordings/liberty-hill-2010/",
+    "singing": "Liberty Hill Church",
+    "recordist": "John Plunkett",
+    "createdAt": "2026-09-05T21:29:31.589Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "1fcd002e-0b3e-4f62-9bf6-eedca47590b3",
+    "date": "2011-05-28",
+    "url": "https://www.bostonsing.org/recordings/midwest-convention/",
+    "singing": "Midwest Convention, 2011, Saturday",
+    "recordist": "Nicoletta Rogers",
+    "createdAt": "2026-09-05T21:32:22.345Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "852657f6-f15e-4e62-ba98-85cf89082a61",
+    "date": "2011-05-29",
+    "url": "https://www.bostonsing.org/recordings/midwest-convention/?",
+    "singing": "Midwest Convention, 2011, Sunday",
+    "recordist": "Nicoletta Rogers",
+    "createdAt": "2026-09-05T21:32:22.346Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "61d5535b-ae06-4456-bcf5-b6645532cb99",
+    "date": "2008-06-12",
+    "url": "https://www.bostonsing.org/recordings/national-convention/national-2002-08/",
+    "singing": "National Sacred Harp Singing Convention, 2008, Thursday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T21:52:28.844Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "c102b74d-a163-4f4a-8906-a29d534e92a7",
+    "date": "2008-06-13",
+    "url": "https://www.bostonsing.org/recordings/national-convention/national-2002-08/?friday",
+    "singing": "National Sacred Harp Singing Convention, 2008, Friday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T21:52:28.845Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "f9911d49-d4c7-4624-bfa9-70a461377cc2",
+    "date": "2008-06-14",
+    "url": "https://www.bostonsing.org/recordings/national-convention/national-2002-08/?saturday",
+    "singing": "National Sacred Harp Singing Convention, 2008, Saturday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T21:52:28.846Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "64053730-527a-498b-930b-868a5ce90d9f",
+    "date": "2011-06-16",
+    "url": "https://www.bostonsing.org/recordings/national-convention/national-2011/",
+    "singing": "National Sacred Harp Convention, 2011, Thursday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T22:33:45.728Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "524f36f6-6fa9-416b-a399-d916e32273f6",
+    "date": "2011-06-17",
+    "url": "https://www.bostonsing.org/recordings/national-convention/national-2011/?",
+    "singing": "National Sacred Harp Convention, 2011, Friday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T22:33:45.729Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "125d34bf-513a-4a12-83cb-70e7d7cad00c",
+    "date": "2011-10-02",
+    "url": "https://www.bostonsing.org/recordings/new-haven-all-day/new-haven-2011/",
+    "singing": "New Haven All-Day Singing",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T22:46:43.739Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "4145bd0c-6ee6-48e6-b539-1e69b5c62f02",
+    "date": "2012-04-15",
+    "url": "https://www.bostonsing.org/recordings/new-haven-all-day/new-haven-2012/",
+    "singing": "New Haven All-Day Singing, 2012",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T22:50:06.947Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "36ec3c48-2ad3-4493-943c-6d8317f8378c",
+    "date": "2009-10-17",
+    "url": "https://www.bostonsing.org/recordings/new-york-state-2009/",
+    "singing": "New York State Convention, 2009, Saturday",
+    "recordist": "Nathan Rees",
+    "createdAt": "2026-09-05T22:55:28.670Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "2dad4cc1-4f5a-465f-b4a1-3882d24f5590",
+    "date": "2009-10-18",
+    "url": "https://www.bostonsing.org/recordings/new-york-state-2009/?",
+    "singing": "New York State Convention, 2009, Sunday",
+    "recordist": "Nathan Rees",
+    "createdAt": "2026-09-05T22:55:28.671Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "16bb2f92-2461-43ce-b1cc-9ba19601358e",
+    "date": "2012-03-03",
+    "url": "https://www.bostonsing.org/recordings/ohio-2012/",
+    "singing": "Ohio State Convention 2012, Saturday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T23:12:37.937Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "e94f3011-d794-45b5-b3dd-006e9f3f40a0",
+    "date": "2012-03-03",
+    "url": "https://www.bostonsing.org/recordings/ohio-2012/?",
+    "singing": "Ohio State Convention 2012, Sunday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T23:12:37.938Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "d1399be5-997b-4a96-a8bc-132b8d05addd",
+    "date": "2010-05-29",
+    "url": "https://www.bostonsing.org/recordings/piccolo-spoleto/",
+    "singing": "Piccolo Spoleto Festival 2010",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T23:22:08.065Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "0be97353-cc06-453d-beed-e8d437487cc0",
+    "date": "2013-04-06",
+    "url": "https://www.bostonsing.org/recordings/potomac-river-1/2013/",
+    "singing": "Potomac River Sacred Harp Convention, 2013, Saturday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T23:24:42.351Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "b9aeb404-a5c7-41b7-bb06-f65fca47fb13",
+    "date": "2011-04-02",
+    "url": "https://www.bostonsing.org/recordings/potomac-river-1/2011/",
+    "singing": "Potomac River Sacred Harp Convention, 2011, Saturday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T23:32:47.415Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "ac5667b8-0d16-4773-b378-fb5fe3f43d45",
+    "date": "2011-04-03",
+    "url": "https://www.bostonsing.org/recordings/potomac-river-1/2011/?",
+    "singing": "Potomac River Sacred Harp Convention, 2011, Sunday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T23:32:47.416Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "c042b525-6b96-49a9-a5fd-9e95a9739fc7",
+    "date": "2011-04-16",
+    "url": "https://www.bostonsing.org/recordings/rhode-island-all-day/2011/",
+    "singing": "Rhode Island All-Day Singing, 2011",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T23:39:04.278Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "ba2683c5-5d2e-4053-b601-bbc868874c02",
+    "date": "2010-04-17",
+    "url": "https://www.bostonsing.org/recordings/rhode-island-all-day/2010/",
+    "singing": "Rhode Island 7th Annual All-Day",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T23:40:16.183Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "60b2f08d-0bd7-4668-9f6d-bc5d0ece81ac",
+    "date": "2010-06-05",
+    "url": "https://www.bostonsing.org/recordings/sabbathday-lake/sabbathday-2010/",
+    "singing": "Shaker Meetinghouse and Frances Bliss Birthday Singing",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T23:43:24.604Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "900b5540-8f17-49e9-9df0-81ed5e00e4d5",
+    "date": "2011-06-04",
+    "url": "https://www.bostonsing.org/recordings/sabbathday-lake/sabbathday-2011/",
+    "singing": "Shaker Meetinghouse and Francis Bliss Birthday Singing, 2011",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T23:44:38.495Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "d2011315-9da5-4598-8096-a41afb3ded81",
+    "date": "2012-04-28",
+    "url": "https://www.bostonsing.org/recordings/southwest-texas-2012/",
+    "singing": "Southwest Texas Sacred Harp Convention, Saturday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T23:48:24.789Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "daf9bd11-b367-43a5-b0fe-4e40d68a7564",
+    "date": "2011-03-26",
+    "url": "https://www.bostonsing.org/recordings/vermont-state/vermont-state-2011/",
+    "singing": "Vermont State Annual Sacred Harp Singing, 2011",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T23:57:04.053Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "7bc043ff-7076-4271-b786-ae03cbdff63d",
+    "date": "2011-03-27",
+    "url": "https://www.bostonsing.org/recordings/vermont-state/vermont-state-2010/",
+    "singing": "Vermont State Annual Sacred Harp Singing, 2010",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-05T23:59:13.215Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "8c313442-2bf8-49f7-8ec6-e880e5345a02",
+    "date": "2011-03-12",
+    "url": "https://www.bostonsing.org/recordings/western-ma/2011-saturday/",
+    "singing": "Western Massachusetts Singing Convention 2011, Saturday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-06T00:01:15.361Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "1fbfb3e7-2cbe-4215-a0e7-b0facc7e35fb",
+    "date": "2011-03-13",
+    "url": "https://www.bostonsing.org/recordings/western-ma/2011-sunday/",
+    "singing": "Western Massachusetts Singing Convention 2011, Sunday",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-06T00:02:53.228Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "7a88d487-e9fb-4edb-a91f-2a1a7861e977",
+    "date": "2012-03-10",
+    "url": "https://www.bostonsing.org/recordings/western-ma/2012-saturday/",
+    "singing": "Western Massachusetts Sacred Harp Convention, 2012",
+    "recordist": "Robert Stoddard",
+    "createdAt": "2026-09-06T00:04:57.553Z",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    "id": "779863f2-901d-4f9e-af93-51694a76b701",
+    "date": "1973-08-04",
+    "url": "https://www.bostonsing.org/recordings/vintage-recordings/chattahochee-1970s/",
+    "singing": "Chattahoochee Convention, 1973",
+    "recordist": "P. Dan Brittain",
+    "createdAt": "2026-09-06T00:12:45.982Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "182dec29-cbce-476e-b39d-915117bbdcd2",
+    "date": "1972-12-21",
+    "url": "https://www.bostonsing.org/recordings/vintage-recordings/#Blackmon",
+    "singing": "Blackmon Memorial, 1972",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T00:16:26.209Z"
+  },
+  {
+    "id": "330a2540-ecc9-410c-b014-326a9534a63d",
+    "date": "1972-03-25",
+    "url": "https://www.bostonsing.org/recordings/vintage-recordings/#GA1972",
+    "singing": "Georgia State Convention, 1972",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T00:22:32.063Z"
+  },
+  {
+    "id": "c0165e47-f16f-4480-8b16-c1afdcd2c29d",
+    "date": "1973-03-24",
+    "url": "https://www.bostonsing.org/recordings/vintage-recordings/#GA1973",
+    "singing": "Georgia State Convention, 1973",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T00:24:44.969Z"
+  },
+  {
+    "id": "29ef7914-3ee2-46ff-aaa5-548e485bda7f",
+    "date": "1973-12-09",
+    "url": "https://www.bostonsing.org/recordings/vintage-recordings/#Concord",
+    "singing": "Concord PBC",
+    "recordist": "P. Dan Brittain",
+    "createdAt": "2026-09-06T00:28:26.774Z",
+    "license": "All Rights Reserved"
+  },
+  {
+    "id": "f4933514-b351-4d36-9d8f-009063cd9846",
+    "date": "1973-09-01",
+    "url": "https://www.bostonsing.org/recordings/vintage-recordings/#LittleVine",
+    "singing": "Little Vine PBC",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T00:32:34.588Z"
+  },
+  {
+    "id": "446fc088-d317-4a03-98cf-dddc46458f8a",
+    "date": "1973-06-10",
+    "url": "https://www.bostonsing.org/recordings/vintage-recordings/#NewHope",
+    "singing": "New Hope Memorial, 1973",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T00:36:24.644Z"
+  },
+  {
+    "id": "c91e9bc9-4aae-4ed6-86a4-9d4d1f59cc83",
+    "date": "1973-09-08",
+    "url": "https://www.bostonsing.org/recordings/vintage-recordings/#United",
+    "singing": "United, 1973",
+    "recordist": "Unknown",
+    "createdAt": "2026-09-06T00:38:58.806Z"
+  },
+  {
+    "id": "e9d706d3-97af-4f10-9f55-1edfab2e1135",
+    "date": "1984-11-14",
+    "url": "https://www.bostonsing.org/recordings/vintage-recordings/funeral-of-nettie-a-green/",
+    "singing": "Funeral Singing for Nettie A. Green",
+    "recordist": "Nate Green",
+    "createdAt": "2026-09-06T00:45:08.198Z",
+    "license": "All Rights Reserved"
   }
 ]
