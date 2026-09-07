@@ -3568,5 +3568,32 @@
     "singing": "Tallahassee, 2010",
     "recordist": "Unknown",
     "createdAt": "2026-09-06T15:06:00.000Z"
+  },
+  {
+    "id": "6ef99565-8200-4bce-b61c-57a8884338bf",
+    "date": "2026-08-23",
+    "url": "https://archive.org/details/2026-08-23-lookout-mountain",
+    "singing": "Lookout Mountain Convention, Aug. 23, 2026",
+    "recordist": "Nathan Rees",
+    "createdAt": "2026-09-07T01:29:18.219Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "422af72a-205f-4eb9-a8f6-7e7542ef5398",
+    "date": "2026-08-30",
+    "url": "https://archive.org/details/2026-08-30-lacy-memorial",
+    "singing": "Lacy Memorial Sacred Harp Singing, Aug. 30, 2026",
+    "recordist": "Nathan Rees",
+    "createdAt": "2026-09-07T01:29:19.365Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  },
+  {
+    "id": "f7cb0493-860f-4fb3-a76b-ba379233e1ec",
+    "date": "2026-08-29",
+    "url": "https://archive.org/details/2026-08-29-young-peoples",
+    "singing": "Young People's Sacred Harp Singing, Aug. 29, 2026",
+    "recordist": "Nathan Rees",
+    "createdAt": "2026-09-07T01:29:20.560Z",
+    "license": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
   }
 ]
